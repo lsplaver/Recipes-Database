@@ -34,6 +34,7 @@
             lstIngrediantType = new ListBox();
             lblSubstituteFor = new Label();
             clbSubstituteFor = new CheckedListBox();
+            btnSaveIngrediant = new Button();
             SuspendLayout();
             // 
             // lblName
@@ -88,11 +89,22 @@
             clbSubstituteFor.Size = new Size(150, 114);
             clbSubstituteFor.TabIndex = 5;
             // 
+            // btnSaveIngrediant
+            // 
+            btnSaveIngrediant.Location = new Point(12, 284);
+            btnSaveIngrediant.Name = "btnSaveIngrediant";
+            btnSaveIngrediant.Size = new Size(94, 70);
+            btnSaveIngrediant.TabIndex = 6;
+            btnSaveIngrediant.Text = "Save Ingrediant";
+            btnSaveIngrediant.UseVisualStyleBackColor = true;
+            btnSaveIngrediant.Click += btnSaveIngrediant_Click;
+            // 
             // frmAddIngrediant
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(377, 285);
+            ClientSize = new Size(377, 366);
+            Controls.Add(btnSaveIngrediant);
             Controls.Add(clbSubstituteFor);
             Controls.Add(lblSubstituteFor);
             Controls.Add(lstIngrediantType);
@@ -113,5 +125,6 @@
         private ListBox lstIngrediantType;
         private Label lblSubstituteFor;
         private CheckedListBox clbSubstituteFor;
+        private Button btnSaveIngrediant;
     }
 }
