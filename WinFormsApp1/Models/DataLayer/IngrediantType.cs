@@ -8,14 +8,14 @@ namespace Recipes.Models.DataLayer;
 
 public partial class IngrediantType
 {
-    [Column("ID")]
-    public int Id { get; set; }
-
     [Key]
-    //[StringLength(1)]
-    [Unicode(false)]
-    public string Type { get; set; } = null!;
+    [Column("IngrediantTypeID")]
+    public int IngrediantTypeId { get; set; }
 
-    [InverseProperty("IngrediantTypeNavigation")]
+    [Column("IngrediantType")]
+    [Unicode(false)]
+    public string IngrediantType1 { get; set; } = null!;
+
+    [InverseProperty("IngrediantType")]
     public virtual ICollection<Ingrediant> Ingrediants { get; set; } = new List<Ingrediant>();
 }

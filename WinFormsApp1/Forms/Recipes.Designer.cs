@@ -152,6 +152,7 @@
             btnEditType.TabIndex = 12;
             btnEditType.Text = "Edit Ingrediant Type";
             btnEditType.UseVisualStyleBackColor = true;
+            btnEditType.Click += btnEditType_Click;
             // 
             // btnDeleteType
             // 

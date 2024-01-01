@@ -67,14 +67,14 @@
             lstIngrediantType.FormattingEnabled = true;
             lstIngrediantType.Location = new Point(196, 41);
             lstIngrediantType.Name = "lstIngrediantType";
-            lstIngrediantType.Size = new Size(150, 24);
+            lstIngrediantType.Size = new Size(150, 104);
             lstIngrediantType.TabIndex = 3;
             lstIngrediantType.SelectedIndexChanged += lstIngrediantType_SelectedIndexChanged;
             // 
             // lblSubstituteFor
             // 
             lblSubstituteFor.AutoSize = true;
-            lblSubstituteFor.Location = new Point(12, 74);
+            lblSubstituteFor.Location = new Point(12, 151);
             lblSubstituteFor.Name = "lblSubstituteFor";
             lblSubstituteFor.Size = new Size(100, 20);
             lblSubstituteFor.TabIndex = 4;
@@ -83,16 +83,16 @@
             // clbSubstituteFor
             // 
             clbSubstituteFor.FormattingEnabled = true;
-            clbSubstituteFor.Location = new Point(196, 74);
+            clbSubstituteFor.Location = new Point(196, 151);
             clbSubstituteFor.Name = "clbSubstituteFor";
-            clbSubstituteFor.Size = new Size(150, 26);
+            clbSubstituteFor.Size = new Size(150, 114);
             clbSubstituteFor.TabIndex = 5;
             // 
             // frmAddIngrediant
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(377, 120);
+            ClientSize = new Size(377, 285);
             Controls.Add(clbSubstituteFor);
             Controls.Add(lblSubstituteFor);
             Controls.Add(lstIngrediantType);

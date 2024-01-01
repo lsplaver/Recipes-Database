@@ -9,18 +9,22 @@ namespace Recipes.Models.DataLayer;
 public partial class Ingrediant
 {
     [Key]
-    [StringLength(1)]
+    [Column("IngrediantID")]
+    public int IngrediantId { get; set; }
+
     [Unicode(false)]
     public string IngrediantName { get; set; } = null!;
 
-    [StringLength(1)]
-    [Unicode(false)]
-    public string IngrediantType { get; set; } = null!;
+    [Column("IngrediantTypeID")]
+    public int IngrediantTypeId { get; set; }
 
-    [InverseProperty("IngrediantSubstitutedByNavigation")]
-    public virtual ICollection<IngrediantSubstitute> IngrediantSubstitutes { get; set; } = new List<IngrediantSubstitute>();
+    [InverseProperty("IngrediantName")]
+    public virtual ICollection<IngrediantSubstitute> IngrediantSubstituteIngrediantNames { get; set; } = new List<IngrediantSubstitute>();
 
-    [ForeignKey("IngrediantType")]
+    [InverseProperty("IngrediantSubstitutedBy")]
+    public virtual ICollection<IngrediantSubstitute> IngrediantSubstituteIngrediantSubstitutedBies { get; set; } = new List<IngrediantSubstitute>();
+
+    [ForeignKey("IngrediantTypeId")]
     [InverseProperty("Ingrediants")]
-    public virtual IngrediantType IngrediantTypeNavigation { get; set; } = null!;
+    public virtual IngrediantType IngrediantType { get; set; } = null!;
 }

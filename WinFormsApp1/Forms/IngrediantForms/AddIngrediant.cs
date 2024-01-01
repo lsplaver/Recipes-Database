@@ -16,7 +16,7 @@ namespace WinFormsApp1
         public frmAddIngrediant()
         {
             RecipesContext recipesContext = new RecipesContext();
-            var type = recipesContext.IngrediantTypes.Select(t => t.Type);
+            var type = recipesContext.IngrediantTypes.Select(t => t.IngrediantType1);
             var substitute = recipesContext.IngrediantSubstitutes.Select(s => s.IngrediantName);
             InitializeComponent();
             lstIngrediantType.DataSource = type.ToList();

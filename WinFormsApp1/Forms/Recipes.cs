@@ -1,3 +1,5 @@
+using Recipes.Forms.TypeForms;
+
 namespace WinFormsApp1
 {
     public partial class frmRecipes : Form
@@ -17,6 +19,12 @@ namespace WinFormsApp1
         {
             frmAddIngrediantType frmAddIngrediantType = new frmAddIngrediantType();
             frmAddIngrediantType.ShowDialog();
+        }
+
+        private void btnEditType_Click(object sender, EventArgs e)
+        {
+            frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType();
+            frmEditIngrediantType.ShowDialog();
         }
     }
 }

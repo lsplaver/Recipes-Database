@@ -87,7 +87,7 @@
             clbSubstituteFor.Size = new Size(150, 26);
             clbSubstituteFor.TabIndex = 5;
             // 
-            // frmAddIngrediant
+            // frmEditIngrediant
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -98,8 +98,8 @@
             Controls.Add(lblIngrediantType);
             Controls.Add(txtIngrediantName);
             Controls.Add(lblName);
-            Name = "frmAddIngrediant";
-            Text = "Add Ingrediant";
+            Name = "frmEditIngrediant";
+            Text = "Edit Ingrediant";
             ResumeLayout(false);
             PerformLayout();
         }
