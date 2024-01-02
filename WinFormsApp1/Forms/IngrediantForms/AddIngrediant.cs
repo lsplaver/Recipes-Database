@@ -20,10 +20,10 @@ namespace WinFormsApp1
         public frmAddIngrediant()
         {
             var type = context.IngrediantTypes.Select(t => t.IngrediantType1);
-            var substitute = context.IngrediantSubstitutes.Select(s => s.IngrediantName);
+            //var substitute = context.IngrediantSubstitutes.Select(s => s.IngrediantName);
             InitializeComponent();
             lstIngrediantType.DataSource = type.ToList();
-            clbSubstituteFor.DataContext = substitute.ToList();
+            //clbSubstituteFor.DataContext = substitute.ToList();
         }
 
         private void lstIngrediantType_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,16 +59,24 @@ namespace WinFormsApp1
                 }
                 else
                 {
-                    ingrediant.IngrediantName = txtIngrediantName.Text;
+                    /*ingrediant.IngrediantName = txtIngrediantName.Text;
                     ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedItem.ToString();
-                    ingrediant.IngrediantSubstituteIngrediantSubstitutedBies = (ICollection<IngrediantSubstitute>)clbSubstituteFor.CheckedItems;
+                    ingrediant.IngrediantSubstituteIngrediantSubstitutedBies = (ICollection<IngrediantSubstitute>)clbSubstituteFor.CheckedItems;*/
+                    ingrediant.IngrediantName = txtIngrediantName.Text.ToLower();
+                    int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
+                    //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
+                    ingrediant.IngrediantTypeId = typeID;
+                    foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
+                    {
+                        ingrediant.IngrediantSubstituteIngrediantSubstitutedBies.Add(i);
+                    }
                 }
                 //ingrediants.IngrediantName = txtIngrediantName.Text;
                 //int id = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
             }
             else
             {
-                ingrediant.IngrediantName = txtIngrediantName.Text;
+                ingrediant.IngrediantName = txtIngrediantName.Text.ToLower();
                 int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                 //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
                 ingrediant.IngrediantTypeId = typeID;

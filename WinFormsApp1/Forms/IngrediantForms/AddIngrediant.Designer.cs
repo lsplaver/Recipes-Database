@@ -75,19 +75,23 @@
             // lblSubstituteFor
             // 
             lblSubstituteFor.AutoSize = true;
+            lblSubstituteFor.Enabled = false;
             lblSubstituteFor.Location = new Point(12, 151);
             lblSubstituteFor.Name = "lblSubstituteFor";
             lblSubstituteFor.Size = new Size(100, 20);
             lblSubstituteFor.TabIndex = 4;
             lblSubstituteFor.Text = "Substitute For";
+            lblSubstituteFor.Visible = false;
             // 
             // clbSubstituteFor
             // 
+            clbSubstituteFor.Enabled = false;
             clbSubstituteFor.FormattingEnabled = true;
             clbSubstituteFor.Location = new Point(196, 151);
             clbSubstituteFor.Name = "clbSubstituteFor";
             clbSubstituteFor.Size = new Size(150, 114);
             clbSubstituteFor.TabIndex = 5;
+            clbSubstituteFor.Visible = false;
             // 
             // btnSaveIngrediant
             // 
