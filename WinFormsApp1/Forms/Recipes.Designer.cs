@@ -124,6 +124,7 @@
             btnEditIngrediant.TabIndex = 8;
             btnEditIngrediant.Text = "Edit Ingrediant";
             btnEditIngrediant.UseVisualStyleBackColor = true;
+            btnEditIngrediant.Click += btnEditIngrediant_Click;
             // 
             // btnDeleteIngrediant
             // 

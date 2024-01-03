@@ -26,5 +26,11 @@ namespace WinFormsApp1
             frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType();
             frmEditIngrediantType.ShowDialog();
         }
+
+        private void btnEditIngrediant_Click(object sender, EventArgs e)
+        {
+            frmEditIngrediant frmEditIngrediant = new frmEditIngrediant();
+            frmEditIngrediant.ShowDialog();
+        }
     }
 }

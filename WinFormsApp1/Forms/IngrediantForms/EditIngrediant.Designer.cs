@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             lblName = new Label();
-            txtIngrediantName = new TextBox();
-            lblIngrediantType = new Label();
-            lstIngrediantType = new ListBox();
-            lblSubstituteFor = new Label();
-            clbSubstituteFor = new CheckedListBox();
+            lstIngrediant = new ListBox();
+            btnEditIngrediant = new Button();
             SuspendLayout();
             // 
             // lblName
@@ -45,61 +42,36 @@
             lblName.TabIndex = 0;
             lblName.Text = "Ingrediant Name";
             // 
-            // txtIngrediantName
+            // lstIngrediant
             // 
-            txtIngrediantName.Location = new Point(196, 6);
-            txtIngrediantName.Name = "txtIngrediantName";
-            txtIngrediantName.PlaceholderText = "Ingrediant Name";
-            txtIngrediantName.Size = new Size(150, 27);
-            txtIngrediantName.TabIndex = 1;
+            lstIngrediant.FormattingEnabled = true;
+            lstIngrediant.Location = new Point(196, 9);
+            lstIngrediant.Name = "lstIngrediant";
+            lstIngrediant.Size = new Size(150, 104);
+            lstIngrediant.TabIndex = 7;
+            lstIngrediant.SelectedValueChanged += lstIngrediant_SelectedValueChanged;
             // 
-            // lblIngrediantType
+            // btnEditIngrediant
             // 
-            lblIngrediantType.AutoSize = true;
-            lblIngrediantType.Location = new Point(12, 41);
-            lblIngrediantType.Name = "lblIngrediantType";
-            lblIngrediantType.Size = new Size(112, 20);
-            lblIngrediantType.TabIndex = 2;
-            lblIngrediantType.Text = "Ingrediant Type";
-            // 
-            // lstIngrediantType
-            // 
-            lstIngrediantType.FormattingEnabled = true;
-            lstIngrediantType.Location = new Point(196, 41);
-            lstIngrediantType.Name = "lstIngrediantType";
-            lstIngrediantType.Size = new Size(150, 24);
-            lstIngrediantType.TabIndex = 3;
-            // 
-            // lblSubstituteFor
-            // 
-            lblSubstituteFor.AutoSize = true;
-            lblSubstituteFor.Location = new Point(12, 74);
-            lblSubstituteFor.Name = "lblSubstituteFor";
-            lblSubstituteFor.Size = new Size(100, 20);
-            lblSubstituteFor.TabIndex = 4;
-            lblSubstituteFor.Text = "Substitute For";
-            // 
-            // clbSubstituteFor
-            // 
-            clbSubstituteFor.FormattingEnabled = true;
-            clbSubstituteFor.Location = new Point(196, 74);
-            clbSubstituteFor.Name = "clbSubstituteFor";
-            clbSubstituteFor.Size = new Size(150, 26);
-            clbSubstituteFor.TabIndex = 5;
+            btnEditIngrediant.Location = new Point(12, 57);
+            btnEditIngrediant.Name = "btnEditIngrediant";
+            btnEditIngrediant.Size = new Size(94, 56);
+            btnEditIngrediant.TabIndex = 8;
+            btnEditIngrediant.Text = "Edit Ingrediant";
+            btnEditIngrediant.UseVisualStyleBackColor = true;
+            btnEditIngrediant.Click += btnEditIngrediant_Click;
             // 
             // frmEditIngrediant
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(377, 120);
-            Controls.Add(clbSubstituteFor);
-            Controls.Add(lblSubstituteFor);
-            Controls.Add(lstIngrediantType);
-            Controls.Add(lblIngrediantType);
-            Controls.Add(txtIngrediantName);
+            ClientSize = new Size(377, 125);
+            Controls.Add(btnEditIngrediant);
+            Controls.Add(lstIngrediant);
             Controls.Add(lblName);
             Name = "frmEditIngrediant";
             Text = "Edit Ingrediant";
+            Load += frmEditIngrediant_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -107,10 +79,7 @@
         #endregion
 
         private Label lblName;
-        private TextBox txtIngrediantName;
-        private Label lblIngrediantType;
-        private ListBox lstIngrediantType;
-        private Label lblSubstituteFor;
-        private CheckedListBox clbSubstituteFor;
+        private ListBox lstIngrediant;
+        private Button btnEditIngrediant;
     }
 }
