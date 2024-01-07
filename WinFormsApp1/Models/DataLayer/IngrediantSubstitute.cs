@@ -19,10 +19,6 @@ public partial class IngrediantSubstitute
     public int IngrediantSubstitutedById { get; set; }
 
     [ForeignKey("IngrediantNameId")]
-    [InverseProperty("IngrediantSubstituteIngrediantNames")]
+    [InverseProperty("IngrediantSubstitutes")]
     public virtual Ingrediant IngrediantName { get; set; } = null!;
-
-    [ForeignKey("IngrediantSubstitutedById")]
-    [InverseProperty("IngrediantSubstituteIngrediantSubstitutedBies")]
-    public virtual Ingrediant IngrediantSubstitutedBy { get; set; } = null!;
 }

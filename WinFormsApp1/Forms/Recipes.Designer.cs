@@ -41,6 +41,7 @@
             btnAddType = new Button();
             btnEditType = new Button();
             btnDeleteType = new Button();
+            btnAddUpdateSubstitutions = new Button();
             SuspendLayout();
             // 
             // label1
@@ -164,11 +165,22 @@
             btnDeleteType.Text = "Delete Ingrediant Type";
             btnDeleteType.UseVisualStyleBackColor = true;
             // 
+            // btnAddUpdateSubstitutions
+            // 
+            btnAddUpdateSubstitutions.Location = new Point(43, 374);
+            btnAddUpdateSubstitutions.Name = "btnAddUpdateSubstitutions";
+            btnAddUpdateSubstitutions.Size = new Size(246, 55);
+            btnAddUpdateSubstitutions.TabIndex = 14;
+            btnAddUpdateSubstitutions.Text = "Add / Edit Ingrediant Substitutions";
+            btnAddUpdateSubstitutions.UseVisualStyleBackColor = true;
+            btnAddUpdateSubstitutions.Click += btnAddUpdateSubstitutions_Click;
+            // 
             // frmRecipes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(500, 364);
+            ClientSize = new Size(500, 483);
+            Controls.Add(btnAddUpdateSubstitutions);
             Controls.Add(btnDeleteType);
             Controls.Add(btnEditType);
             Controls.Add(btnAddType);
@@ -203,5 +215,6 @@
         private Button btnAddType;
         private Button btnEditType;
         private Button btnDeleteType;
+        private Button btnAddUpdateSubstitutions;
     }
 }

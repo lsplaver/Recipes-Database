@@ -19,10 +19,7 @@ public partial class Ingrediant
     public int IngrediantTypeId { get; set; }
 
     [InverseProperty("IngrediantName")]
-    public virtual ICollection<IngrediantSubstitute> IngrediantSubstituteIngrediantNames { get; set; } = new List<IngrediantSubstitute>();
-
-    [InverseProperty("IngrediantSubstitutedBy")]
-    public virtual ICollection<IngrediantSubstitute> IngrediantSubstituteIngrediantSubstitutedBies { get; set; } = new List<IngrediantSubstitute>();
+    public virtual ICollection<IngrediantSubstitute> IngrediantSubstitutes { get; set; } = new List<IngrediantSubstitute>();
 
     [ForeignKey("IngrediantTypeId")]
     [InverseProperty("Ingrediants")]

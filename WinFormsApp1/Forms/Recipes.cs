@@ -1,3 +1,5 @@
+using Recipes.Forms.IngrediantForms;
+using Recipes.Forms.SubstitutionForms;
 using Recipes.Forms.TypeForms;
 
 namespace WinFormsApp1
@@ -31,6 +33,12 @@ namespace WinFormsApp1
         {
             frmEditIngrediant frmEditIngrediant = new frmEditIngrediant();
             frmEditIngrediant.ShowDialog();
+        }
+
+        private void btnAddUpdateSubstitutions_Click(object sender, EventArgs e)
+        {
+            frmChooseIngrediantForSubstitutions frmChoose = new frmChooseIngrediantForSubstitutions();
+            frmChoose.ShowDialog();
         }
     }
 }

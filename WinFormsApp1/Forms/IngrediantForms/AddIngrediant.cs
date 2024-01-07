@@ -66,10 +66,10 @@ namespace WinFormsApp1
                     int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                     //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
                     ingrediant.IngrediantTypeId = typeID;
-                    foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
+                    /*foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
                     {
                         ingrediant.IngrediantSubstituteIngrediantSubstitutedBies.Add(i);
-                    }
+                    }*/
                 }
                 //ingrediants.IngrediantName = txtIngrediantName.Text;
                 //int id = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
@@ -80,10 +80,10 @@ namespace WinFormsApp1
                 int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                 //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
                 ingrediant.IngrediantTypeId = typeID;
-                foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
+                /*foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
                 {
                     ingrediant.IngrediantSubstituteIngrediantSubstitutedBies.Add(i);
-                }
+                }*/
                 //ingrediant.IngrediantSubstituteIngrediantNames. = (ICollection<IngrediantSubstitute>)clbSubstituteFor.SelectedItems;//.CheckedItems;
             }
             if (!isIncluded)
