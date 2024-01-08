@@ -16,11 +16,19 @@ public partial class RecipesContext : DbContext
     {
     }
 
+    /*public RecipesContext(DbContextOptions options) : base(options)
+    {
+    }*/
+
     public virtual DbSet<Ingrediant> Ingrediants { get; set; }
 
     public virtual DbSet<IngrediantSubstitute> IngrediantSubstitutes { get; set; }
 
     public virtual DbSet<IngrediantType> IngrediantTypes { get; set; }
+
+    public virtual DbSet<RecipeSource> RecipeSources { get; set; }
+
+    public virtual DbSet<RecipeSourceType> RecipeSourceTypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     /*#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -56,6 +64,20 @@ public partial class RecipesContext : DbContext
         modelBuilder.Entity<IngrediantType>(entity =>
         {
             entity.HasKey(e => e.IngrediantTypeId).HasName("PK__Ingredia__7B74DA47B63AF65D");
+        });
+
+        modelBuilder.Entity<RecipeSource>(entity =>
+        {
+            entity.HasKey(e => e.SourceId).HasName("PK__RecipeSo__16E019F9333480E6");
+
+            entity.HasOne(d => d.SourceTypeName).WithMany(p => p.RecipeSources)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RecipeSources_SourceID");
+        });
+
+        modelBuilder.Entity<RecipeSourceType>(entity =>
+        {
+            entity.HasKey(e => e.SourceTypeId).HasName("PK__RecipeSo__7E17ECCFBDCAAAF7");
         });
 
         OnModelCreatingPartial(modelBuilder);

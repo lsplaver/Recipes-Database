@@ -22,18 +22,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Forms\IngrediantForms\EditIngrediant.cs">
+    <Compile Update="Forms\Ingrediants\IngrediantForms\EditIngrediant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\TypeForms\AddIngrediantType.cs">
+    <Compile Update="Forms\Ingrediants\TypeForms\AddIngrediantType.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Forms\SourceForms\" />
-    <Folder Include="Forms\RecipeForms\" />
-    <Folder Include="Objects\" />
+    <Folder Include="Forms\Recipes\SourceForms\" />
+    <Folder Include="Forms\Recipes\RecipeForms\" />
   </ItemGroup>
 
 </Project>

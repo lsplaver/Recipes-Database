@@ -40,7 +40,7 @@
             txtIngrediantName.Location = new Point(196, 6);
             txtIngrediantName.Name = "txtIngrediantName";
             txtIngrediantName.ReadOnly = true;
-            txtIngrediantName.Size = new Size(150, 27);
+            txtIngrediantName.Size = new Size(364, 27);
             txtIngrediantName.TabIndex = 20;
             // 
             // label1
@@ -65,9 +65,10 @@
             // clbSubstituteFor
             // 
             clbSubstituteFor.FormattingEnabled = true;
+            clbSubstituteFor.HorizontalScrollbar = true;
             clbSubstituteFor.Location = new Point(196, 39);
             clbSubstituteFor.Name = "clbSubstituteFor";
-            clbSubstituteFor.Size = new Size(150, 114);
+            clbSubstituteFor.Size = new Size(364, 312);
             clbSubstituteFor.TabIndex = 17;
             // 
             // lblSubstituteFor
@@ -83,7 +84,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(373, 171);
+            ClientSize = new Size(572, 373);
             Controls.Add(txtIngrediantName);
             Controls.Add(label1);
             Controls.Add(btnAddUpdateIngrediantSubstitutions);
