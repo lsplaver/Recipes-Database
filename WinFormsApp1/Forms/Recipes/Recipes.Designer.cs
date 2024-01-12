@@ -64,6 +64,7 @@
             btnAddSource.TabIndex = 11;
             btnAddSource.Text = "Add Recipe Source";
             btnAddSource.UseVisualStyleBackColor = true;
+            btnAddSource.Click += btnAddSource_Click;
             // 
             // btnDeleteRecipe
             // 

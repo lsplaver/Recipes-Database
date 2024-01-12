@@ -24,4 +24,7 @@ public partial class RecipeSource
     [ForeignKey("SourceTypeId")]
     [InverseProperty("RecipeSources")]
     public virtual RecipeSourceType SourceTypeName { get; set; } = null!;
+
+    [Unicode(false)]
+    public string SourceLocation { get; set; } = null!;
 }

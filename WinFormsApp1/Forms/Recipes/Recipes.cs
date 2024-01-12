@@ -1,4 +1,5 @@
-﻿using Recipes.Forms.Recipes.SourceTypeForms;
+﻿using Recipes.Forms.Recipes.SourceForms;
+using Recipes.Forms.Recipes.SourceTypeForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,12 @@ namespace Recipes.Forms.Recipes
         {
             frmAddSourceType frmAddSourceType = new frmAddSourceType();
             frmAddSourceType.ShowDialog();
+        }
+
+        private void btnAddSource_Click(object sender, EventArgs e)
+        {
+            frmAddRecipeSource frmAddRecipeSource = new frmAddRecipeSource();
+            frmAddRecipeSource.ShowDialog();
         }
     }
 }
