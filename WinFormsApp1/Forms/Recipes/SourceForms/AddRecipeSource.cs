@@ -39,7 +39,7 @@ namespace Recipes.Forms.Recipes.SourceForms
             {
                 foreach (RecipeSource r in context.RecipeSources)
                 {
-                    if (r.SourceName.ToLower().Equals(txtRecipeSourceName.Text.ToLower()))
+                    if (r.SourceName1.ToLower().Equals(txtRecipeSourceName.Text.ToLower()))
                     {
                         isIncluded = true;
                         break;
@@ -51,10 +51,10 @@ namespace Recipes.Forms.Recipes.SourceForms
                 }
                 else
                 {
-                    recipeSource.SourceName = txtRecipeSourceName.Text.ToLower();
+                    recipeSource.SourceName1 = txtRecipeSourceName.Text.ToLower();
                     //int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                     //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
-                    recipeSource.SourceTypeId = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
+                    recipeSource.SourceTypeID = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
                     /*foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
                     {
                         ingrediant.IngrediantSubstituteIngrediantSubstitutedBies.Add(i);
@@ -66,10 +66,10 @@ namespace Recipes.Forms.Recipes.SourceForms
             }
             else
             {
-                recipeSource.SourceName = txtRecipeSourceName.Text.ToLower();
+                recipeSource.SourceName1 = txtRecipeSourceName.Text.ToLower();
                 //int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                 //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
-                recipeSource.SourceTypeId = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
+                recipeSource.SourceTypeID = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
                 /*foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
                 {
                     ingrediant.IngrediantSubstituteIngrediantSubstitutedBies.Add(i);

@@ -36,6 +36,7 @@
             btnAddRecipe = new Button();
             label1 = new Label();
             btnAddSourceType = new Button();
+            btnAddKosherType = new Button();
             SuspendLayout();
             // 
             // btnDeleteSource
@@ -112,11 +113,22 @@
             btnAddSourceType.UseVisualStyleBackColor = true;
             btnAddSourceType.Click += btnAddSourceType_Click;
             // 
+            // btnAddKosherType
+            // 
+            btnAddKosherType.Location = new Point(17, 290);
+            btnAddKosherType.Name = "btnAddKosherType";
+            btnAddKosherType.Size = new Size(94, 65);
+            btnAddKosherType.TabIndex = 15;
+            btnAddKosherType.Text = "Add Kosher Type";
+            btnAddKosherType.UseVisualStyleBackColor = true;
+            btnAddKosherType.Click += btnAddKosherType_Click;
+            // 
             // frmRecipes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(426, 307);
+            ClientSize = new Size(426, 399);
+            Controls.Add(btnAddKosherType);
             Controls.Add(btnAddSourceType);
             Controls.Add(btnDeleteSource);
             Controls.Add(btnEditSource);
@@ -141,5 +153,6 @@
         private Button btnAddRecipe;
         private Label label1;
         private Button btnAddSourceType;
+        private Button btnAddKosherType;
     }
 }

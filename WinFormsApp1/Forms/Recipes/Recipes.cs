@@ -1,4 +1,5 @@
-﻿using Recipes.Forms.Recipes.SourceForms;
+﻿using Recipes.Forms.Recipes.KosherForms;
+using Recipes.Forms.Recipes.SourceForms;
 using Recipes.Forms.Recipes.SourceTypeForms;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ namespace Recipes.Forms.Recipes
         {
             frmAddRecipeSource frmAddRecipeSource = new frmAddRecipeSource();
             frmAddRecipeSource.ShowDialog();
+        }
+
+        private void btnAddKosherType_Click(object sender, EventArgs e)
+        {
+            frmAddKosherType frmAddKosherType = new frmAddKosherType();
+            frmAddKosherType.ShowDialog();
         }
     }
 }
