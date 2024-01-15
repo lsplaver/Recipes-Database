@@ -41,19 +41,23 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.Enabled = false;
             label1.Location = new Point(12, 9);
             label1.Name = "label1";
             label1.Size = new Size(112, 20);
             label1.TabIndex = 0;
             label1.Text = "Ingrediant Type";
+            label1.Visible = false;
             // 
             // lstIngrediantType
             // 
+            lstIngrediantType.Enabled = false;
             lstIngrediantType.FormattingEnabled = true;
             lstIngrediantType.Location = new Point(193, 9);
             lstIngrediantType.Name = "lstIngrediantType";
             lstIngrediantType.Size = new Size(150, 104);
             lstIngrediantType.TabIndex = 1;
+            lstIngrediantType.Visible = false;
             lstIngrediantType.SelectedValueChanged += lstIngrediantType_SelectedValueChanged;
             // 
             // label2

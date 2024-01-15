@@ -17,16 +17,17 @@ namespace Recipes.Forms.TypeForms
         private RecipesContext context = new RecipesContext();
         private IngrediantType selectedType;// = new IngrediantType();
         private SortedList<int, String> type = new SortedList<int, string>();
-        public frmEditIngrediantType()
+        public frmEditIngrediantType(IngrediantType ingrediantType)
         {
-            foreach (IngrediantType t in context.IngrediantTypes)
+            /*foreach (IngrediantType t in context.IngrediantTypes)
             {
                 int tempInt = t.IngrediantTypeId;
                 string tempString = t.IngrediantType1;
                 type.Add(tempInt, tempString);
-            }
+            }*/
             InitializeComponent();
-            lstIngrediantType.DataSource = type.Values.ToList();
+            //lstIngrediantType.DataSource = type.Values.ToList();
+            txtUpdatedIngrediantType.Text = ingrediantType.IngrediantType1.ToString();
         }
 
         private void btnUpdateIngrediantType_Click(object sender, EventArgs e)
@@ -62,9 +63,9 @@ namespace Recipes.Forms.TypeForms
 
         private void lstIngrediantType_SelectedValueChanged(object sender, EventArgs e)
         {
-            int id = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
+            /*int id = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
             selectedType = context.IngrediantTypes.Find(id);
-            txtUpdatedIngrediantType.Text = lstIngrediantType.SelectedItem.ToString();
+            txtUpdatedIngrediantType.Text = lstIngrediantType.SelectedItem.ToString();*/
         }
     }
 }

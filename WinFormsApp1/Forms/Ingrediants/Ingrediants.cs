@@ -32,20 +32,26 @@ namespace Recipes.Forms.Ingrediants
 
         private void btnEditType_Click(object sender, EventArgs e)
         {
-            frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType();
-            frmEditIngrediantType.ShowDialog();
+            //frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType();
+            //frmEditIngrediantType.ShowDialog();
+            frmChooseFromListForEdit frmChooseFromListForEdit = new frmChooseFromListForEdit(btnEditType.Text);
+            frmChooseFromListForEdit.ShowDialog();
         }
 
         private void btnEditIngrediant_Click(object sender, EventArgs e)
         {
-            frmEditIngrediant frmEditIngrediant = new frmEditIngrediant();
-            frmEditIngrediant.ShowDialog();
+            //frmEditIngrediant frmEditIngrediant = new frmEditIngrediant();
+            //frmEditIngrediant.ShowDialog();
+            frmChooseFromListForEdit frmChooseFromListForEdit = new frmChooseFromListForEdit(btnEditIngrediant.Text);
+            frmChooseFromListForEdit.ShowDialog();
         }
 
         private void btnAddUpdateSubstitutions_Click(object sender, EventArgs e)
         {
-            frmChooseIngrediantForSubstitutions frmChoose = new frmChooseIngrediantForSubstitutions();
-            frmChoose.ShowDialog();
+            //frmChooseIngrediantForSubstitutions frmChoose = new frmChooseIngrediantForSubstitutions();
+            //frmChoose.ShowDialog();
+            frmChooseFromListForEdit frmChooseFromListForEdit = new frmChooseFromListForEdit(btnAddUpdateSubstitutions.Text);
+            frmChooseFromListForEdit.ShowDialog();
         }
 
     }
