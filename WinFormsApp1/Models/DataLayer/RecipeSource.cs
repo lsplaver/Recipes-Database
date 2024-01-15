@@ -12,16 +12,20 @@ public partial class RecipeSource
     [Column("SourceID")]
     public int SourceId { get; set; }
 
+    [Column("SourceName")]
     [Unicode(false)]
-    public string SourceName { get; set; } = null!;
+    public string SourceName1 { get; set; } = null!;
 
     [Column("SourceTypeID")]
-    public int SourceTypeId { get; set; }
+    public int SourceTypeID { get; set; }
 
+    [InverseProperty("SourceName")]
+    //public virtual RecipeSourceType SourceTypeName { get; set; } = null!;
+    public virtual ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
     //[InverseProperty("IngrediantName")]
     //public virtual ICollection<IngrediantSubstitute> IngrediantSubstitutes { get; set; } = new List<IngrediantSubstitute>();
 
-    [ForeignKey("SourceTypeId")]
+    [ForeignKey("SourceTypeID")]
     [InverseProperty("RecipeSources")]
     public virtual RecipeSourceType SourceTypeName { get; set; } = null!;
 

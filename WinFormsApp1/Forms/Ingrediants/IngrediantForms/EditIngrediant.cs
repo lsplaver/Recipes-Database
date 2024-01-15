@@ -24,7 +24,7 @@ namespace WinFormsApp1
             foreach (Ingrediant i in context.Ingrediants)
             {
                 int j = i.IngrediantId;
-                string s = i.IngrediantName;
+                string s = i.IngrediantName1;
                 ingrediants.Add(j, s);
             }
             lstIngrediant.DataSource = ingrediants.Values.Order().ToList();
@@ -56,6 +56,7 @@ namespace WinFormsApp1
 
         private void btnEditIngrediant_Click(object sender, EventArgs e)
         {
+            string name = btnEditIngrediant.Text;
             frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant);
             frmUpdateIngrediant.ShowDialog();
         }

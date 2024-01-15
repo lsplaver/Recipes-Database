@@ -30,6 +30,10 @@ public partial class RecipesContext : DbContext
 
     public virtual DbSet<RecipeSourceType> RecipeSourceTypes { get; set; }
 
+    public virtual DbSet<KosherType> KosherTypes { get; set; }
+
+    public virtual DbSet<Recipe> Recipes { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     /*#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
             => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB; AttachDBFilename=C:\\MSSQL\\MSSQL16.SQLSERVER\\MSSQL\\DATA\\Recipes.mdf; Integrated security=True");*/
@@ -78,6 +82,22 @@ public partial class RecipesContext : DbContext
         modelBuilder.Entity<RecipeSourceType>(entity =>
         {
             entity.HasKey(e => e.SourceTypeId).HasName("PK__RecipeSo__7E17ECCFBDCAAAF7");
+        });
+
+        modelBuilder.Entity<KosherType>(entity =>
+        {
+            entity.HasKey(e => e.KosherTypeId).HasName("PK__KosherTy__E05952A4CBA9E306");
+        });
+
+        modelBuilder.Entity<Recipe>(entity =>
+        {
+            entity.HasKey(e => e.RecipeId).HasName("PK__Recipes__FDD988D066C4DDFE");
+
+            entity.HasOne(d => d.IngrediantName).WithMany(p => p.Recipes).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Recipes_IngrediantsID");
+
+            entity.HasOne(d => d.KosherTypeName).WithMany(p => p.Recipes).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Recipes_KosherTypesID");
+
+            entity.HasOne(d => d.SourceName).WithMany(p => p.Recipes).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Recipes_SourceID");
         });
 
         OnModelCreatingPartial(modelBuilder);

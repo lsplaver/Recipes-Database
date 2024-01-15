@@ -22,7 +22,7 @@ namespace Recipes.Forms.SubstitutionForms
             foreach (Ingrediant i in context.Ingrediants)
             {
                 int j = i.IngrediantId;
-                string s = i.IngrediantName;
+                string s = i.IngrediantName1;
                 ingrediants.Add(j, s);
             }
             lstIngrediantForSubstitution.DataSource = ingrediants.Values.Order().ToList();

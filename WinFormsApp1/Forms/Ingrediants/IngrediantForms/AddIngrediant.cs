@@ -48,7 +48,7 @@ namespace WinFormsApp1
             {
                 foreach(Ingrediant i in context.Ingrediants)
                 {
-                    if (i.IngrediantName.ToLower().Equals(txtIngrediantName.Text.ToLower()))
+                    if (i.IngrediantName1.ToLower().Equals(txtIngrediantName.Text.ToLower()))
                     {
                         isIncluded = true;
                     }
@@ -62,7 +62,7 @@ namespace WinFormsApp1
                     /*ingrediant.IngrediantName = txtIngrediantName.Text;
                     ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedItem.ToString();
                     ingrediant.IngrediantSubstituteIngrediantSubstitutedBies = (ICollection<IngrediantSubstitute>)clbSubstituteFor.CheckedItems;*/
-                    ingrediant.IngrediantName = txtIngrediantName.Text.ToLower();
+                    ingrediant.IngrediantName1 = txtIngrediantName.Text.ToLower();
                     int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                     //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
                     ingrediant.IngrediantTypeId = typeID;
@@ -76,7 +76,7 @@ namespace WinFormsApp1
             }
             else
             {
-                ingrediant.IngrediantName = txtIngrediantName.Text.ToLower();
+                ingrediant.IngrediantName1 = txtIngrediantName.Text.ToLower();
                 int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                 //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
                 ingrediant.IngrediantTypeId = typeID;

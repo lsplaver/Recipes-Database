@@ -12,8 +12,12 @@ public partial class Ingrediant
     [Column("IngrediantID")]
     public int IngrediantId { get; set; }
 
+    [Column("IngrediantName")]
     [Unicode(false)]
-    public string IngrediantName { get; set; } = null!;
+    public string IngrediantName1 { get; set; } = null!;
+
+    [InverseProperty("IngrediantName")]
+    public virtual ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
 
     [Column("IngrediantTypeID")]
     public int IngrediantTypeId { get; set; }

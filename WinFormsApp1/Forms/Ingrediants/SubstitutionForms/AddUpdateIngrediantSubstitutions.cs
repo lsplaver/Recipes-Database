@@ -42,13 +42,13 @@ namespace Recipes.Forms.SubstitutionForms
                 b++;
                 c++;
             }*/
-            txtIngrediantName.Text = Ingrediant.IngrediantName;
+            txtIngrediantName.Text = Ingrediant.IngrediantName1;
             //lstIngrediantType.DataSource = context.IngrediantTypes.Select(i => i.IngrediantType1).ToList();
             //lstIngrediantType.SelectedItem = context.IngrediantTypes.Find(Ingrediant.IngrediantTypeId).IngrediantType1;
             foreach (Ingrediant i in context.Ingrediants)
             {
-                clbSubstituteFor.Items.Add(i.IngrediantName);
-                names.Add(i.IngrediantId, i.IngrediantName);
+                clbSubstituteFor.Items.Add(i.IngrediantName1);
+                names.Add(i.IngrediantId, i.IngrediantName1);
             }
             clbSubstituteFor.Sorted = true;
             foreach (IngrediantSubstitute i in /*context.IngrediantSubstitutes*/Ingrediant.IngrediantSubstitutes)//.IngrediantSubstituteIngrediantSubstitutedBies)
@@ -87,9 +87,9 @@ namespace Recipes.Forms.SubstitutionForms
         private void btnAddUpdateIngrediantSubstitutions_Click(object sender, EventArgs e)
         {
             bool isIncludedName = false, isIncludedSubstitution = false;
-            if (!context.Ingrediants.Select(i => i.IngrediantName).Contains(txtIngrediantName.Text))
+            if (!context.Ingrediants.Select(i => i.IngrediantName1).Contains(txtIngrediantName.Text))
             {
-                Ingrediant.IngrediantName = txtIngrediantName.Text;
+                Ingrediant.IngrediantName1 = txtIngrediantName.Text;
             }
             else
             {
@@ -106,13 +106,13 @@ namespace Recipes.Forms.SubstitutionForms
                     if (tempName.Equals(i.IngrediantName))
                     //(Ingrediant.IngrediantSubstitutes.Select(i => i.IngrediantName.Equals(Ingrediant.IngrediantName))//.Equals(Ingrediant.IngrediantName)//.IngrediantSubstituteIngrediantNames.Equals(Ingrediant.IngrediantName))
                     {
-                        i.IngrediantName.IngrediantName = txtIngrediantName.Text;
+                        i.IngrediantName.IngrediantName1 = txtIngrediantName.Text;
                     }
                 }
                 foreach (string s in clbSubstituteFor.SelectedItems)
                 {
                     //IngrediantSubstitute ingrediantSubstitute = new IngrediantSubstitute();
-                    ingrediantSubstitute.IngrediantName.IngrediantName = txtIngrediantName.Text;
+                    ingrediantSubstitute.IngrediantName.IngrediantName1 = txtIngrediantName.Text;
                     ingrediantSubstitute.IngrediantSubstitutedById = (names.Values.IndexOf(s) + 1);// .IngrediantSubstitutedBy.IngrediantName = s;
                     //foreach (IngrediantSubstitute k in Ingrediant.IngrediantSubstitutes)//.IngrediantSubstituteIngrediantNames)
                     //{
