@@ -8,17 +8,43 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <!-- <ItemGroup>
+    <None Remove="Models\DataLayer-old\~.Ingrediant.cs.~" />
+    <None Remove="Models\DataLayer-old\~.IngrediantSubstitute.cs.~" />
+    <None Remove="Models\DataLayer-old\~.IngrediantType.cs.~" />
+    <None Remove="Models\DataLayer-old\~.KosherType.cs.~" />
+    <None Remove="Models\DataLayer-old\~.Recipe.cs.~" />
+    <None Remove="Models\DataLayer-old\~.RecipesContext.cs.~" />
+    <None Remove="Models\DataLayer-old\~.RecipeSource.cs.~" />
+    <None Remove="Models\DataLayer-old\~.RecipeSourceType.cs.~" />
+  </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+    <Compile Include="Models\DataLayer-old\~.IngrediantSubstitute.cs.~" />
+    <Compile Include="Models\DataLayer-old\~.IngrediantType.cs.~" />
+    <Compile Include="Models\DataLayer-old\~.KosherType.cs.~" />
+    <Compile Include="Models\DataLayer-old\~.Recipe.cs.~" />
+    <Compile Include="Models\DataLayer-old\~.RecipesContext.cs.~" />
+    <Compile Include="Models\DataLayer-old\~.RecipeSource.cs.~" />
+    <Compile Include="Models\DataLayer-old\~.RecipeSourceType.cs.~" />
+    <Compile Include="Models\DataLayer-old\~.Ingrediant.cs.~" />
+  </ItemGroup> -->
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

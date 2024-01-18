@@ -1,45 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Recipes.Models.DataLayer
+namespace Recipes.Models.DataLayer;
+
+public partial class Recipe
 {
-    public class Recipe
-    {
-        [Key]
-        [Column("RecipeID")]
-        public int RecipeId { get; set; }
+    public int RecipeId { get; set; }
 
-        [Unicode(false)]
-        public string RecipeName { get; set; } = null!;
+    public string RecipeName { get; set; } = null!;
 
-        [Column("SourceID")]
-        public int SourceId { get; set; }
+    public int SourceId { get; set; }
 
-        [ForeignKey("SourceID")]
-        [InverseProperty("Recipes")]
-        public virtual RecipeSource SourceName { get; set; } = null!;
+    public int IngrediantId { get; set; }
 
-        [Column("IngrediantID")]
-        public int IngrediantID { get; set; }
+    public int KosherTypeId { get; set; }
 
-        [ForeignKey("IngrediantID")]
-        [InverseProperty("Recipes")]
-        public virtual Ingrediant IngrediantName { get; set; } = null!;
+    public virtual Ingrediant Ingrediant { get; set; } = null!;
 
-        [Column("KosherTypeID")]
-        public int KosherTypeID { get; set; }
+    public virtual Koshertype KosherType { get; set; } = null!;
 
-        [ForeignKey("KosherTypeID")]
-        [InverseProperty("Recipes")]
-        public virtual KosherType KosherTypeName { get; set; } = null!;
-
-        //[InverseProperty("Ingrediant.IngrediantName")]
-        //public virtual ICollection<IngrediantSubstitute> IngrediantSubstitutes { get; set; } = new List<IngrediantSubstitute>();
-    }
+    public virtual Recipesource Source { get; set; } = null!;
 }

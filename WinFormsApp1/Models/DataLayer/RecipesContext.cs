@@ -16,23 +16,19 @@ public partial class RecipesContext : DbContext
     {
     }
 
-    /*public RecipesContext(DbContextOptions options) : base(options)
-    {
-    }*/
-
     public virtual DbSet<Ingrediant> Ingrediants { get; set; }
 
-    public virtual DbSet<IngrediantSubstitute> IngrediantSubstitutes { get; set; }
+    public virtual DbSet<Ingrediantsubstitute> Ingrediantsubstitutes { get; set; }
 
-    public virtual DbSet<IngrediantType> IngrediantTypes { get; set; }
+    public virtual DbSet<Ingredianttype> Ingredianttypes { get; set; }
 
-    public virtual DbSet<RecipeSource> RecipeSources { get; set; }
-
-    public virtual DbSet<RecipeSourceType> RecipeSourceTypes { get; set; }
-
-    public virtual DbSet<KosherType> KosherTypes { get; set; }
+    public virtual DbSet<Koshertype> Koshertypes { get; set; }
 
     public virtual DbSet<Recipe> Recipes { get; set; }
+
+    public virtual DbSet<Recipesource> Recipesources { get; set; }
+
+    public virtual DbSet<Recipesourcetype> Recipesourcetypes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     /*#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -40,7 +36,7 @@ public partial class RecipesContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["Recipes"].ConnectionString,
+            optionsBuilder.UseMySQL(ConfigurationManager.ConnectionStrings["Recipes"].ConnectionString,
             providerOptions => providerOptions.EnableRetryOnFailure());
         }
     }
@@ -49,55 +45,123 @@ public partial class RecipesContext : DbContext
     {
         modelBuilder.Entity<Ingrediant>(entity =>
         {
-            entity.HasKey(e => e.IngrediantId).HasName("PK__Ingredia__BF28567CF8D60C3E");
+            entity.HasKey(e => e.IngrediantId).HasName("PRIMARY");
+
+            entity.ToTable("ingrediants");
+
+            entity.HasIndex(e => e.IngrediantTypeId, "FK_Ingrediants_IngrediantsID");
+
+            entity.Property(e => e.IngrediantId).HasColumnName("IngrediantID");
+            entity.Property(e => e.IngrediantName).HasColumnType("text");
+            entity.Property(e => e.IngrediantTypeId).HasColumnName("IngrediantTypeID");
 
             entity.HasOne(d => d.IngrediantType).WithMany(p => p.Ingrediants)
+                .HasForeignKey(d => d.IngrediantTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Ingrediants_IngrediantsID");
         });
 
-        modelBuilder.Entity<IngrediantSubstitute>(entity =>
+        modelBuilder.Entity<Ingrediantsubstitute>(entity =>
         {
-            entity.HasKey(e => e.SubstitutedById).HasName("PK__Ingredia__E74B6A2C127969C7");
+            entity.HasKey(e => e.SubstitutedById).HasName("PRIMARY");
 
-            entity.HasOne(d => d.IngrediantName).WithMany(p => p.IngrediantSubstitutes)
+            entity.ToTable("ingrediantsubstitutes");
+
+            entity.HasIndex(e => e.IngrediantNameId, "FK_IngrediantSubstitute_IngrediantNameID");
+
+            entity.Property(e => e.SubstitutedById).HasColumnName("SubstitutedByID");
+            entity.Property(e => e.IngrediantNameId).HasColumnName("IngrediantNameID");
+            entity.Property(e => e.IngrediantSubstitutedById).HasColumnName("IngrediantSubstitutedByID");
+
+            entity.HasOne(d => d.IngrediantName).WithMany(p => p.Ingrediantsubstitutes)
+                .HasForeignKey(d => d.IngrediantNameId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_IngrediantSubstitute_IngrediantNameID");
         });
 
-        modelBuilder.Entity<IngrediantType>(entity =>
+        modelBuilder.Entity<Ingredianttype>(entity =>
         {
-            entity.HasKey(e => e.IngrediantTypeId).HasName("PK__Ingredia__7B74DA47B63AF65D");
+            entity.HasKey(e => e.IngrediantTypeId).HasName("PRIMARY");
+
+            entity.ToTable("ingredianttypes");
+
+            entity.Property(e => e.IngrediantTypeId).HasColumnName("IngrediantTypeID");
+            entity.Property(e => e.IngrediantType1)
+                .HasColumnType("text")
+                .HasColumnName("IngrediantType");
         });
 
-        modelBuilder.Entity<RecipeSource>(entity =>
+        modelBuilder.Entity<Koshertype>(entity =>
         {
-            entity.HasKey(e => e.SourceId).HasName("PK__RecipeSo__16E019F9333480E6");
+            entity.HasKey(e => e.KosherTypeId).HasName("PRIMARY");
 
-            entity.HasOne(d => d.SourceTypeName).WithMany(p => p.RecipeSources)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_RecipeSources_SourceID");
-        });
+            entity.ToTable("koshertypes");
 
-        modelBuilder.Entity<RecipeSourceType>(entity =>
-        {
-            entity.HasKey(e => e.SourceTypeId).HasName("PK__RecipeSo__7E17ECCFBDCAAAF7");
-        });
-
-        modelBuilder.Entity<KosherType>(entity =>
-        {
-            entity.HasKey(e => e.KosherTypeId).HasName("PK__KosherTy__E05952A4CBA9E306");
+            entity.Property(e => e.KosherTypeId).HasColumnName("KosherTypeID");
+            entity.Property(e => e.KosherTypeName).HasColumnType("text");
         });
 
         modelBuilder.Entity<Recipe>(entity =>
         {
-            entity.HasKey(e => e.RecipeId).HasName("PK__Recipes__FDD988D066C4DDFE");
+            entity.HasKey(e => e.RecipeId).HasName("PRIMARY");
 
-            entity.HasOne(d => d.IngrediantName).WithMany(p => p.Recipes).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Recipes_IngrediantsID");
+            entity.ToTable("recipes");
 
-            entity.HasOne(d => d.KosherTypeName).WithMany(p => p.Recipes).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Recipes_KosherTypesID");
+            entity.HasIndex(e => e.IngrediantId, "FK_Recipes_IngrediantsID");
 
-            entity.HasOne(d => d.SourceName).WithMany(p => p.Recipes).OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK_Recipes_SourceID");
+            entity.HasIndex(e => e.KosherTypeId, "FK_Recipes_KosherTypesID");
+
+            entity.HasIndex(e => e.SourceId, "FK_Recipes_SourceID");
+
+            entity.Property(e => e.RecipeId).HasColumnName("RecipeID");
+            entity.Property(e => e.IngrediantId).HasColumnName("IngrediantID");
+            entity.Property(e => e.KosherTypeId).HasColumnName("KosherTypeID");
+            entity.Property(e => e.RecipeName).HasColumnType("text");
+            entity.Property(e => e.SourceId).HasColumnName("SourceID");
+
+            entity.HasOne(d => d.Ingrediant).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.IngrediantId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Recipes_IngrediantsID");
+
+            entity.HasOne(d => d.KosherType).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.KosherTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Recipes_KosherTypesID");
+
+            entity.HasOne(d => d.Source).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.SourceId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Recipes_SourceID");
+        });
+
+        modelBuilder.Entity<Recipesource>(entity =>
+        {
+            entity.HasKey(e => e.SourceId).HasName("PRIMARY");
+
+            entity.ToTable("recipesources");
+
+            entity.HasIndex(e => e.SourceTypeId, "FK_RecipeSources_SourceID");
+
+            entity.Property(e => e.SourceId).HasColumnName("SourceID");
+            entity.Property(e => e.SourceLocation).HasColumnType("text");
+            entity.Property(e => e.SourceName).HasColumnType("text");
+            entity.Property(e => e.SourceTypeId).HasColumnName("SourceTypeID");
+
+            entity.HasOne(d => d.SourceType).WithMany(p => p.Recipesources)
+                .HasForeignKey(d => d.SourceTypeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RecipeSources_SourceID");
+        });
+
+        modelBuilder.Entity<Recipesourcetype>(entity =>
+        {
+            entity.HasKey(e => e.SourceTypeId).HasName("PRIMARY");
+
+            entity.ToTable("recipesourcetypes");
+
+            entity.Property(e => e.SourceTypeId).HasColumnName("SourceTypeID");
+            entity.Property(e => e.SourceTypeName).HasColumnType("text");
         });
 
         OnModelCreatingPartial(modelBuilder);

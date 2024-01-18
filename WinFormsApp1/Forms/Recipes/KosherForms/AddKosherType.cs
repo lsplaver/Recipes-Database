@@ -23,8 +23,16 @@ namespace Recipes.Forms.Recipes.KosherForms
             RecipesContext context = new RecipesContext();
             KosherType kosherType = new KosherType();
             kosherType.KosherTypeName1 = txtKosherTypeName.Text.ToLower();
-            context.KosherTypes.Add(kosherType);
-            this.Close();
+            if (!context.KosherTypes.Contains(kosherType))
+            {
+                context.KosherTypes.Add(kosherType);
+                context.SaveChanges();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(kosherType.KosherTypeName1 + " is already in the database");
+            }
         }
     }
 }
