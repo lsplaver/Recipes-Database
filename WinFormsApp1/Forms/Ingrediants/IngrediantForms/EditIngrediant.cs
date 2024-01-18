@@ -24,7 +24,7 @@ namespace WinFormsApp1
             foreach (Ingrediant i in context.Ingrediants)
             {
                 int j = i.IngrediantId;
-                string s = i.IngrediantName1;
+                string s = i.IngrediantName;
                 ingrediants.Add(j, s);
             }
             lstIngrediant.DataSource = ingrediants.Values.Order().ToList();
@@ -50,7 +50,7 @@ namespace WinFormsApp1
             //string tempString = ingrediants.Values.ElementAt(lstIngrediant.SelectedIndex);
             int tempInt = ingrediants.IndexOfValue(lstIngrediant.SelectedItem.ToString());
             /*Ingrediant*/ ingrediant = context.Ingrediants.Find(tempInt + 1);// tempString);//tempInt);//lstIngrediant.SelectedItem);//.ElementAt(lstIngrediant.SelectedItem);//.SelectedIndex);
-            string tempString = context.IngrediantTypes.Find(ingrediant.IngrediantTypeId).IngrediantType1;
+            string tempString = context.Ingredianttypes.Find(ingrediant.IngrediantTypeId).IngrediantType1;
             //lstIngrediantType.SelectedItem = tempString;
         }
 

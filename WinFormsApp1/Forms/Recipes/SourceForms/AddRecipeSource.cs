@@ -18,28 +18,28 @@ namespace Recipes.Forms.Recipes.SourceForms
         public frmAddRecipeSource()
         {
             InitializeComponent();
-            lstRecipeSourceType.DataSource = context.RecipeSourceTypes.Select(s => s.SourceTypeName1).ToList();
+            lstRecipeSourceType.DataSource = context.Recipesourcetypes.Select(s => s.SourceTypeName).ToList();
         }
 
         private void btnAddRecipeSource_Click(object sender, EventArgs e)
         {
             bool isIncluded = false;
-            RecipeSource recipeSource = new RecipeSource();
-            foreach (RecipeSourceType t in context.RecipeSourceTypes)
+            Recipesource recipeSource = new Recipesource();
+            foreach (Recipesourcetype t in context.Recipesourcetypes)
             {
                 //int tempId = t.SourceTypeId;
                 //string tempString = t.SourceTypeName1;
                 if (!type.ContainsKey(t.SourceTypeId))
                 {
                     //type.Add(tempId, tempString);
-                    type.Add(t.SourceTypeId, t.SourceTypeName1);
+                    type.Add(t.SourceTypeId, t.SourceTypeName);
                 }
             }
-            if (context.RecipeSources.Count() > 0)
+            if (context.Recipesources.Count() > 0)
             {
-                foreach (RecipeSource r in context.RecipeSources)
+                foreach (Recipesource r in context.Recipesources)
                 {
-                    if (r.SourceName1.ToLower().Equals(txtRecipeSourceName.Text.ToLower()))
+                    if (r.SourceName.ToLower().Equals(txtRecipeSourceName.Text.ToLower()))
                     {
                         isIncluded = true;
                         break;
@@ -51,10 +51,10 @@ namespace Recipes.Forms.Recipes.SourceForms
                 }
                 else
                 {
-                    recipeSource.SourceName1 = txtRecipeSourceName.Text.ToLower();
+                    recipeSource.SourceName = txtRecipeSourceName.Text.ToLower();
                     //int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                     //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
-                    recipeSource.SourceTypeID = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
+                    recipeSource.SourceTypeId = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
                     /*foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
                     {
                         ingrediant.IngrediantSubstituteIngrediantSubstitutedBies.Add(i);
@@ -66,10 +66,10 @@ namespace Recipes.Forms.Recipes.SourceForms
             }
             else
             {
-                recipeSource.SourceName1 = txtRecipeSourceName.Text.ToLower();
+                recipeSource.SourceName = txtRecipeSourceName.Text.ToLower();
                 //int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                 //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
-                recipeSource.SourceTypeID = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
+                recipeSource.SourceTypeId = type.Keys.ElementAt(lstRecipeSourceType.SelectedIndex);
                 /*foreach (IngrediantSubstitute i in clbSubstituteFor.CheckedItems)
                 {
                     ingrediant.IngrediantSubstituteIngrediantSubstitutedBies.Add(i);
@@ -79,7 +79,7 @@ namespace Recipes.Forms.Recipes.SourceForms
             }
             if (!isIncluded)
             {
-                context.RecipeSources.Add(recipeSource);
+                context.Recipesources.Add(recipeSource);
                 context.SaveChanges();
             }
         }

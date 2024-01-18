@@ -38,7 +38,7 @@ namespace Recipes.Forms
                     {
                         foreach (Ingrediant i in context.Ingrediants)
                         {
-                            sortedListString.Add(i.IngrediantId, i.IngrediantName1);
+                            sortedListString.Add(i.IngrediantId, i.IngrediantName);
                         }
                         //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
                         break;
@@ -48,7 +48,7 @@ namespace Recipes.Forms
                     {
                         foreach (Ingrediant i in context.Ingrediants)//(IngrediantSubstitute i in context.IngrediantSubstitutes)
                         {
-                            sortedListString.Add(i.IngrediantId, i.IngrediantName1);//.SubstitutedById, i.IngrediantName.IngrediantName1);
+                            sortedListString.Add(i.IngrediantId, i.IngrediantName);//.SubstitutedById, i.IngrediantName.IngrediantName1);
                         }
                         //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
                         break;
@@ -56,7 +56,7 @@ namespace Recipes.Forms
                 case "Edit Ingrediant Type":
                 case "Delete Ingrediant Type":
                     {
-                        foreach (IngrediantType i in context.IngrediantTypes)
+                        foreach (Ingredianttype i in context.Ingredianttypes)
                         {
                             sortedListString.Add(i.IngrediantTypeId, i.IngrediantType1);
                         }
@@ -66,9 +66,9 @@ namespace Recipes.Forms
                 case "Edit Recipe Source":
                 case "Delete Recipe Source":
                     {
-                        foreach (RecipeSource r in context.RecipeSources)
+                        foreach (Recipesource r in context.Recipesources)
                         {
-                            sortedListString.Add(r.SourceId, r.SourceName1);
+                            sortedListString.Add(r.SourceId, r.SourceName);
                         }
                         //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
                         break;
@@ -76,9 +76,9 @@ namespace Recipes.Forms
                 case "Edit Recipe Source Type":
                 case "Delete Recipe Source Type":
                     {
-                        foreach (RecipeSourceType r in context.RecipeSourceTypes)
+                        foreach (Recipesourcetype r in context.Recipesourcetypes)
                         {
-                            sortedListString.Add(r.SourceTypeId, r.SourceTypeName1);
+                            sortedListString.Add(r.SourceTypeId, r.SourceTypeName);
                         }
                         //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
                         break;
@@ -86,9 +86,9 @@ namespace Recipes.Forms
                 case "Edit Kosher Type":
                 case "Delete Kosher Type":
                     {
-                        foreach (KosherType k in context.KosherTypes)
+                        foreach (Koshertype k in context.Koshertypes)
                         {
-                            sortedListString.Add(k.KosherTypeId, k.KosherTypeName1);
+                            sortedListString.Add(k.KosherTypeId, k.KosherTypeName);
                         }
                         //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
                         break;
@@ -128,13 +128,13 @@ namespace Recipes.Forms
                         {
                             Ingrediant ingrediant = new Ingrediant();
                             ingrediant = context.Ingrediants.Find(key);// tempInt + 1);
-                            foreach (IngrediantSubstitute i in context.IngrediantSubstitutes)
+                            foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
                             {
                                 if (i.IngrediantNameId == (key))//tempInt + 1))
                                 {
-                                    if (!ingrediant.IngrediantSubstitutes.Contains(i))
+                                    if (!ingrediant.Ingrediantsubstitutes.Contains(i))
                                     {
-                                        ingrediant.IngrediantSubstitutes.Add(i);
+                                        ingrediant.Ingrediantsubstitutes.Add(i);
                                     }
                                 }
                             }
@@ -144,16 +144,16 @@ namespace Recipes.Forms
                         }
                     case "Edit Ingrediant Type":
                         {
-                            IngrediantType ingrediantType = new IngrediantType();
-                            ingrediantType = context.IngrediantTypes.Find(key);//tempInt + 1);
+                            Ingredianttype ingrediantType = new Ingredianttype();
+                            ingrediantType = context.Ingredianttypes.Find(key);//tempInt + 1);
                             frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType(ingrediantType);
                             frmEditIngrediantType.ShowDialog();
                             break;
                         }
                     case "Edit Recipe Source Type":
                         {
-                            RecipeSourceType recipeSourceType = new RecipeSourceType();
-                            recipeSourceType = context.RecipeSourceTypes.Find(key);
+                            Recipesourcetype recipeSourceType = new Recipesourcetype();
+                            recipeSourceType = context.Recipesourcetypes.Find(key);
                             //frmEditSourceType frmEditSourceType = new frmEditSourceType(recipeSourceType);
                             //frmEditSourceType.ShowDialog();
                             MessageBox.Show("Not Implemented Yet");
@@ -161,8 +161,8 @@ namespace Recipes.Forms
                         }
                     case "Edit Recipe Source":
                         {
-                            RecipeSource recipeSource = new RecipeSource();
-                            recipeSource = context.RecipeSources.Find(key);
+                            Recipesource recipeSource = new Recipesource();
+                            recipeSource = context.Recipesources.Find(key);
                             //frmEditRecipeSource frmEditRecipeSource = new frmEditRecipeSource(recipeSource);
                             //frmEditRecipeSource.ShowDialog();
                             MessageBox.Show("Not Implemented Yet");
@@ -179,8 +179,8 @@ namespace Recipes.Forms
                         }
                     case "Edit Kosher Type":
                         {
-                            KosherType kosher = new KosherType();
-                            kosher = context.KosherTypes.Find(key);
+                            Koshertype kosher = new Koshertype();
+                            kosher = context.Koshertypes.Find(key);
                             //frmEditKosherType frmEditKoserType = new frmEditKosherType(kosher);
                             //frmEditKosherType.ShowDialog();
                             MessageBox.Show("Not Implemented Yet");

@@ -26,11 +26,11 @@ namespace Recipes.Forms.Recipes.SourceTypeForms
             //RecipeContextExtension context = new RecipeContextExtension();
             RecipesContext context = new RecipesContext();
             bool isIncluded = false;
-            if (!context.RecipeSourceTypes.IsNullOrEmpty())
+            if (!context.Recipesourcetypes.IsNullOrEmpty())
             {
-                foreach (RecipeSourceType t in context.RecipeSourceTypes)
+                foreach (Recipesourcetype t in context.Recipesourcetypes)
                 {
-                    if (t.SourceTypeName1.Equals(txtSourceTypeName.Text))
+                    if (t.SourceTypeName.Equals(txtSourceTypeName.Text))
                     {
                         isIncluded = true;
                         break;
@@ -39,9 +39,9 @@ namespace Recipes.Forms.Recipes.SourceTypeForms
             }
             if (!isIncluded)
             {
-                RecipeSourceType recipeSourceType = new RecipeSourceType();
-                recipeSourceType.SourceTypeName1 = txtSourceTypeName.Text.ToLower();
-                context.RecipeSourceTypes.Add(recipeSourceType);
+                Recipesourcetype recipeSourceType = new Recipesourcetype();
+                recipeSourceType.SourceTypeName = txtSourceTypeName.Text.ToLower();
+                context.Recipesourcetypes.Add(recipeSourceType);
                 context.SaveChanges();
                 this.Close();
             }

@@ -22,7 +22,7 @@ namespace Recipes.Forms.SubstitutionForms
             foreach (Ingrediant i in context.Ingrediants)
             {
                 int j = i.IngrediantId;
-                string s = i.IngrediantName1;
+                string s = i.IngrediantName;
                 ingrediants.Add(j, s);
             }
             lstIngrediantForSubstitution.DataSource = ingrediants.Values.Order().ToList();
@@ -42,13 +42,13 @@ namespace Recipes.Forms.SubstitutionForms
         {
             int tempInt = ingrediants.IndexOfValue(lstIngrediantForSubstitution.SelectedItem.ToString());
             ingrediant = context.Ingrediants.Find(tempInt + 1);
-            foreach (IngrediantSubstitute i in context.IngrediantSubstitutes)
+            foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
             {
                 if (i.IngrediantNameId == (tempInt + 1))
                 {
-                    if (!ingrediant.IngrediantSubstitutes.Contains(i))
+                    if (!ingrediant.Ingrediantsubstitutes.Contains(i))
                     {
-                        ingrediant.IngrediantSubstitutes.Add(i);
+                        ingrediant.Ingrediantsubstitutes.Add(i);
                     }
                 }
             }

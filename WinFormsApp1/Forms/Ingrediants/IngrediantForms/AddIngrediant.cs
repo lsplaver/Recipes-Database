@@ -19,7 +19,7 @@ namespace WinFormsApp1
 
         public frmAddIngrediant()
         {
-            var type = context.IngrediantTypes.Select(t => t.IngrediantType1);
+            var type = context.Ingredianttypes.Select(t => t.IngrediantType1);
             //var substitute = context.IngrediantSubstitutes.Select(s => s.IngrediantName);
             InitializeComponent();
             lstIngrediantType.DataSource = type.ToList();
@@ -35,7 +35,7 @@ namespace WinFormsApp1
         {
             bool isIncluded = false;
             Ingrediant ingrediant = new Ingrediant();
-            foreach(IngrediantType t in context.IngrediantTypes)
+            foreach(Ingredianttype t in context.Ingredianttypes)
             {
                 int tempId = t.IngrediantTypeId;
                 string tempString = t.IngrediantType1;
@@ -48,7 +48,7 @@ namespace WinFormsApp1
             {
                 foreach(Ingrediant i in context.Ingrediants)
                 {
-                    if (i.IngrediantName1.ToLower().Equals(txtIngrediantName.Text.ToLower()))
+                    if (i.IngrediantName.ToLower().Equals(txtIngrediantName.Text.ToLower()))
                     {
                         isIncluded = true;
                     }
@@ -62,7 +62,7 @@ namespace WinFormsApp1
                     /*ingrediant.IngrediantName = txtIngrediantName.Text;
                     ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedItem.ToString();
                     ingrediant.IngrediantSubstituteIngrediantSubstitutedBies = (ICollection<IngrediantSubstitute>)clbSubstituteFor.CheckedItems;*/
-                    ingrediant.IngrediantName1 = txtIngrediantName.Text.ToLower();
+                    ingrediant.IngrediantName = txtIngrediantName.Text.ToLower();
                     int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                     //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
                     ingrediant.IngrediantTypeId = typeID;
@@ -76,7 +76,7 @@ namespace WinFormsApp1
             }
             else
             {
-                ingrediant.IngrediantName1 = txtIngrediantName.Text.ToLower();
+                ingrediant.IngrediantName = txtIngrediantName.Text.ToLower();
                 int typeID = type.Keys.ElementAt(lstIngrediantType.SelectedIndex);
                 //ingrediant.IngrediantType.IngrediantType1 = lstIngrediantType.SelectedValue.ToString();//.SelectedItem.ToString();
                 ingrediant.IngrediantTypeId = typeID;

@@ -88,7 +88,7 @@
             // 
             // ingrediantTypeBindingSource
             // 
-            ingrediantTypeBindingSource.DataSource = typeof(Models.DataLayer.IngrediantType);
+            ingrediantTypeBindingSource.DataSource = typeof(Models.DataLayer.Ingredianttype);
             // 
             // frmEditIngrediantType
             // 

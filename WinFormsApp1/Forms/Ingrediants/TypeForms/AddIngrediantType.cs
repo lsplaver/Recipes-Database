@@ -22,12 +22,12 @@ namespace WinFormsApp1
         private void btnSaveNewType_Click(object sender, EventArgs e)
         {
             RecipesContext context = new RecipesContext();
-            IngrediantType ingrediantType = new IngrediantType();
-                List<IngrediantType> types = context.IngrediantTypes.ToList();
+            Ingredianttype ingrediantType = new Ingredianttype();
+                List<Ingredianttype> types = context.Ingredianttypes.ToList();
                 bool isIncluded = false;
                 if (types.Count() > 0)
                 {
-                    foreach(IngrediantType t in types)
+                    foreach(Ingredianttype t in types)
                     {
                         if (t.IngrediantType1.ToLower().Equals(txtIngrediantType.Text.ToLower()))
                         {
@@ -49,7 +49,7 @@ namespace WinFormsApp1
                 }
             if (!isIncluded)
             {
-                context.IngrediantTypes.Add(ingrediantType);
+                context.Ingredianttypes.Add(ingrediantType);
                 context.SaveChanges();
             }
         }

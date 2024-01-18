@@ -21,17 +21,17 @@ namespace Recipes.Forms.Recipes.KosherForms
         private void btnAddKosherType_Click(object sender, EventArgs e)
         {
             RecipesContext context = new RecipesContext();
-            KosherType kosherType = new KosherType();
-            kosherType.KosherTypeName1 = txtKosherTypeName.Text.ToLower();
-            if (!context.KosherTypes.Contains(kosherType))
+            Koshertype kosherType = new Koshertype();
+            kosherType.KosherTypeName = txtKosherTypeName.Text.ToLower();
+            if (!context.Koshertypes.Contains(kosherType))
             {
-                context.KosherTypes.Add(kosherType);
+                context.Koshertypes.Add(kosherType);
                 context.SaveChanges();
                 this.Close();
             }
             else
             {
-                MessageBox.Show(kosherType.KosherTypeName1 + " is already in the database");
+                MessageBox.Show(kosherType.KosherTypeName + " is already in the database");
             }
         }
     }

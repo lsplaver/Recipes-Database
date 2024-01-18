@@ -20,7 +20,7 @@ namespace Recipes.Forms.SubstitutionForms
         //private SortedList<int, string> types = new SortedList<int, string>();
         private SortedList<int, string> names = new SortedList<int, string>();
         private List<CurrentSubstitutions> currentSubstitutionsList = new List<CurrentSubstitutions>();
-        private IngrediantSubstitute ingrediantSubstitute = new IngrediantSubstitute();
+        private Ingrediantsubstitute ingrediantSubstitute = new Ingrediantsubstitute();
         //private int[] currentSubstitutionsID;
         //private int[] currentSubstitutionsIngrediantNameID;
         //private int[] currentSubstitutionsIngrediantSubstitutionsID;
@@ -42,16 +42,16 @@ namespace Recipes.Forms.SubstitutionForms
                 b++;
                 c++;
             }*/
-            txtIngrediantName.Text = Ingrediant.IngrediantName1;
+            txtIngrediantName.Text = Ingrediant.IngrediantName;
             //lstIngrediantType.DataSource = context.IngrediantTypes.Select(i => i.IngrediantType1).ToList();
             //lstIngrediantType.SelectedItem = context.IngrediantTypes.Find(Ingrediant.IngrediantTypeId).IngrediantType1;
             foreach (Ingrediant i in context.Ingrediants)
             {
-                clbSubstituteFor.Items.Add(i.IngrediantName1);
-                names.Add(i.IngrediantId, i.IngrediantName1);
+                clbSubstituteFor.Items.Add(i.IngrediantName);
+                names.Add(i.IngrediantId, i.IngrediantName);
             }
             clbSubstituteFor.Sorted = true;
-            foreach (IngrediantSubstitute i in /*context.IngrediantSubstitutes*/Ingrediant.IngrediantSubstitutes)//.IngrediantSubstituteIngrediantSubstitutedBies)
+            foreach (Ingrediantsubstitute i in /*context.IngrediantSubstitutes*/Ingrediant.Ingrediantsubstitutes)//.IngrediantSubstituteIngrediantSubstitutedBies)
             {
                 int x = i.IngrediantSubstitutedById;
                 int y = names.Keys.IndexOf(x);
@@ -87,9 +87,9 @@ namespace Recipes.Forms.SubstitutionForms
         private void btnAddUpdateIngrediantSubstitutions_Click(object sender, EventArgs e)
         {
             bool isIncludedName = false, isIncludedSubstitution = false;
-            if (!context.Ingrediants.Select(i => i.IngrediantName1).Contains(txtIngrediantName.Text))
+            if (!context.Ingrediants.Select(i => i.IngrediantName).Contains(txtIngrediantName.Text))
             {
-                Ingrediant.IngrediantName1 = txtIngrediantName.Text;
+                Ingrediant.IngrediantName = txtIngrediantName.Text;
             }
             else
             {
@@ -100,19 +100,19 @@ namespace Recipes.Forms.SubstitutionForms
             //Ingrediant.IngrediantTypeId = types.Keys.ElementAt(lstIngrediantType.SelectedIndex);
             if (!isIncludedName)
             {
-                foreach (IngrediantSubstitute i in Ingrediant.IngrediantSubstitutes)//.IngrediantSubstituteIngrediantNames)
+                foreach (Ingrediantsubstitute i in Ingrediant.Ingrediantsubstitutes)//.IngrediantSubstituteIngrediantNames)
                 {
-                    string tempName = Ingrediant.IngrediantSubstitutes.Select(j => j.IngrediantName).ToString();
+                    string tempName = Ingrediant.Ingrediantsubstitutes.Select(j => j.IngrediantName).ToString();
                     if (tempName.Equals(i.IngrediantName))
                     //(Ingrediant.IngrediantSubstitutes.Select(i => i.IngrediantName.Equals(Ingrediant.IngrediantName))//.Equals(Ingrediant.IngrediantName)//.IngrediantSubstituteIngrediantNames.Equals(Ingrediant.IngrediantName))
                     {
-                        i.IngrediantName.IngrediantName1 = txtIngrediantName.Text;
+                        i.IngrediantName.IngrediantName = txtIngrediantName.Text;
                     }
                 }
                 foreach (string s in clbSubstituteFor.SelectedItems)
                 {
                     //IngrediantSubstitute ingrediantSubstitute = new IngrediantSubstitute();
-                    ingrediantSubstitute.IngrediantName.IngrediantName1 = txtIngrediantName.Text;
+                    ingrediantSubstitute.IngrediantName.IngrediantName = txtIngrediantName.Text;
                     ingrediantSubstitute.IngrediantSubstitutedById = (names.Values.IndexOf(s) + 1);// .IngrediantSubstitutedBy.IngrediantName = s;
                     //foreach (IngrediantSubstitute k in Ingrediant.IngrediantSubstitutes)//.IngrediantSubstituteIngrediantNames)
                     //{
@@ -122,17 +122,17 @@ namespace Recipes.Forms.SubstitutionForms
                     //        isIncludedSubstitution = true;
                     //    }
                     //}
-                    for (int k = 0; k < Ingrediant.IngrediantSubstitutes.Count; k++)
+                    for (int k = 0; k < Ingrediant.Ingrediantsubstitutes.Count; k++)
                     {
-                        if ((ingrediantSubstitute.IngrediantSubstitutedById == Ingrediant.IngrediantSubstitutes.ElementAt(k).IngrediantSubstitutedById)
-                            && (ingrediantSubstitute.IngrediantNameId == Ingrediant.IngrediantSubstitutes.ElementAt(k).IngrediantNameId))
+                        if ((ingrediantSubstitute.IngrediantSubstitutedById == Ingrediant.Ingrediantsubstitutes.ElementAt(k).IngrediantSubstitutedById)
+                            && (ingrediantSubstitute.IngrediantNameId == Ingrediant.Ingrediantsubstitutes.ElementAt(k).IngrediantNameId))
                         {
                             isIncludedSubstitution = true;
                         }
                     }
                     if (!isIncludedSubstitution)
                     {
-                        Ingrediant.IngrediantSubstitutes/*IngrediantSubstituteIngrediantSubstitutedBies*/.Add(ingrediantSubstitute);
+                        Ingrediant.Ingrediantsubstitutes/*IngrediantSubstituteIngrediantSubstitutedBies*/.Add(ingrediantSubstitute);
                     }
                 }
             }
@@ -141,14 +141,14 @@ namespace Recipes.Forms.SubstitutionForms
                 foreach (string s in clbSubstituteFor.CheckedItems)
                 {
                     isIncludedSubstitution = false;
-                    ingrediantSubstitute = new IngrediantSubstitute();
+                    ingrediantSubstitute = new Ingrediantsubstitute();
                     //IngrediantSubstitute ingrediantSubstitute = new IngrediantSubstitute();
                     ingrediantSubstitute.IngrediantNameId /*.IngrediantName.IngrediantId*/ = (names.Values.IndexOf(txtIngrediantName.Text) + 1); //.IngrediantName = Ingrediant.IngrediantName;
                     //ingrediantSubstitute.IngrediantName.IngrediantName = txtIngrediantName.Text;
                     ingrediantSubstitute.IngrediantSubstitutedById = (names.Values.IndexOf(s) + 1);
                     //ingrediantSubstitute.IngrediantSubstitutedBy. = s;
                     //ingrediantSubstitute.IngrediantName = txtIngrediantName.Text;
-                    foreach (IngrediantSubstitute i in Ingrediant.IngrediantSubstitutes)//IngrediantSubstituteIngrediantSubstitutedBies)//IngrediantSubstituteIngrediantNames)
+                    foreach (Ingrediantsubstitute i in Ingrediant.Ingrediantsubstitutes)//IngrediantSubstituteIngrediantSubstitutedBies)//IngrediantSubstituteIngrediantNames)
                     {
                     if (i.IngrediantSubstitutedById == (names.Values.IndexOf(s)) + 1)//.IngrediantName.Equals(s))
                         {
@@ -157,7 +157,7 @@ namespace Recipes.Forms.SubstitutionForms
                     }
                     if (!isIncludedSubstitution)
                     {
-                        Ingrediant.IngrediantSubstitutes/*IngrediantSubstituteIngrediantSubstitutedBies*/.Add(ingrediantSubstitute);
+                        Ingrediant.Ingrediantsubstitutes/*IngrediantSubstituteIngrediantSubstitutedBies*/.Add(ingrediantSubstitute);
                     }
                 }
                 foreach (CurrentSubstitutions c in currentSubstitutionsList)//IngrediantSubstitute i in Ingrediant.IngrediantSubstitutes)
@@ -172,7 +172,7 @@ namespace Recipes.Forms.SubstitutionForms
             //context.ChangeTracker.Clear();
             //context.Ingrediants.Find(Ingrediant.IngrediantId).IngrediantName = Ingrediant.IngrediantName;
             //context.Ingrediants.Find(Ingrediant.IngrediantId).IngrediantSubstitutes/*.IngrediantSubstituteIngrediantNames*/ = Ingrediant.IngrediantSubstituteIngrediantNames;
-            context.Ingrediants.Find(Ingrediant.IngrediantId).IngrediantSubstitutes/*.IngrediantSubstituteIngrediantSubstitutedBies*/ = Ingrediant.IngrediantSubstitutes/*.IngrediantSubstituteIngrediantSubstitutedBies*/;
+            context.Ingrediants.Find(Ingrediant.IngrediantId).Ingrediantsubstitutes/*.IngrediantSubstituteIngrediantSubstitutedBies*/ = Ingrediant.Ingrediantsubstitutes/*.IngrediantSubstituteIngrediantSubstitutedBies*/;
             //context.Ingrediants.Find(Ingrediant.IngrediantId).IngrediantTypeId = Ingrediant.IngrediantTypeId;
             foreach(CurrentSubstitutions c in substitutionsToRemove)
             {
@@ -182,7 +182,7 @@ namespace Recipes.Forms.SubstitutionForms
                 ingrediantSubstitute.SubstitutedById = c.SubstitutionID;
                 ingrediantSubstitute.IngrediantNameId = c.IngrediantNameID;
                 ingrediantSubstitute.IngrediantSubstitutedById = c.IngrediantSubstitutionID;
-                context.IngrediantSubstitutes.Remove(ingrediantSubstitute);
+                context.Ingrediantsubstitutes.Remove(ingrediantSubstitute);
                 //context.Remove(ingrediantSubstitute);
                 context.SaveChanges();
                 //context.Remove(ingrediantSubstitute);

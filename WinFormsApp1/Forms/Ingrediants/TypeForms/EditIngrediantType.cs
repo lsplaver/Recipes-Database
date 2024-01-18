@@ -15,9 +15,9 @@ namespace Recipes.Forms.TypeForms
     public partial class frmEditIngrediantType : Form
     {
         private RecipesContext context = new RecipesContext();
-        private IngrediantType selectedType;// = new IngrediantType();
+        private Ingredianttype selectedType;// = new IngrediantType();
         private SortedList<int, String> type = new SortedList<int, string>();
-        public frmEditIngrediantType(IngrediantType ingrediantType)
+        public frmEditIngrediantType(Ingredianttype ingrediantType)
         {
             /*foreach (IngrediantType t in context.IngrediantTypes)
             {
@@ -32,12 +32,12 @@ namespace Recipes.Forms.TypeForms
 
         private void btnUpdateIngrediantType_Click(object sender, EventArgs e)
         {
-            IngrediantType ingrediantType = new IngrediantType();
-            List<IngrediantType> types = context.IngrediantTypes.ToList();
+            Ingredianttype ingrediantType = new Ingredianttype();
+            List<Ingredianttype> types = context.Ingredianttypes.ToList();
             bool isIncluded = false;
             if (types.Count() > 0)
             {
-                foreach (IngrediantType t in types)
+                foreach (Ingredianttype t in types)
                 {
                     if (t.IngrediantType1.ToLower().Equals(txtUpdatedIngrediantType.Text.ToLower()))
                     {
