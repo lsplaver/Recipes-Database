@@ -1,5 +1,6 @@
 ﻿using Recipes.Forms.Ingrediants.SubstitutionForms;
 using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,18 +17,20 @@ namespace Recipes.Forms.SubstitutionForms
     public partial class frmAddUpdateIngrediantSubstitutions : Form
     {
         private Ingrediant Ingrediant;
-        private RecipesContext context = new RecipesContext();
+        //private RecipesContext context = new RecipesContext();
         //private SortedList<int, string> types = new SortedList<int, string>();
         private SortedList<int, string> names = new SortedList<int, string>();
         private List<CurrentSubstitutions> currentSubstitutionsList = new List<CurrentSubstitutions>();
         private Ingrediantsubstitute ingrediantSubstitute = new Ingrediantsubstitute();
+        private ServerObject serverObject = new ServerObject();
         //private int[] currentSubstitutionsID;
         //private int[] currentSubstitutionsIngrediantNameID;
         //private int[] currentSubstitutionsIngrediantSubstitutionsID;
-        public frmAddUpdateIngrediantSubstitutions(Ingrediant ingrediant)
+        public frmAddUpdateIngrediantSubstitutions(Ingrediant ingrediant, ServerObject server)
         {
             InitializeComponent();
             Ingrediant = ingrediant;
+            serverObject = server;
             //int substituteCount = context.IngrediantSubstitutes.Where(i => i.IngrediantNameId == Ingrediant.IngrediantId).Select(i => i.IngrediantNameId).Count();// Ingrediant.IngrediantSubstitutes.Count;
             //currentSubstitutionsID = new int[substituteCount];
             //currentSubstitutionsIngrediantNameID = new int[substituteCount];
@@ -45,6 +48,7 @@ namespace Recipes.Forms.SubstitutionForms
             txtIngrediantName.Text = Ingrediant.IngrediantName;
             //lstIngrediantType.DataSource = context.IngrediantTypes.Select(i => i.IngrediantType1).ToList();
             //lstIngrediantType.SelectedItem = context.IngrediantTypes.Find(Ingrediant.IngrediantTypeId).IngrediantType1;
+            RecipesContext context = new RecipesContext(serverObject);
             foreach (Ingrediant i in context.Ingrediants)
             {
                 clbSubstituteFor.Items.Add(i.IngrediantName);
@@ -87,6 +91,7 @@ namespace Recipes.Forms.SubstitutionForms
         private void btnAddUpdateIngrediantSubstitutions_Click(object sender, EventArgs e)
         {
             bool isIncludedName = false, isIncludedSubstitution = false;
+            RecipesContext context = new RecipesContext(serverObject);
             if (!context.Ingrediants.Select(i => i.IngrediantName).Contains(txtIngrediantName.Text))
             {
                 Ingrediant.IngrediantName = txtIngrediantName.Text;

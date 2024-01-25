@@ -1,5 +1,6 @@
 ﻿using Recipes.Forms.IngrediantForms;
 using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,15 @@ namespace WinFormsApp1
 {
     public partial class frmEditIngrediant : Form
     {
-        private RecipesContext context = new RecipesContext();
+        //private RecipesContext context = new RecipesContext();
         private SortedList<int, string> ingrediants = new SortedList<int, string>();
         private Ingrediant ingrediant = new Ingrediant();
-        public frmEditIngrediant()
+        private ServerObject serverObject = new ServerObject();
+        public frmEditIngrediant(ServerObject server)
         {
             InitializeComponent();
+            serverObject = server;
+            RecipesContext context = new RecipesContext(serverObject);
             //lstIngrediant.DataSource = context.Ingrediants.Select(i => i.IngrediantName, Order<int>(i.IngrediantId)).ToList();//.OrderBy(context.Ingrediants.OrderBy(i => i.IngrediantId));
             foreach (Ingrediant i in context.Ingrediants)
             {
@@ -48,6 +52,7 @@ namespace WinFormsApp1
         {
             /*int tempInt*/
             //string tempString = ingrediants.Values.ElementAt(lstIngrediant.SelectedIndex);
+            RecipesContext context = new RecipesContext(serverObject);
             int tempInt = ingrediants.IndexOfValue(lstIngrediant.SelectedItem.ToString());
             /*Ingrediant*/ ingrediant = context.Ingrediants.Find(tempInt + 1);// tempString);//tempInt);//lstIngrediant.SelectedItem);//.ElementAt(lstIngrediant.SelectedItem);//.SelectedIndex);
             string tempString = context.Ingredianttypes.Find(ingrediant.IngrediantTypeId).IngrediantType1;
@@ -57,7 +62,7 @@ namespace WinFormsApp1
         private void btnEditIngrediant_Click(object sender, EventArgs e)
         {
             string name = btnEditIngrediant.Text;
-            frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant);
+            frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant, serverObject);
             frmUpdateIngrediant.ShowDialog();
         }
     }

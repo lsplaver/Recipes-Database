@@ -16,7 +16,8 @@ namespace Recipes.Forms.Recipes.SourceTypeForms
 {
     public partial class frmAddSourceType : Form
     {
-        public frmAddSourceType()
+        private ServerObject serverObject = new ServerObject();
+        public frmAddSourceType(ServerObject server)
         {
             InitializeComponent();
         }
@@ -24,7 +25,7 @@ namespace Recipes.Forms.Recipes.SourceTypeForms
         private void btnAddSourceType_Click(object sender, EventArgs e)
         {
             //RecipeContextExtension context = new RecipeContextExtension();
-            RecipesContext context = new RecipesContext();
+            RecipesContext context = new RecipesContext(serverObject);
             bool isIncluded = false;
             if (!context.Recipesourcetypes.IsNullOrEmpty())
             {

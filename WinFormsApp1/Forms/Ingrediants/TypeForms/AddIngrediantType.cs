@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,16 @@ namespace WinFormsApp1
 {
     public partial class frmAddIngrediantType : Form
     {
-        public frmAddIngrediantType()
+        private ServerObject serverObject = new ServerObject();
+        public frmAddIngrediantType(ServerObject server)
         {
             InitializeComponent();
+            serverObject = server;
         }
 
         private void btnSaveNewType_Click(object sender, EventArgs e)
         {
-            RecipesContext context = new RecipesContext();
+            RecipesContext context = new RecipesContext(serverObject);
             Ingredianttype ingrediantType = new Ingredianttype();
                 List<Ingredianttype> types = context.Ingredianttypes.ToList();
                 bool isIncluded = false;

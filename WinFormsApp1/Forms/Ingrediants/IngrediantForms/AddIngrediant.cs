@@ -1,4 +1,5 @@
 ﻿using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,15 @@ namespace WinFormsApp1
 {
     public partial class frmAddIngrediant : Form
     {
-        private RecipesContext context = new RecipesContext();
+        //private RecipesContext context = new RecipesContext();
+        private ServerObject serverObject = new ServerObject();
         private Ingrediant ingrediants;
         private SortedList<int, String> type = new SortedList<int, string>();
 
-        public frmAddIngrediant()
+        public frmAddIngrediant(ServerObject server)
         {
+            serverObject = server;
+            RecipesContext context = new RecipesContext(serverObject);
             var type = context.Ingredianttypes.Select(t => t.IngrediantType1);
             //var substitute = context.IngrediantSubstitutes.Select(s => s.IngrediantName);
             InitializeComponent();
@@ -33,6 +37,7 @@ namespace WinFormsApp1
 
         private void btnSaveIngrediant_Click(object sender, EventArgs e)
         {
+            RecipesContext context = new RecipesContext(serverObject);
             bool isIncluded = false;
             Ingrediant ingrediant = new Ingrediant();
             foreach(Ingredianttype t in context.Ingredianttypes)

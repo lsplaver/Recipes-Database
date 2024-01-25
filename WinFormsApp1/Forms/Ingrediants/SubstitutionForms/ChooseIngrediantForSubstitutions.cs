@@ -1,4 +1,5 @@
 ﻿using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,15 @@ namespace Recipes.Forms.SubstitutionForms
 {
     public partial class frmChooseIngrediantForSubstitutions : Form
     {
-        private RecipesContext context = new RecipesContext();
+        //private RecipesContext context = new RecipesContext();
         private SortedList<int, string> ingrediants = new SortedList<int, string>();
         private Ingrediant ingrediant = new Ingrediant();
-        public frmChooseIngrediantForSubstitutions()
+        private ServerObject serverObject = new ServerObject();
+        public frmChooseIngrediantForSubstitutions(ServerObject server)
         {
             InitializeComponent();
+            serverObject = server;
+            RecipesContext context = new RecipesContext(serverObject);
             foreach (Ingrediant i in context.Ingrediants)
             {
                 int j = i.IngrediantId;
@@ -40,6 +44,7 @@ namespace Recipes.Forms.SubstitutionForms
 
         private void ChangeSelectedIngrediantType()
         {
+            RecipesContext context = new RecipesContext(serverObject);
             int tempInt = ingrediants.IndexOfValue(lstIngrediantForSubstitution.SelectedItem.ToString());
             ingrediant = context.Ingrediants.Find(tempInt + 1);
             foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
@@ -56,7 +61,7 @@ namespace Recipes.Forms.SubstitutionForms
         }
         private void btnSelectIngrediant_Click(object sender, EventArgs e)
         {
-            frmAddUpdateIngrediantSubstitutions frmAddUpdateIngrediantSubstitutions = new frmAddUpdateIngrediantSubstitutions(ingrediant);
+            frmAddUpdateIngrediantSubstitutions frmAddUpdateIngrediantSubstitutions = new frmAddUpdateIngrediantSubstitutions(ingrediant, serverObject);
             frmAddUpdateIngrediantSubstitutions.ShowDialog();
         }
     }

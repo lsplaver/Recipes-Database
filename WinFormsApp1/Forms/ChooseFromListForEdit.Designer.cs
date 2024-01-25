@@ -70,6 +70,7 @@
             Controls.Add(lblChooseForEdit);
             Name = "frmChooseFromListForEdit";
             Text = "Choose From List For Edit";
+            Activated += frmChooseFromListForEdit_Load;
             Load += frmChooseFromListForEdit_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -2,6 +2,7 @@
 using Recipes.Forms.SubstitutionForms;
 using Recipes.Forms.TypeForms;
 using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,8 +18,9 @@ namespace Recipes.Forms
     public partial class frmChooseFromListForEdit : Form
     {
         private string Origin { get; set; }
-        private RecipesContext context = new RecipesContext();
+        //private RecipesContext context;// = new RecipesContext();
         private SortedList<int, string> sortedListString = new SortedList<int, string>();
+        private ServerObject serverObject = new ServerObject();
 
         public frmChooseFromListForEdit(string strOrigin)
         {
@@ -26,11 +28,26 @@ namespace Recipes.Forms
             InitializeComponent();
         }
 
+        public frmChooseFromListForEdit(string strOrigin, ServerObject server)
+        {
+            Origin = strOrigin;
+            InitializeComponent();
+            serverObject = server;
+        }
+
+        /*public frmChooseFromListForEdit(string strOrigin, RecipesContext recipesContext)
+        {
+            Origin = strOrigin;
+            InitializeComponent();
+            context = recipesContext;
+        }*/
+
         private void frmChooseFromListForEdit_Load(object sender, EventArgs e)
         {
             lblChooseForEdit.Text = Origin;
             btnChooseForEdit.Text = Origin;
             sortedListString.Clear();
+            RecipesContext context = new RecipesContext(serverObject);
             switch (Origin)
             {
                 case "Edit Ingrediant":
@@ -110,6 +127,7 @@ namespace Recipes.Forms
 
         private void btnChooseForEdit_Click(object sender, EventArgs e)
         {
+            RecipesContext context = new RecipesContext(serverObject);
             int tempInt = sortedListString.IndexOfValue(lstChooseForEdit.SelectedItem.ToString());
             int key = sortedListString.GetKeyAtIndex(tempInt);
             if (Origin.Contains("Edit"))
@@ -120,8 +138,9 @@ namespace Recipes.Forms
                         {
                             Ingrediant ingrediant = new Ingrediant();
                             ingrediant = context.Ingrediants.Find(key);//tempInt + 1);
-                            frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant);
+                            frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant, serverObject);
                             frmUpdateIngrediant.ShowDialog();
+                            this.Close();
                             break;
                         }
                     case "Add / Edit Ingrediant Substitutions":
@@ -138,7 +157,7 @@ namespace Recipes.Forms
                                     }
                                 }
                             }
-                            frmAddUpdateIngrediantSubstitutions frmAddUpdateIngrediantSubstitutions = new frmAddUpdateIngrediantSubstitutions(ingrediant);
+                            frmAddUpdateIngrediantSubstitutions frmAddUpdateIngrediantSubstitutions = new frmAddUpdateIngrediantSubstitutions(ingrediant, serverObject);
                             frmAddUpdateIngrediantSubstitutions.ShowDialog();
                             break;
                         }
@@ -146,7 +165,7 @@ namespace Recipes.Forms
                         {
                             Ingredianttype ingrediantType = new Ingredianttype();
                             ingrediantType = context.Ingredianttypes.Find(key);//tempInt + 1);
-                            frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType(ingrediantType);
+                            frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType(ingrediantType, serverObject);
                             frmEditIngrediantType.ShowDialog();
                             break;
                         }
@@ -188,6 +207,7 @@ namespace Recipes.Forms
                         }
                 }
             }
+            //context = new RecipesContext(serverObject);
         }
     }
 }

@@ -15,9 +15,17 @@ public partial class Recipe
 
     public int KosherTypeId { get; set; }
 
+    public int? RecipeTypeId { get; set; }
+
+    public int? CourseId { get; set; }
+
+    public virtual Recipecourse? Course { get; set; }
+
     public virtual Ingrediant Ingrediant { get; set; } = null!;
 
     public virtual Koshertype KosherType { get; set; } = null!;
+
+    public virtual Recipetype? RecipeType { get; set; }
 
     public virtual Recipesource Source { get; set; } = null!;
 }

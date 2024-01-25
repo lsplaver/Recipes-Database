@@ -1,4 +1,5 @@
 ﻿using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +14,20 @@ namespace Recipes.Forms.Recipes.SourceForms
 {
     public partial class frmAddRecipeSource : Form
     {
-        private RecipesContext context = new RecipesContext();
+        //private RecipesContext context = new RecipesContext();
         private SortedList<int, String> type = new SortedList<int, string>();
-        public frmAddRecipeSource()
+        private ServerObject serverObject = new ServerObject();
+        public frmAddRecipeSource(ServerObject server)
         {
             InitializeComponent();
+            serverObject = server;
+            RecipesContext context = new RecipesContext(serverObject);
             lstRecipeSourceType.DataSource = context.Recipesourcetypes.Select(s => s.SourceTypeName).ToList();
         }
 
         private void btnAddRecipeSource_Click(object sender, EventArgs e)
         {
+            RecipesContext context = new RecipesContext(serverObject);
             bool isIncluded = false;
             Recipesource recipeSource = new Recipesource();
             foreach (Recipesourcetype t in context.Recipesourcetypes)

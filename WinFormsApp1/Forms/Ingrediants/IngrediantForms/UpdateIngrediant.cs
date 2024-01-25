@@ -1,4 +1,5 @@
 ﻿using Recipes.Models.DataLayer;
+using Recipes.Objects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,16 +14,20 @@ namespace Recipes.Forms.IngrediantForms
 {
     public partial class frmUpdateIngrediant : Form
     {
-        private Ingrediant Ingrediant;
-        private RecipesContext context  = new RecipesContext();
+        private Ingrediant Ingrediant = new Ingrediant();
+        //private RecipesContext context = new RecipesContext();
         private SortedList<int, string> types = new SortedList<int, string>();
         private SortedList<int, string> names = new SortedList<int, string>();
+        private ServerObject serverObject = new ServerObject();
 
-        public frmUpdateIngrediant(Ingrediant ingrediant)
+        public frmUpdateIngrediant(Ingrediant ingrediant, ServerObject server)//, RecipesContext recipesContext)
         {
             InitializeComponent();
+            //context = recipesContext;
             Ingrediant = ingrediant;
+            serverObject = server;
             txtIngrediantName.Text = Ingrediant.IngrediantName;
+            RecipesContext context = new RecipesContext(serverObject);
             lstIngrediantType.DataSource = context.Ingredianttypes.Select(i => i.IngrediantType1).ToList();
             lstIngrediantType.SelectedItem = context.Ingredianttypes.Find(Ingrediant.IngrediantTypeId).IngrediantType1;
             foreach (Ingrediant i in context.Ingrediants)
@@ -50,6 +55,7 @@ namespace Recipes.Forms.IngrediantForms
         private void btnUpdateIngrediant_Click(object sender, EventArgs e)
         {
             bool isIncludedName = false, isIncludedSubstitution = false;
+            RecipesContext context = new RecipesContext(serverObject);
             if (!context.Ingrediants.Select(i => i.IngrediantName).Contains(txtIngrediantName.Text))
             {
                 Ingrediant.IngrediantName = txtIngrediantName.Text;
