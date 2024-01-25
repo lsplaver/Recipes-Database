@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /WinFormsApp1/App.config
 /WinFormsApp1/Objects/RecipeContextExtension.cs
+/WinFormsApp1/App.cs

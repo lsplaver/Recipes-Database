@@ -31,7 +31,7 @@ namespace Recipes.Forms.IngrediantForms
                 names.Add(i.IngrediantId, i.IngrediantName);
             }
             clbSubstituteFor.Sorted = true;
-            foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)// Ingrediant.IngrediantSubstitutes)//.IngrediantSubstituteIngrediantSubstitutedBies)
+            foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes.Where(x => x.IngrediantNameId == ingrediant.IngrediantId))// Ingrediant.IngrediantSubstitutes)//.IngrediantSubstituteIngrediantSubstitutedBies)
             {
                 int x = i.IngrediantSubstitutedById;
                 int y = names.Keys.IndexOf(x);
