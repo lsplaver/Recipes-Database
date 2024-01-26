@@ -21,6 +21,7 @@ namespace Recipes.Forms
         //private RecipesContext context;// = new RecipesContext();
         private SortedList<int, string> sortedListString = new SortedList<int, string>();
         private ServerObject serverObject = new ServerObject();
+        private int selectedItemIndex = -1;
 
         public frmChooseFromListForEdit(string strOrigin)
         {
@@ -123,6 +124,11 @@ namespace Recipes.Forms
                     }
             }
             lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+            if (selectedItemIndex >= 0)
+            {
+                lstChooseForEdit.SelectedIndex = selectedItemIndex;
+                selectedItemIndex = -1;
+            }
         }
 
         private void btnChooseForEdit_Click(object sender, EventArgs e)
@@ -130,6 +136,7 @@ namespace Recipes.Forms
             RecipesContext context = new RecipesContext(serverObject);
             int tempInt = sortedListString.IndexOfValue(lstChooseForEdit.SelectedItem.ToString());
             int key = sortedListString.GetKeyAtIndex(tempInt);
+            selectedItemIndex = tempInt;
             if (Origin.Contains("Edit"))
             {
                 switch (Origin)
@@ -140,7 +147,7 @@ namespace Recipes.Forms
                             ingrediant = context.Ingrediants.Find(key);//tempInt + 1);
                             frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant, serverObject);
                             frmUpdateIngrediant.ShowDialog();
-                            this.Close();
+                            //this.Close();
                             break;
                         }
                     case "Add / Edit Ingrediant Substitutions":
