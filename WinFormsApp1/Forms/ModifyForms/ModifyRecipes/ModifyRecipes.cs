@@ -14,10 +14,10 @@ using System.Windows.Forms;
 
 namespace Recipes.Forms.Recipes
 {
-    public partial class frmRecipes : Form
+    public partial class frmModifyRecipes : Form
     {
         private ServerObject serverObject = new ServerObject();
-        public frmRecipes(ServerObject server)
+        public frmModifyRecipes(ServerObject server)
         {
             InitializeComponent();
             serverObject = server;

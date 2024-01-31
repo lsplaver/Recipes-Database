@@ -47,17 +47,18 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Forms\Ingrediants\IngrediantForms\EditIngrediant.cs">
+  <!-- <ItemGroup>
+    <Compile Update="Forms\ModifyForms\Ingrediants\IngrediantForms\EditIngrediant.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\Ingrediants\TypeForms\AddIngrediantType.cs">
+    <Compile Update="Forms\ModifyForms\Ingrediants\TypeForms\AddIngrediantType.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Forms\Recipes\RecipeForms\" />
-  </ItemGroup>
+    <Folder Include="Forms\ModifyForms\Recipes\RecipeForms\" />
+    <Folder Include="Forms\ViewForms\Recipes\" />
+  </ItemGroup> -->
 
 </Project>

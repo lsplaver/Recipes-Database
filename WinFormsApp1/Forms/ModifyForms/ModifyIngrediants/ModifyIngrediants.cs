@@ -15,16 +15,16 @@ using WinFormsApp1;
 
 namespace Recipes.Forms.Ingrediants
 {
-    public partial class frmIngrediants : Form
+    public partial class frmModifyIngrediants : Form
     {
         private ServerObject serverObject = new ServerObject();
         //private RecipesContext context = new RecipesContext();
-        public frmIngrediants()
+        public frmModifyIngrediants()
         {
             InitializeComponent();
         }
 
-        public frmIngrediants(ServerObject server)
+        public frmModifyIngrediants(ServerObject server)
         {
             InitializeComponent();
             serverObject = server;

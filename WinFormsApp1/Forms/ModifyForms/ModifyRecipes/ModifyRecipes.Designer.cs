@@ -1,6 +1,6 @@
 ﻿namespace Recipes.Forms.Recipes
 {
-    partial class frmRecipes
+    partial class frmModifyRecipes
     {
         /// <summary>
         /// Required designer variable.
@@ -123,7 +123,7 @@
             btnAddKosherType.UseVisualStyleBackColor = true;
             btnAddKosherType.Click += btnAddKosherType_Click;
             // 
-            // frmRecipes
+            // frmModifyRecipes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -137,8 +137,8 @@
             Controls.Add(btnEditRecipe);
             Controls.Add(btnAddRecipe);
             Controls.Add(label1);
-            Name = "frmRecipes";
-            Text = "Recipes";
+            Name = "frmModifyRecipes";
+            Text = "Modify Recipes";
             ResumeLayout(false);
             PerformLayout();
         }

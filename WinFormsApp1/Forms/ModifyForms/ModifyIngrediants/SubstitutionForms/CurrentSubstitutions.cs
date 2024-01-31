@@ -1,4 +1,4 @@
-﻿namespace Recipes.Forms.Ingrediants.SubstitutionForms
+﻿namespace Recipes.Forms.ModifyForms.Ingrediants.SubstitutionForms
 {
     internal class CurrentSubstitutions
     {

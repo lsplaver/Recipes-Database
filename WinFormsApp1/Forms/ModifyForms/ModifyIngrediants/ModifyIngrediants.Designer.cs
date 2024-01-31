@@ -1,6 +1,6 @@
 ﻿namespace Recipes.Forms.Ingrediants
 {
-    partial class frmIngrediants
+    partial class frmModifyIngrediants
     {
         /// <summary>
         /// Required designer variable.
@@ -105,7 +105,7 @@
             btnAddIngrediant.UseVisualStyleBackColor = true;
             btnAddIngrediant.Click += btnAddIngrediant_Click;
             // 
-            // frmIngrediants
+            // frmModifyIngrediants
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -117,8 +117,8 @@
             Controls.Add(btnDeleteIngrediant);
             Controls.Add(btnEditIngrediant);
             Controls.Add(btnAddIngrediant);
-            Name = "frmIngrediants";
-            Text = "Ingrediants";
+            Name = "frmModifyIngrediants";
+            Text = "Modify Ingrediants";
             ResumeLayout(false);
         }
 
