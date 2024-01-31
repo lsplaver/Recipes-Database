@@ -51,7 +51,7 @@ namespace Recipes.Forms.Ingrediants
         {
             //frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType();
             //frmEditIngrediantType.ShowDialog();
-            frmChooseFromListForEdit frmChooseFromListForEdit = new frmChooseFromListForEdit(btnEditType.Text, serverObject);
+            frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnEditType.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();
         }
 
@@ -59,7 +59,7 @@ namespace Recipes.Forms.Ingrediants
         {
             //frmEditIngrediant frmEditIngrediant = new frmEditIngrediant();
             //frmEditIngrediant.ShowDialog();
-            frmChooseFromListForEdit frmChooseFromListForEdit = new frmChooseFromListForEdit(btnEditIngrediant.Text, serverObject);
+            frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnEditIngrediant.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();
         }
 
@@ -67,7 +67,7 @@ namespace Recipes.Forms.Ingrediants
         {
             //frmChooseIngrediantForSubstitutions frmChoose = new frmChooseIngrediantForSubstitutions();
             //frmChoose.ShowDialog();
-            frmChooseFromListForEdit frmChooseFromListForEdit = new frmChooseFromListForEdit(btnAddUpdateSubstitutions.Text, serverObject);
+            frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnAddUpdateSubstitutions.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();
         }
 

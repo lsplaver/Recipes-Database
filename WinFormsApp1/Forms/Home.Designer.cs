@@ -28,44 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnRecipes = new Button();
-            btnIngrediants = new Button();
+            btnModifyRecipes = new Button();
+            btnModifyIngrediants = new Button();
+            btnViewRecipes = new Button();
+            btnViewIngrediants = new Button();
             SuspendLayout();
             // 
-            // btnRecipes
+            // btnModifyRecipes
             // 
-            btnRecipes.Location = new Point(43, 90);
-            btnRecipes.Name = "btnRecipes";
-            btnRecipes.Size = new Size(94, 29);
-            btnRecipes.TabIndex = 15;
-            btnRecipes.Text = "Recipes";
-            btnRecipes.UseVisualStyleBackColor = true;
-            btnRecipes.Click += btnRecipes_Click;
+            btnModifyRecipes.Location = new Point(43, 90);
+            btnModifyRecipes.Name = "btnModifyRecipes";
+            btnModifyRecipes.Size = new Size(94, 56);
+            btnModifyRecipes.TabIndex = 15;
+            btnModifyRecipes.Text = "Modify Recipes";
+            btnModifyRecipes.UseVisualStyleBackColor = true;
+            btnModifyRecipes.Click += btnRecipes_Click;
             // 
-            // btnIngrediants
+            // btnModifyIngrediants
             // 
-            btnIngrediants.Location = new Point(244, 90);
-            btnIngrediants.Name = "btnIngrediants";
-            btnIngrediants.Size = new Size(94, 29);
-            btnIngrediants.TabIndex = 16;
-            btnIngrediants.Text = "Ingrediants";
-            btnIngrediants.UseVisualStyleBackColor = true;
-            btnIngrediants.Click += btnIngrediants_Click;
+            btnModifyIngrediants.Location = new Point(244, 90);
+            btnModifyIngrediants.Name = "btnModifyIngrediants";
+            btnModifyIngrediants.Size = new Size(94, 56);
+            btnModifyIngrediants.TabIndex = 16;
+            btnModifyIngrediants.Text = "Modify Ingrediants";
+            btnModifyIngrediants.UseVisualStyleBackColor = true;
+            btnModifyIngrediants.Click += btnIngrediants_Click;
+            // 
+            // btnViewRecipes
+            // 
+            btnViewRecipes.Location = new Point(43, 198);
+            btnViewRecipes.Name = "btnViewRecipes";
+            btnViewRecipes.Size = new Size(94, 51);
+            btnViewRecipes.TabIndex = 17;
+            btnViewRecipes.Text = "View Recipes";
+            btnViewRecipes.UseVisualStyleBackColor = true;
+            btnViewRecipes.Click += btnViewRecipes_Click;
+            // 
+            // btnViewIngrediants
+            // 
+            btnViewIngrediants.Location = new Point(244, 198);
+            btnViewIngrediants.Name = "btnViewIngrediants";
+            btnViewIngrediants.Size = new Size(94, 51);
+            btnViewIngrediants.TabIndex = 18;
+            btnViewIngrediants.Text = "View Ingrediants";
+            btnViewIngrediants.UseVisualStyleBackColor = true;
+            btnViewIngrediants.Click += btnViewIngrediants_Click;
             // 
             // frmHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(500, 483);
-            Controls.Add(btnIngrediants);
-            Controls.Add(btnRecipes);
+            Controls.Add(btnViewIngrediants);
+            Controls.Add(btnViewRecipes);
+            Controls.Add(btnModifyIngrediants);
+            Controls.Add(btnModifyRecipes);
             Name = "frmHome";
-            Text = "Recipes";
+            Text = "View & Modify";
             ResumeLayout(false);
         }
 
         #endregion
-        private Button btnRecipes;
-        private Button btnIngrediants;
+        private Button btnModifyRecipes;
+        private Button btnModifyIngrediants;
+        private Button btnViewRecipes;
+        private Button btnViewIngrediants;
     }
 }

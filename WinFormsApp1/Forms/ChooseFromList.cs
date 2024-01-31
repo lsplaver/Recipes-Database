@@ -3,6 +3,7 @@ using Recipes.Forms.SubstitutionForms;
 using Recipes.Forms.TypeForms;
 using Recipes.Models.DataLayer;
 using Recipes.Objects;
+using Recipes.Forms.ViewForms.Ingrediants;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,10 +13,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Text;
 
 namespace Recipes.Forms
 {
-    public partial class frmChooseFromListForEdit : Form
+    public partial class frmChooseFromList : Form
     {
         private string Origin { get; set; }
         //private RecipesContext context;// = new RecipesContext();
@@ -24,14 +26,14 @@ namespace Recipes.Forms
         private int selectedItemIndex = -1;
         private string selectedItem = "";
 
-        public frmChooseFromListForEdit(string strOrigin)
+        public frmChooseFromList(string strOrigin)
         {
             Origin = strOrigin;
             InitializeComponent();
             SetlstChooseForEdit();
         }
 
-        public frmChooseFromListForEdit(string strOrigin, ServerObject server)
+        public frmChooseFromList(string strOrigin, ServerObject server)
         {
             Origin = strOrigin;
             InitializeComponent();
@@ -138,10 +140,10 @@ namespace Recipes.Forms
         private void btnChooseForEdit_Click(object sender, EventArgs e)
         {
             RecipesContext context = new RecipesContext(serverObject);
-            int tempInt = sortedListString.IndexOfValue(lstChooseForEdit.SelectedItem.ToString());
+            int tempInt = sortedListString.IndexOfValue(lstChoose.SelectedItem.ToString());
             int key = /*sortedListString.Keys.ElementAt(lstChooseForEdit.SelectedIndex);*/ sortedListString.GetKeyAtIndex(tempInt);
-            selectedItemIndex = lstChooseForEdit.SelectedIndex; //tempInt;
-            selectedItem = lstChooseForEdit.SelectedItem.ToString();
+            selectedItemIndex = lstChoose.SelectedIndex; //tempInt;
+            selectedItem = lstChoose.SelectedItem.ToString();
             if (Origin.Contains("Edit"))
             {
                 switch (Origin)
@@ -159,7 +161,8 @@ namespace Recipes.Forms
                         {
                             Ingrediant ingrediant = new Ingrediant();
                             ingrediant = context.Ingrediants.Find(key);// tempInt + 1);
-                            foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
+                            ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
+                            /*foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
                             {
                                 if (i.IngrediantNameId == (key))//tempInt + 1))
                                 {
@@ -168,7 +171,7 @@ namespace Recipes.Forms
                                         ingrediant.Ingrediantsubstitutes.Add(i);
                                     }
                                 }
-                            }
+                            }*/
                             frmAddUpdateIngrediantSubstitutions frmAddUpdateIngrediantSubstitutions = new frmAddUpdateIngrediantSubstitutions(ingrediant, serverObject);
                             frmAddUpdateIngrediantSubstitutions.ShowDialog();
                             break;
@@ -179,6 +182,37 @@ namespace Recipes.Forms
                             ingrediantType = context.Ingredianttypes.Find(key);//tempInt + 1);
                             frmEditIngrediantType frmEditIngrediantType = new frmEditIngrediantType(ingrediantType, serverObject);
                             frmEditIngrediantType.ShowDialog();
+                            break;
+                        }
+                    case "View Ingrediant Types":
+                        {
+                            Ingredianttype ingrediantType = new Ingredianttype();
+                            ingrediantType = context.Ingredianttypes.Find(key);
+                            List<Ingrediant> ingrediants = new List<Ingrediant>();
+                            foreach (Ingrediant i in context.Ingrediants)
+                            {
+                                if (i.IngrediantType.IngrediantTypeId == ingrediantType.IngrediantTypeId)
+                                {
+                                    if (!ingrediants.Contains(i))
+                                    {
+                                        Ingrediant ingrediant = i;
+                                        ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
+                                        /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
+                                        {
+                                            if (j.IngrediantNameId == i.IngrediantId)
+                                            {
+                                                if (!i.Ingrediantsubstitutes.Contains(j))
+                                                {
+                                                    i.Ingrediantsubstitutes.Add(j);
+                                                }
+                                            }
+                                        }*/
+                                        ingrediants.Add(ingrediant);
+                                    }
+                                }
+                            }
+                            frmViewIngrediantTypes frmViewIngrediantTypes = new frmViewIngrediantTypes(ingrediantType, ingrediants, serverObject);
+                            frmViewIngrediantTypes.ShowDialog();
                             break;
                         }
                     case "Edit Recipe Source Type":
@@ -223,16 +257,32 @@ namespace Recipes.Forms
             SetlstChooseForEdit();
         }
 
+        private Ingrediant GetIngrediantSubstitutionList(Ingrediant ingrediant, RecipesContext context)
+        {
+            foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
+            {
+                if (i.IngrediantNameId == ingrediant.IngrediantId)//tempInt + 1))
+                {
+                    if (!ingrediant.Ingrediantsubstitutes.Contains(i))
+                    {
+                        ingrediant.Ingrediantsubstitutes.Add(i);
+                    }
+                }
+            }
+            return ingrediant;
+        }
+
         private void SetlstChooseForEdit()
         {
-            lblChooseForEdit.Text = Origin;
-            btnChooseForEdit.Text = Origin;
+            lblChoose.Text = Origin;
+            btnChoose.Text = Origin;
             sortedListString.Clear();
             RecipesContext context = new RecipesContext(serverObject);
             switch (Origin)
             {
                 case "Edit Ingrediant":
                 case "Delete Ingrediant":
+                case "View Ingrediant":
                     {
                         foreach (Ingrediant i in context.Ingrediants)
                         {
@@ -243,6 +293,7 @@ namespace Recipes.Forms
                     }
                 case "Add / Edit Ingrediant Substitutions":
                 case "Delete Ingrediant Substitutions":
+                case "View Ingrediant Substitutions":
                     {
                         foreach (Ingrediant i in context.Ingrediants)//(IngrediantSubstitute i in context.IngrediantSubstitutes)
                         {
@@ -253,6 +304,7 @@ namespace Recipes.Forms
                     }
                 case "Edit Ingrediant Type":
                 case "Delete Ingrediant Type":
+                case "View Ingrediant Type":
                     {
                         foreach (Ingredianttype i in context.Ingredianttypes)
                         {
@@ -303,15 +355,15 @@ namespace Recipes.Forms
                         break;
                     }
             }
-            lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+            lstChoose.DataSource = sortedListString.Values.Order().ToList();
             //if (selectedItemIndex >= 0)
             //{
             //lstChooseForEdit.SelectedIndex = selectedItemIndex;
             //selectedItemIndex = -1;
             //}
-            if (!lstChooseForEdit.Items.Contains(selectedItem))
+            if (!lstChoose.Items.Contains(selectedItem))
             {
-                lstChooseForEdit.SelectedIndex = selectedItemIndex;
+                lstChoose.SelectedIndex = selectedItemIndex;
             }
             /*else if (selectedItemIndex == -1)
             {
@@ -319,7 +371,7 @@ namespace Recipes.Forms
             }*/
             else
             {
-                lstChooseForEdit.SelectedItem = selectedItem;
+                lstChoose.SelectedItem = selectedItem;
             }
         }
     }
