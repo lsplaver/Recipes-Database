@@ -29,6 +29,8 @@ public partial class RecipesContext : DbContext
 
     public virtual DbSet<Ingrediantalternatename> Ingrediantalternatenames { get; set; }
 
+    public virtual DbSet<Ingrediantform> Ingrediantforms { get; set; }
+
     public virtual DbSet<Ingrediantsubstitute> Ingrediantsubstitutes { get; set; }
 
     public virtual DbSet<Ingredianttype> Ingredianttypes { get; set; }
@@ -124,6 +126,18 @@ public partial class RecipesContext : DbContext
                 .HasConstraintName("ingrediantalternatenames_ibfk_1");
         });
 
+        modelBuilder.Entity<Ingrediantform>(entity =>
+        {
+            entity.HasKey(e => e.IngrediantFormId).HasName("PRIMARY");
+
+            entity.ToTable("ingrediantform");
+
+            entity.Property(e => e.IngrediantFormId).HasColumnName("IngrediantFormID");
+            entity.Property(e => e.IngrediantForm1)
+                .HasColumnType("text")
+                .HasColumnName("IngrediantForm");
+        });
+
         modelBuilder.Entity<Ingrediantsubstitute>(entity =>
         {
             entity.HasKey(e => e.SubstitutedById).HasName("PRIMARY");
@@ -171,6 +185,8 @@ public partial class RecipesContext : DbContext
 
             entity.HasIndex(e => e.CourseId, "FK_Recipes_CourseID").IsUnique();
 
+            entity.HasIndex(e => e.IngrediantFormId, "FK_Recipes_IngrediantFormID");
+
             entity.HasIndex(e => e.IngrediantId, "FK_Recipes_IngrediantsID");
 
             entity.HasIndex(e => e.KosherTypeId, "FK_Recipes_KosherTypesID");
@@ -181,6 +197,7 @@ public partial class RecipesContext : DbContext
 
             entity.Property(e => e.RecipeId).HasColumnName("RecipeID");
             entity.Property(e => e.CourseId).HasColumnName("CourseID");
+            entity.Property(e => e.IngrediantFormId).HasColumnName("IngrediantFormID");
             entity.Property(e => e.IngrediantId).HasColumnName("IngrediantID");
             entity.Property(e => e.KosherTypeId).HasColumnName("KosherTypeID");
             entity.Property(e => e.RecipeName).HasColumnType("text");
@@ -190,7 +207,12 @@ public partial class RecipesContext : DbContext
             entity.HasOne(d => d.Course).WithOne(p => p.Recipe)
                 .HasForeignKey<Recipe>(d => d.CourseId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("recipes_ibfk_1");
+                .HasConstraintName("FK_Recipes_CourseID");
+
+            entity.HasOne(d => d.IngrediantForm).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.IngrediantFormId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Recipes_IngrediantFormID");
 
             entity.HasOne(d => d.Ingrediant).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.IngrediantId)
@@ -203,7 +225,7 @@ public partial class RecipesContext : DbContext
             entity.HasOne(d => d.RecipeType).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.RecipeTypeId)
                 .OnDelete(DeleteBehavior.Cascade)
-                .HasConstraintName("recipes_ibfk_2");
+                .HasConstraintName("FK_Recipes_RecipeTypeID");
 
             entity.HasOne(d => d.Source).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.SourceId)

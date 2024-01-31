@@ -13,6 +13,8 @@ public partial class Recipe
 
     public int IngrediantId { get; set; }
 
+    public int? IngrediantFormId { get; set; }
+
     public int KosherTypeId { get; set; }
 
     public int? RecipeTypeId { get; set; }
@@ -22,6 +24,8 @@ public partial class Recipe
     public virtual Recipecourse? Course { get; set; }
 
     public virtual Ingrediant Ingrediant { get; set; } = null!;
+
+    public virtual Ingrediantform? IngrediantForm { get; set; }
 
     public virtual Koshertype KosherType { get; set; } = null!;
 
