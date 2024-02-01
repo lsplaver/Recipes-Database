@@ -48,8 +48,8 @@ namespace Recipes.Forms
             context = recipesContext;
         }*/
 
-        private void frmChooseFromListForEdit_Load(object sender, EventArgs e)
-        {
+        //private void frmChooseFromListForEdit_Load(object sender, EventArgs e)
+        //{
             /*lblChooseForEdit.Text = Origin;
             btnChooseForEdit.Text = Origin;
             sortedListString.Clear();
@@ -135,7 +135,7 @@ namespace Recipes.Forms
             //selectedItemIndex = -1;
             //}
             lstChooseForEdit.SelectedItem = selectedItem;*/
-        }
+        //}
 
         private void btnChooseForEdit_Click(object sender, EventArgs e)
         {
@@ -184,37 +184,6 @@ namespace Recipes.Forms
                             frmEditIngrediantType.ShowDialog();
                             break;
                         }
-                    case "View Ingrediant Types":
-                        {
-                            Ingredianttype ingrediantType = new Ingredianttype();
-                            ingrediantType = context.Ingredianttypes.Find(key);
-                            List<Ingrediant> ingrediants = new List<Ingrediant>();
-                            foreach (Ingrediant i in context.Ingrediants)
-                            {
-                                if (i.IngrediantType.IngrediantTypeId == ingrediantType.IngrediantTypeId)
-                                {
-                                    if (!ingrediants.Contains(i))
-                                    {
-                                        Ingrediant ingrediant = i;
-                                        ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
-                                        /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
-                                        {
-                                            if (j.IngrediantNameId == i.IngrediantId)
-                                            {
-                                                if (!i.Ingrediantsubstitutes.Contains(j))
-                                                {
-                                                    i.Ingrediantsubstitutes.Add(j);
-                                                }
-                                            }
-                                        }*/
-                                        ingrediants.Add(ingrediant);
-                                    }
-                                }
-                            }
-                            frmViewIngrediantTypes frmViewIngrediantTypes = new frmViewIngrediantTypes(ingrediantType, ingrediants, serverObject);
-                            frmViewIngrediantTypes.ShowDialog();
-                            break;
-                        }
                     case "Edit Recipe Source Type":
                         {
                             Recipesourcetype recipeSourceType = new Recipesourcetype();
@@ -253,7 +222,44 @@ namespace Recipes.Forms
                         }
                 }
             }
-            //context = new RecipesContext(serverObject);
+            else if (Origin.Contains("View"))
+            {
+                switch (Origin)
+                {
+                    case "View Ingrediant Types":
+                        {
+                            Ingredianttype ingrediantType = new Ingredianttype();
+                            ingrediantType = context.Ingredianttypes.Find(key);
+                            List<Ingrediant> ingrediants = new List<Ingrediant>();
+                            foreach (Ingrediant i in context.Ingrediants)
+                            {
+                                if (i.IngrediantTypeId/*.IngrediantType.IngrediantTypeId*/ == ingrediantType.IngrediantTypeId)
+                                {
+                                    if (!ingrediants.Contains(i))
+                                    {
+                                        Ingrediant ingrediant = i;
+                                        ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
+                                        /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
+                                        {
+                                            if (j.IngrediantNameId == i.IngrediantId)
+                                            {
+                                                if (!i.Ingrediantsubstitutes.Contains(j))
+                                                {
+                                                    i.Ingrediantsubstitutes.Add(j);
+                                                }
+                                            }
+                                        }*/
+                                        ingrediants.Add(ingrediant);
+                                    }
+                                }
+                            }
+                            frmViewIngrediantTypes frmViewIngrediantTypes = new frmViewIngrediantTypes(ingrediantType, ingrediants, serverObject);
+                            frmViewIngrediantTypes.ShowDialog();
+                            break;
+                        }
+                }
+            }
+            context = new RecipesContext(serverObject);
             SetlstChooseForEdit();
         }
 
@@ -304,7 +310,7 @@ namespace Recipes.Forms
                     }
                 case "Edit Ingrediant Type":
                 case "Delete Ingrediant Type":
-                case "View Ingrediant Type":
+                case "View Ingrediant Types":
                     {
                         foreach (Ingredianttype i in context.Ingredianttypes)
                         {

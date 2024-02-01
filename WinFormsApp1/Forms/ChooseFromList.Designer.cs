@@ -70,8 +70,8 @@
             Controls.Add(lblChoose);
             Name = "frmChooseFromList";
             Text = "Choose From List";
-            Activated += frmChooseFromListForEdit_Load;
-            Load += frmChooseFromListForEdit_Load;
+            //Activated += frmChooseFromListForEdit_Load;
+            //Load += frmChooseFromListForEdit_Load;
             ResumeLayout(false);
             PerformLayout();
         }

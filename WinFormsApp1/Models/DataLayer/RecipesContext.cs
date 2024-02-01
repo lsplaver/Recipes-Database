@@ -98,7 +98,7 @@ public partial class RecipesContext : DbContext
 
             entity.ToTable("ingrediants");
 
-            entity.HasIndex(e => e.IngrediantTypeId, "FK_Ingrediants_IngrediantsID");
+            entity.HasIndex(e => e.IngrediantTypeId, "FK_Ingrediants_IngrediantsTypeID");
 
             entity.Property(e => e.IngrediantId).HasColumnName("IngrediantID");
             entity.Property(e => e.IngrediantName).HasColumnType("text");

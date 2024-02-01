@@ -28,20 +28,20 @@ namespace Recipes.Forms.ViewForms
 
         private void btnViewIngrediants_Click(object sender, EventArgs e)
         {
-            frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnViewIngrediants.Text, ServerObject);
-            frmChooseFromListForEdit.ShowDialog();
+            frmChooseFromList frmChooseFromList = new frmChooseFromList(btnViewIngrediants.Text, ServerObject);
+            frmChooseFromList.ShowDialog();
         }
 
         private void btnViewIngrediantSubstitutions_Click(object sender, EventArgs e)
         {
-            frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnViewIngrediantSubstitutions.Text, ServerObject);
-            frmChooseFromListForEdit.ShowDialog();
+            frmChooseFromList frmChooseFromList = new frmChooseFromList(btnViewIngrediantSubstitutions.Text, ServerObject);
+            frmChooseFromList.ShowDialog();
         }
 
         private void btnViewIngrediantTypes_Click(object sender, EventArgs e)
         {
-            frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnViewIngrediantTypes.Text, ServerObject);
-            frmChooseFromListForEdit.ShowDialog();
+            frmChooseFromList frmChooseFromList = new frmChooseFromList(btnViewIngrediantTypes.Text, ServerObject);
+            frmChooseFromList.ShowDialog();
         }
     }
 }
