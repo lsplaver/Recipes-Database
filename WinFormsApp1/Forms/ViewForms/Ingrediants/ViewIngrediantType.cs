@@ -12,39 +12,39 @@ using System.Windows.Forms;
 
 namespace Recipes.Forms.ViewForms.Ingrediants
 {
-    public partial class frmViewIngrediantTypes : Form
+    public partial class frmViewIngrediantType : Form
     {
         /*public frmViewIngrediantTypes()
         {
             InitializeComponent();
         }*/
 
-        public frmViewIngrediantTypes(Ingredianttype ingrediantType, List<Ingrediant> ingrediants, ServerObject serverObject)
+        public frmViewIngrediantType(Ingredianttype ingrediantType, List<Ingrediant> ingrediants, ServerObject serverObject)
         {
             IngrediantType = ingrediantType;
             ServerObject = serverObject;
             Ingrediants = ingrediants;
             InitializeComponent();
-            foreach (Ingrediant i in Ingrediants)
+            /*foreach (Ingrediant i in Ingrediants)
             {
                 sortedListString.Add(i.IngrediantId, i.IngrediantName);
-            }
+            }*/
             txtIngrediantType.Text = IngrediantType.IngrediantType1;
-            lstIngrediants.DataSource = sortedListString.Values.Order().ToList();
+            lstIngrediants.DataSource = IngrediantType.Ingrediants.Select(i => i.IngrediantName).Order().ToList(); //sortedListString.Values.Order().ToList();
         }
 
         private Ingredianttype IngrediantType { get; }
         private ServerObject ServerObject { get; }
         private List<Ingrediant> Ingrediants { get; }
-        private SortedList<int, string> sortedListString { get; set; } = new SortedList<int, string>();
+        //private SortedList<int, string> sortedListString { get; set; } = new SortedList<int, string>();
 
         private void btnViewIngrediant_Click(object sender, EventArgs e)
         {
             RecipesContext context = new RecipesContext(ServerObject);
-            int tempInt = sortedListString.IndexOfValue(lstIngrediants.SelectedItem.ToString());
-            int key = sortedListString.GetKeyAtIndex(tempInt);
-            Ingrediant ingrediant = new Ingrediant();
-            ingrediant = context.Ingrediants.Find(key);
+            /*int tempInt*/Ingrediant ingediant = (Ingrediant)IngrediantType.Ingrediants.Where(i => i.IngrediantName == lstIngrediants.SelectedValue).First(); // sortedListString.IndexOfValue(lstIngrediants.SelectedItem.ToString());
+            //int key = sortedListString.GetKeyAtIndex(tempInt);
+            //Ingrediant ingrediant = new Ingrediant();
+            //ingrediant = context.Ingrediants.Find(key);
             //frmViewIngrediant frmViewIngrediant = new frmViewIngrediant(ingrediant, ServerObject);
             //frmViewIngrediant.ShowDialog();
             MessageBox.Show("Not yet implemented");

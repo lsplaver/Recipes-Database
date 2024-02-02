@@ -1,6 +1,6 @@
 ﻿namespace Recipes.Forms.ViewForms.Ingrediants
 {
-    partial class frmViewIngrediantTypes
+    partial class frmViewIngrediantType
     {
         /// <summary>
         /// Required designer variable.
@@ -79,7 +79,7 @@
             btnViewIngrediant.UseVisualStyleBackColor = true;
             btnViewIngrediant.Click += btnViewIngrediant_Click;
             // 
-            // frmViewIngrediantTypes
+            // frmViewIngrediantType
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -89,8 +89,8 @@
             Controls.Add(label2);
             Controls.Add(txtIngrediantType);
             Controls.Add(label1);
-            Name = "frmViewIngrediantTypes";
-            Text = "ViewIngrediantTypes";
+            Name = "frmViewIngrediantType";
+            Text = "View Ingrediant Type";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -28,7 +28,7 @@ namespace Recipes.Forms.ViewForms
 
         private void btnViewIngrediants_Click(object sender, EventArgs e)
         {
-            frmChooseFromList frmChooseFromList = new frmChooseFromList(btnViewIngrediants.Text, ServerObject);
+            frmChooseFromList frmChooseFromList = new frmChooseFromList(btnViewIngrediant.Text, ServerObject);
             frmChooseFromList.ShowDialog();
         }
 

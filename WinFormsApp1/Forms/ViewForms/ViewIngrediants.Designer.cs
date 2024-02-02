@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnViewIngrediants = new Button();
+            btnViewIngrediant = new Button();
             btnViewIngrediantSubstitutions = new Button();
             btnViewIngrediantTypes = new Button();
             SuspendLayout();
             // 
-            // btnViewIngrediants
+            // btnViewIngrediant
             // 
-            btnViewIngrediants.Location = new Point(12, 12);
-            btnViewIngrediants.Name = "btnViewIngrediants";
-            btnViewIngrediants.Size = new Size(94, 56);
-            btnViewIngrediants.TabIndex = 0;
-            btnViewIngrediants.Text = "View Ingrediants";
-            btnViewIngrediants.UseVisualStyleBackColor = true;
-            btnViewIngrediants.Click += btnViewIngrediants_Click;
+            btnViewIngrediant.Location = new Point(12, 12);
+            btnViewIngrediant.Name = "btnViewIngrediant";
+            btnViewIngrediant.Size = new Size(94, 56);
+            btnViewIngrediant.TabIndex = 0;
+            btnViewIngrediant.Text = "View Ingrediant";
+            btnViewIngrediant.UseVisualStyleBackColor = true;
+            btnViewIngrediant.Click += btnViewIngrediants_Click;
             // 
             // btnViewIngrediantSubstitutions
             // 
@@ -70,7 +70,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(btnViewIngrediantTypes);
             Controls.Add(btnViewIngrediantSubstitutions);
-            Controls.Add(btnViewIngrediants);
+            Controls.Add(btnViewIngrediant);
             Name = "frmViewIngrediants";
             Text = "View Ingrediants";
             ResumeLayout(false);
@@ -81,5 +81,6 @@
         private Button btnViewIngrediants;
         private Button btnViewIngrediantSubstitutions;
         private Button btnViewIngrediantTypes;
+        private Button btnViewIngrediant;
     }
 }

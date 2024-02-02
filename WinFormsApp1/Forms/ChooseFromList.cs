@@ -25,6 +25,8 @@ namespace Recipes.Forms
         private ServerObject serverObject = new ServerObject();
         private int selectedItemIndex = -1;
         private string selectedItem = "";
+        private MultiClassMethods multiClassMethods = new MultiClassMethods();
+
 
         public frmChooseFromList(string strOrigin)
         {
@@ -161,7 +163,7 @@ namespace Recipes.Forms
                         {
                             Ingrediant ingrediant = new Ingrediant();
                             ingrediant = context.Ingrediants.Find(key);// tempInt + 1);
-                            ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
+                            ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
                             /*foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
                             {
                                 if (i.IngrediantNameId == (key))//tempInt + 1))
@@ -233,34 +235,92 @@ namespace Recipes.Forms
                             List<Ingrediant> ingrediants = new List<Ingrediant>();
                             foreach (Ingrediant i in context.Ingrediants)
                             {
-                                if (i.IngrediantTypeId/*.IngrediantType.IngrediantTypeId*/ == ingrediantType.IngrediantTypeId)
-                                {
-                                    if (!ingrediants.Contains(i))
-                                    {
+                            //    if (i.IngrediantTypeId/*.IngrediantType.IngrediantTypeId*/ == ingrediantType.IngrediantTypeId)
+                            //    {
+                            //        if (!ingrediants.Contains(i))
+                            //        {
                                         Ingrediant ingrediant = i;
-                                        ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
-                                        /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
-                                        {
-                                            if (j.IngrediantNameId == i.IngrediantId)
-                                            {
-                                                if (!i.Ingrediantsubstitutes.Contains(j))
-                                                {
-                                                    i.Ingrediantsubstitutes.Add(j);
-                                                }
-                                            }
-                                        }*/
-                                        ingrediants.Add(ingrediant);
-                                    }
-                                }
+                                        ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
+                                        ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
+                                        ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);
+                            //            /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
+                            //            {
+                            //                if (j.IngrediantNameId == i.IngrediantId)
+                            //                {
+                            //                    if (!i.Ingrediantsubstitutes.Contains(j))
+                            //                    {
+                            //                        i.Ingrediantsubstitutes.Add(j);
+                            //                    }
+                            //                }
+                            //            }*/
+                            //            //ingrediants.Add(ingrediant);
+                            //            ingrediantType.Ingrediants.Add(ingrediant);
+                            //        }
+                            //    }
                             }
-                            frmViewIngrediantTypes frmViewIngrediantTypes = new frmViewIngrediantTypes(ingrediantType, ingrediants, serverObject);
+                            frmViewIngrediantType frmViewIngrediantTypes = new frmViewIngrediantType(ingrediantType, ingrediants, serverObject);
                             frmViewIngrediantTypes.ShowDialog();
+                            break;
+                        }
+                    case "View Ingrediant":
+                        {
+                            Ingrediant ingrediant = new Ingrediant();
+                            ingrediant = context.Ingrediants.Find(key);
+                            //List<Ingrediantalternatename> alternatename = new List<Ingrediantalternatename>();
+                            //List<Ingrediantsubstitute> ingrediantsubstitutes = new List<Ingrediantsubstitute>();
+                            //List<Recipe> recipes = new List<Recipe>();
+                            //foreach (Ingrediantalternatename i in context.Ingrediantalternatenames)
+                            //{
+                            //    if (i.IngrediantNameId == ingrediant.IngrediantId)
+                            //    {
+                                    ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
+                            //    }
+                            //}
+                            ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
+                            ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);
+                            Ingredianttype type = context.Ingredianttypes.Find(ingrediant.IngrediantTypeId);
+                            if (ingrediant.IngrediantTypeId == type.IngrediantTypeId)
+                            {
+                                ingrediant.IngrediantType = type;
+                            }
+                            frmViewIngrediant frmViewIngrediants = new frmViewIngrediant(ingrediant, serverObject);
+                            frmViewIngrediants.ShowDialog();
                             break;
                         }
                 }
             }
             context = new RecipesContext(serverObject);
             SetlstChooseForEdit();
+        }
+
+        /*private Ingrediant GetRecipesList(Ingrediant ingrediant, RecipesContext context)
+        {
+            foreach (Recipe r in context.Recipes)
+            {
+                if (r.IngrediantId == ingrediant.IngrediantId)
+                {
+                    if (!ingrediant.Recipes.Contains(r))
+                    {
+                        ingrediant.Recipes.Add(r);
+                    }
+                }
+            }
+            return ingrediant;
+        }
+
+        private Ingrediant GetIngrediantAlternateNamesList(Ingrediant ingrediant, RecipesContext context)
+        {
+            foreach (Ingrediantalternatename i in context.Ingrediantalternatenames)
+            {
+                if (i.IngrediantNameId == ingrediant.IngrediantId)
+                {
+                    if (!ingrediant.Ingrediantalternatenames.Contains(i))
+                    {
+                        ingrediant.Ingrediantalternatenames.Add(i);
+                    }
+                }
+            }
+            return ingrediant;
         }
 
         private Ingrediant GetIngrediantSubstitutionList(Ingrediant ingrediant, RecipesContext context)
@@ -276,7 +336,7 @@ namespace Recipes.Forms
                 }
             }
             return ingrediant;
-        }
+        }*/
 
         private void SetlstChooseForEdit()
         {
