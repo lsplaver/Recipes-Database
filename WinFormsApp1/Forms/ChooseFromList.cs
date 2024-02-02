@@ -273,16 +273,17 @@ namespace Recipes.Forms
                             //{
                             //    if (i.IngrediantNameId == ingrediant.IngrediantId)
                             //    {
-                                    ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
+                                    //ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
                             //    }
                             //}
-                            ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
-                            ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);
-                            Ingredianttype type = context.Ingredianttypes.Find(ingrediant.IngrediantTypeId);
-                            if (ingrediant.IngrediantTypeId == type.IngrediantTypeId)
-                            {
-                                ingrediant.IngrediantType = type;
-                            }
+                            //ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
+                            //ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);
+                            //Ingredianttype type = context.Ingredianttypes.Find(ingrediant.IngrediantTypeId);
+                            //if (ingrediant.IngrediantTypeId == type.IngrediantTypeId)
+                            //{
+                            //    ingrediant.IngrediantType = type;
+                            //}
+                            ingrediant = multiClassMethods.SetIngrediantValues(ingrediant, context);
                             frmViewIngrediant frmViewIngrediants = new frmViewIngrediant(ingrediant, serverObject);
                             frmViewIngrediants.ShowDialog();
                             break;

@@ -130,12 +130,14 @@
             // 
             // btnViewIngrediantAlternateNames
             // 
+            btnViewIngrediantAlternateNames.Enabled = false;
             btnViewIngrediantAlternateNames.Location = new Point(528, 102);
             btnViewIngrediantAlternateNames.Name = "btnViewIngrediantAlternateNames";
             btnViewIngrediantAlternateNames.Size = new Size(155, 164);
             btnViewIngrediantAlternateNames.TabIndex = 10;
             btnViewIngrediantAlternateNames.Text = "View Alternate Ingrediant Names";
             btnViewIngrediantAlternateNames.UseVisualStyleBackColor = true;
+            btnViewIngrediantAlternateNames.Visible = false;
             btnViewIngrediantAlternateNames.Click += btnViewIngrediantAlternateNames_Click;
             // 
             // btnViewIngrediantSubstitutions

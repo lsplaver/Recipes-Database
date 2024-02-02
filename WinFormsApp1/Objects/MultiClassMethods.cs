@@ -9,7 +9,7 @@ namespace Recipes.Objects
 {
     public class MultiClassMethods
     {
-        public Ingrediant GetRecipesList(Ingrediant ingrediant, RecipesContext context)
+        private Ingrediant GetRecipesList(Ingrediant ingrediant, RecipesContext context)
         {
             foreach (Recipe r in context.Recipes)
             {
@@ -24,7 +24,7 @@ namespace Recipes.Objects
             return ingrediant;
         }
 
-        public Ingrediant GetIngrediantAlternateNamesList(Ingrediant ingrediant, RecipesContext context)
+        private Ingrediant GetIngrediantAlternateNamesList(Ingrediant ingrediant, RecipesContext context)
         {
             foreach (Ingrediantalternatename i in context.Ingrediantalternatenames)
             {
@@ -39,7 +39,7 @@ namespace Recipes.Objects
             return ingrediant;
         }
 
-        public Ingrediant GetIngrediantSubstitutionList(Ingrediant ingrediant, RecipesContext context)
+        private Ingrediant GetIngrediantSubstitutionList(Ingrediant ingrediant, RecipesContext context)
         {
             foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
             {
@@ -52,6 +52,55 @@ namespace Recipes.Objects
                 }
             }
             return ingrediant;
+        }
+
+        public Ingrediant SetIngrediantValues(Ingrediant ingrediant, RecipesContext context)
+        {
+            ingrediant = GetIngrediantAlternateNamesList(ingrediant, context);
+            ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
+            ingrediant = GetRecipesList(ingrediant, context);
+            Ingredianttype type = context.Ingredianttypes.Find(ingrediant.IngrediantTypeId);
+            if (ingrediant.IngrediantTypeId == type.IngrediantTypeId)
+            {
+                ingrediant.IngrediantType = type;
+            }
+            return ingrediant;
+        }
+
+        public Recipe SetRecipeValues(Recipe recipe, RecipesContext context)
+        {
+            Recipecourse course = context.Recipecourses.Find(recipe.CourseId);
+            if (recipe.CourseId == course.CourseId)
+            {
+                recipe.Course = course;
+            }
+            Ingrediant ingrediant = context.Ingrediants.Find(recipe.IngrediantId);
+            ingrediant = SetIngrediantValues(ingrediant, context);
+            if (recipe.IngrediantId == ingrediant.IngrediantId)
+            {
+                recipe.Ingrediant = ingrediant;
+            }
+            Ingrediantform ingrediantform = context.Ingrediantforms.Find(recipe.IngrediantFormId);
+            if (recipe.IngrediantFormId == ingrediantform.IngrediantFormId)
+            {
+                recipe.IngrediantForm = ingrediantform;
+            }
+            Koshertype koshertype = context.Koshertypes.Find(recipe.KosherTypeId);
+            if (recipe.KosherTypeId == koshertype.KosherTypeId)
+            {
+                recipe.KosherType = koshertype;
+            }
+            Recipetype recipetype = context.Recipetypes.Find(recipe.RecipeTypeId);
+            if (recipe.RecipeTypeId == recipetype.RecipeTypeId)
+            {
+                recipe.RecipeType = recipetype;
+            }
+            Recipesource recipesource = context.Recipesources.Find(recipe.SourceId);
+            if (recipe.SourceId == recipesource.SourceId)
+            {
+                recipe.Source = recipesource;
+            }
+            return recipe;
         }
     }
 }
