@@ -21,6 +21,8 @@ public partial class Recipe
 
     public int? CourseId { get; set; }
 
+    public virtual ICollection<Alternateingrediantsforrecipe> Alternateingrediantsforrecipes { get; set; } = new List<Alternateingrediantsforrecipe>();
+
     public virtual Recipecourse? Course { get; set; }
 
     public virtual Ingrediant Ingrediant { get; set; } = null!;

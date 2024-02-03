@@ -163,7 +163,7 @@ namespace Recipes.Forms
                         {
                             Ingrediant ingrediant = new Ingrediant();
                             ingrediant = context.Ingrediants.Find(key);// tempInt + 1);
-                            ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
+                            ingrediant = multiClassMethods.SetIngrediantValues/*.GetIngrediantSubstitutionList*/(ingrediant, context);
                             /*foreach (Ingrediantsubstitute i in context.Ingrediantsubstitutes)
                             {
                                 if (i.IngrediantNameId == (key))//tempInt + 1))
@@ -240,9 +240,10 @@ namespace Recipes.Forms
                             //        if (!ingrediants.Contains(i))
                             //        {
                                         Ingrediant ingrediant = i;
-                                        ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
-                                        ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
-                                        ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);
+                                /*ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
+                                ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
+                                ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);*/
+                                ingrediant = multiClassMethods.SetIngrediantValues(ingrediant, context);
                             //            /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
                             //            {
                             //                if (j.IngrediantNameId == i.IngrediantId)

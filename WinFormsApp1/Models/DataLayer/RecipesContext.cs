@@ -25,6 +25,8 @@ public partial class RecipesContext : DbContext
     {
     }
 
+    public virtual DbSet<Alternateingrediantsforrecipe> Alternateingrediantsforrecipes { get; set; }
+
     public virtual DbSet<Ingrediant> Ingrediants { get; set; }
 
     public virtual DbSet<Ingrediantalternatename> Ingrediantalternatenames { get; set; }
@@ -92,6 +94,29 @@ public partial class RecipesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Alternateingrediantsforrecipe>(entity =>
+        {
+            entity.HasKey(e => e.AlternateIngrediantId).HasName("PRIMARY");
+
+            entity.ToTable("alternateingrediantsforrecipe");
+
+            entity.HasIndex(e => e.IngrediantNameId, "FK_AlternateIngrediantsForRecipe_IngrediantNameID");
+
+            entity.HasIndex(e => e.RecipeId, "FK_AlternateIngrediantsForRecipe_RecipeID");
+
+            entity.Property(e => e.AlternateIngrediantId).HasColumnName("AlternateIngrediantID");
+            entity.Property(e => e.IngrediantNameId).HasColumnName("IngrediantNameID");
+            entity.Property(e => e.RecipeId).HasColumnName("RecipeID");
+
+            entity.HasOne(d => d.IngrediantName).WithMany(p => p.Alternateingrediantsforrecipes)
+                .HasForeignKey(d => d.IngrediantNameId)
+                .HasConstraintName("alternateingrediantsforrecipe_ibfk_2");
+
+            entity.HasOne(d => d.Recipe).WithMany(p => p.Alternateingrediantsforrecipes)
+                .HasForeignKey(d => d.RecipeId)
+                .HasConstraintName("alternateingrediantsforrecipe_ibfk_1");
+        });
+
         modelBuilder.Entity<Ingrediant>(entity =>
         {
             entity.HasKey(e => e.IngrediantId).HasName("PRIMARY");
@@ -183,7 +208,7 @@ public partial class RecipesContext : DbContext
 
             entity.ToTable("recipes");
 
-            entity.HasIndex(e => e.CourseId, "FK_Recipes_CourseID").IsUnique();
+            entity.HasIndex(e => e.CourseId, "FK_Recipes_CourseID");
 
             entity.HasIndex(e => e.IngrediantFormId, "FK_Recipes_IngrediantFormID");
 
@@ -204,8 +229,8 @@ public partial class RecipesContext : DbContext
             entity.Property(e => e.RecipeTypeId).HasColumnName("RecipeTypeID");
             entity.Property(e => e.SourceId).HasColumnName("SourceID");
 
-            entity.HasOne(d => d.Course).WithOne(p => p.Recipe)
-                .HasForeignKey<Recipe>(d => d.CourseId)
+            entity.HasOne(d => d.Course).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.CourseId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Recipes_CourseID");
 

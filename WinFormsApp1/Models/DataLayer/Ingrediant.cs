@@ -11,6 +11,8 @@ public partial class Ingrediant
 
     public int IngrediantTypeId { get; set; }
 
+    public virtual ICollection<Alternateingrediantsforrecipe> Alternateingrediantsforrecipes { get; set; } = new List<Alternateingrediantsforrecipe>();
+
     public virtual Ingredianttype IngrediantType { get; set; } = null!;
 
     public virtual ICollection<Ingrediantalternatename> Ingrediantalternatenames { get; set; } = new List<Ingrediantalternatename>();

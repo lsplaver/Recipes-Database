@@ -9,5 +9,5 @@ public partial class Recipecourse
 
     public string CourseName { get; set; } = null!;
 
-    public virtual Recipe? Recipe { get; set; }
+    public virtual ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
 }
