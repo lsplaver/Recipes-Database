@@ -54,15 +54,62 @@ namespace Recipes.Objects
             return ingrediant;
         }
 
+        private Alternateingrediantsforrecipe GetIngrediantsList(Alternateingrediantsforrecipe alternateingrediantsforrecipe, RecipesContext context)
+        {
+
+            Ingrediant ingrediant = context.Ingrediants.Find(alternateingrediantsforrecipe.IngrediantNameId);
+            ingrediant = SetIngrediantValues(ingrediant, context);
+            if (alternateingrediantsforrecipe.IngrediantNameId == ingrediant.IngrediantId)
+            {
+                alternateingrediantsforrecipe.IngrediantName = ingrediant;
+            }
+            return alternateingrediantsforrecipe;
+        }
+
+        private Recipe GetAlternateIngrediantsForRecipe(Recipe recipe, RecipesContext context)
+        {
+            foreach (Alternateingrediantsforrecipe a in context.Alternateingrediantsforrecipes)
+            {
+                if (a.RecipeId == recipe.RecipeId)
+                {
+                    if (!recipe.Alternateingrediantsforrecipes.Contains(a))
+                    {
+                        Alternateingrediantsforrecipe alternateingrediantsforrecipe = a;
+                        alternateingrediantsforrecipe = GetIngrediantsList(alternateingrediantsforrecipe, context);
+                        recipe.Alternateingrediantsforrecipes.Add(alternateingrediantsforrecipe);
+                    }
+                }
+            }
+            return recipe;
+        }
+
         public Ingrediant SetIngrediantValues(Ingrediant ingrediant, RecipesContext context)
         {
             ingrediant = GetIngrediantAlternateNamesList(ingrediant, context);
             ingrediant = GetIngrediantSubstitutionList(ingrediant, context);
             ingrediant = GetRecipesList(ingrediant, context);
+            ingrediant = GetAlternateIngrediantsForRecipes(ingrediant, context);
             Ingredianttype type = context.Ingredianttypes.Find(ingrediant.IngrediantTypeId);
             if (ingrediant.IngrediantTypeId == type.IngrediantTypeId)
             {
                 ingrediant.IngrediantType = type;
+            }
+            return ingrediant;
+        }
+
+        private Ingrediant GetAlternateIngrediantsForRecipes(Ingrediant ingrediant, RecipesContext context)
+        {
+            foreach (Alternateingrediantsforrecipe a in context.Alternateingrediantsforrecipes)
+            {
+                if (a.IngrediantNameId == ingrediant.IngrediantId)
+                {
+                    if (!ingrediant.Alternateingrediantsforrecipes.Contains(a))
+                    {
+                        Alternateingrediantsforrecipe alternateingrediantsforrecipe = a;
+                        alternateingrediantsforrecipe = GetIngrediantsList(alternateingrediantsforrecipe, context);
+                        ingrediant.Alternateingrediantsforrecipes.Add(alternateingrediantsforrecipe);
+                    }
+                }
             }
             return ingrediant;
         }
@@ -80,6 +127,7 @@ namespace Recipes.Objects
             {
                 recipe.Ingrediant = ingrediant;
             }
+            recipe = GetAlternateIngrediantsForRecipe(recipe, context);
             Ingrediantform ingrediantform = context.Ingrediantforms.Find(recipe.IngrediantFormId);
             if (recipe.IngrediantFormId == ingrediantform.IngrediantFormId)
             {
