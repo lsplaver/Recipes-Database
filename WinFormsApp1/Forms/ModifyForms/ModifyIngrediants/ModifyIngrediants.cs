@@ -38,15 +38,15 @@ namespace Recipes.Forms.Ingrediants
 
         private void btnAddIngrediant_Click(object sender, EventArgs e)
         {
-            /*frmAddIngrediant frmAddIngrediant = new frmAddIngrediant(serverObject);
-            frmAddIngrediant.ShowDialog();*/
-            ShowChooseFromListForm(btnAddIngrediant.Text, serverObject);
+            frmAddIngrediant frmAddIngrediant = new frmAddIngrediant(serverObject);
+            frmAddIngrediant.ShowDialog();
+            //ShowChooseFromListForm(btnAddIngrediant.Text, serverObject);
         }
         private void btnAddType_Click(object sender, EventArgs e)
         {
-            /*frmAddIngrediantType frmAddIngrediantType = new frmAddIngrediantType(serverObject);
-            frmAddIngrediantType.ShowDialog();*/
-            ShowChooseFromListForm(btnAddType.Text, serverObject);
+            frmAddIngrediantType frmAddIngrediantType = new frmAddIngrediantType(serverObject);
+            frmAddIngrediantType.ShowDialog();
+            //ShowChooseFromListForm(btnAddType.Text, serverObject);
         }
 
         private void btnEditType_Click(object sender, EventArgs e)

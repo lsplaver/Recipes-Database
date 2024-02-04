@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.AlternateNameForms;
 
 namespace Recipes.Forms
 {
@@ -146,19 +147,10 @@ namespace Recipes.Forms
             int key = /*sortedListString.Keys.ElementAt(lstChooseForEdit.SelectedIndex);*/ sortedListString.GetKeyAtIndex(tempInt);
             selectedItemIndex = lstChoose.SelectedIndex; //tempInt;
             selectedItem = lstChoose.SelectedItem.ToString();
-            if (Origin.Contains("Edit"))
+            if (Origin.Contains("Add"))
             {
                 switch (Origin)
                 {
-                    case "Edit Ingrediant":
-                        {
-                            Ingrediant ingrediant = new Ingrediant();
-                            ingrediant = context.Ingrediants.Find(key);//tempInt + 1);
-                            frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant, serverObject);
-                            frmUpdateIngrediant.ShowDialog();
-                            //this.Close();
-                            break;
-                        }
                     case "Add / Edit Ingrediant Substitutions":
                         {
                             Ingrediant ingrediant = new Ingrediant();
@@ -176,6 +168,30 @@ namespace Recipes.Forms
                             }*/
                             frmAddUpdateIngrediantSubstitutions frmAddUpdateIngrediantSubstitutions = new frmAddUpdateIngrediantSubstitutions(ingrediant, serverObject);
                             frmAddUpdateIngrediantSubstitutions.ShowDialog();
+                            break;
+                        }
+                    case "Add Alternate Ingrediant Names":
+                        {
+                            Ingrediant ingrediant = new Ingrediant();
+                            ingrediant = context.Ingrediants.Find(key);
+                            ingrediant = multiClassMethods.SetIngrediantValues(ingrediant, context);
+                            frmAddAlternateIngrediantName frmAddAlternateIngrediantName = new frmAddAlternateIngrediantName(ingrediant, serverObject);
+                            frmAddAlternateIngrediantName.ShowDialog();
+                            break;
+                        }
+                }
+            }
+            else if (Origin.Contains("Edit"))
+            {
+                switch (Origin)
+                {
+                    case "Edit Ingrediant":
+                        {
+                            Ingrediant ingrediant = new Ingrediant();
+                            ingrediant = context.Ingrediants.Find(key);//tempInt + 1);
+                            frmUpdateIngrediant frmUpdateIngrediant = new frmUpdateIngrediant(ingrediant, serverObject);
+                            frmUpdateIngrediant.ShowDialog();
+                            //this.Close();
                             break;
                         }
                     case "Edit Ingrediant Type":
@@ -351,17 +367,18 @@ namespace Recipes.Forms
                 case "Edit Ingrediant":
                 case "Delete Ingrediant":
                 case "View Ingrediant":
-                    {
+                    /*{
                         foreach (Ingrediant i in context.Ingrediants)
                         {
                             sortedListString.Add(i.IngrediantId, i.IngrediantName);
                         }
                         //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
                         break;
-                    }
+                    }*/
                 case "Add / Edit Ingrediant Substitutions":
                 case "Delete Ingrediant Substitutions":
                 case "View Ingrediant Substitutions":
+                case "Add Alternate Ingrediant Names":
                     {
                         foreach (Ingrediant i in context.Ingrediants)//(IngrediantSubstitute i in context.IngrediantSubstitutes)
                         {

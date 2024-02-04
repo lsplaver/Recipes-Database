@@ -88,7 +88,7 @@ public partial class RecipesContext : DbContext
             username = $"uid={serverObject.Username};";
             password = $"password={serverObject.Password};";*/
             optionsBuilder.UseMySQL(conn.ConnectionString = server + database + username + password /*app.connectionString*/ /*ConfigurationManager.ConnectionStrings["Recipes"].ConnectionString*/,
-            providerOptions => providerOptions.EnableRetryOnFailure());
+            providerOptions => providerOptions.EnableRetryOnFailure()).EnableSensitiveDataLogging();
         }
     }
 
