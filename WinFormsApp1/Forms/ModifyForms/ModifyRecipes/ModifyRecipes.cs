@@ -16,29 +16,40 @@ namespace Recipes.Forms.Recipes
 {
     public partial class frmModifyRecipes : Form
     {
-        private ServerObject serverObject = new ServerObject();
+        private ServerObject ServerObject { get; set; }
         public frmModifyRecipes(ServerObject server)
         {
             InitializeComponent();
-            serverObject = server;
+            ServerObject = server;
         }
 
         private void btnAddSourceType_Click(object sender, EventArgs e)
         {
-            frmAddSourceType frmAddSourceType = new frmAddSourceType(serverObject);
+            frmAddSourceType frmAddSourceType = new frmAddSourceType(ServerObject);
             frmAddSourceType.ShowDialog();
         }
 
         private void btnAddSource_Click(object sender, EventArgs e)
         {
-            frmAddRecipeSource frmAddRecipeSource = new frmAddRecipeSource(serverObject);
+            frmAddRecipeSource frmAddRecipeSource = new frmAddRecipeSource(ServerObject);
             frmAddRecipeSource.ShowDialog();
         }
 
         private void btnAddKosherType_Click(object sender, EventArgs e)
         {
-            frmAddKosherType frmAddKosherType = new frmAddKosherType(serverObject);
+            frmAddKosherType frmAddKosherType = new frmAddKosherType(ServerObject);
             frmAddKosherType.ShowDialog();
+        }
+
+        private void btnEditSource_Click(object sender, EventArgs e)
+        {
+            ShowChooseFromList(btnEditSource.Text, ServerObject);
+        }
+
+        private void ShowChooseFromList(string text, ServerObject ServerObject)
+        {
+            frmChooseFromList frmChooseFromList = new frmChooseFromList(text, ServerObject);
+            frmChooseFromList.ShowDialog();
         }
     }
 }

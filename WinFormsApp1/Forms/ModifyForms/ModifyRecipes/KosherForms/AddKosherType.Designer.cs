@@ -53,7 +53,7 @@
             // 
             btnAddKosherType.Location = new Point(12, 59);
             btnAddKosherType.Name = "btnAddKosherType";
-            btnAddKosherType.Size = new Size(94, 29);
+            btnAddKosherType.Size = new Size(246, 29);
             btnAddKosherType.TabIndex = 2;
             btnAddKosherType.Text = "Add Kosher Type";
             btnAddKosherType.UseVisualStyleBackColor = true;

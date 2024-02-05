@@ -56,6 +56,7 @@
             btnEditSource.TabIndex = 12;
             btnEditSource.Text = "Edit Recipe Source";
             btnEditSource.UseVisualStyleBackColor = true;
+            btnEditSource.Click += btnEditSource_Click;
             // 
             // btnAddSource
             // 

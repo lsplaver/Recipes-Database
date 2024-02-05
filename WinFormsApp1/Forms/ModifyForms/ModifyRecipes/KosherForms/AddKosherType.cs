@@ -14,19 +14,31 @@ namespace Recipes.Forms.Recipes.KosherForms
 {
     public partial class frmAddKosherType : Form
     {
-        private ServerObject serverObject = new ServerObject();
+        private ServerObject ServerObject { get; set; }
         public frmAddKosherType(ServerObject server)
         {
             InitializeComponent();
-            serverObject = server;
+            ServerObject = server;
         }
 
         private void btnAddKosherType_Click(object sender, EventArgs e)
         {
-            RecipesContext context = new RecipesContext(serverObject);
+            RecipesContext context = new RecipesContext(ServerObject);
             Koshertype kosherType = new Koshertype();
             kosherType.KosherTypeName = txtKosherTypeName.Text.ToLower();
-            if (!context.Koshertypes.Contains(kosherType))
+            bool isIncluded = false;
+            if (context.Koshertypes.Count() > 0)
+            {
+                foreach (Koshertype k in context.Koshertypes)
+                {
+                    if (k.KosherTypeName == kosherType.KosherTypeName)
+                    {
+                        isIncluded = true;
+                        break;
+                    }
+                }
+            }
+            if (!isIncluded)
             {
                 context.Koshertypes.Add(kosherType);
                 context.SaveChanges();
