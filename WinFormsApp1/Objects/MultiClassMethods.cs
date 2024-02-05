@@ -150,5 +150,13 @@ namespace Recipes.Objects
             }
             return recipe;
         }
+
+        public Ingrediantalternatename SetIngrediantAlternateNameValues(Ingrediantalternatename ingrediantalternatename, RecipesContext context)
+        {
+            Ingrediant ingrediant = context.Ingrediants.Find(ingrediantalternatename.IngrediantNameId);
+            ingrediant = SetIngrediantValues(ingrediant, context);
+            ingrediantalternatename.IngrediantName = ingrediant;
+            return ingrediantalternatename;
+        }
     }
 }

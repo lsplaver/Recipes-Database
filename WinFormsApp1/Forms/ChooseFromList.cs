@@ -238,6 +238,15 @@ namespace Recipes.Forms
                             MessageBox.Show("Not Implemented Yet");
                             break;
                         }
+                    case "Edit Alternate Ingrediant Names":
+                        {
+                            Ingrediantalternatename ingrediantalternatename = new Ingrediantalternatename();
+                            ingrediantalternatename = context.Ingrediantalternatenames.Find(key);
+                            ingrediantalternatename = multiClassMethods.SetIngrediantAlternateNameValues(ingrediantalternatename, context);
+                            frmEditAlternateIngrediantName frmEditAlternateIngrediantName = new frmEditAlternateIngrediantName(ingrediantalternatename, serverObject);
+                            frmEditAlternateIngrediantName.ShowDialog();
+                            break;
+                        }
                 }
             }
             else if (Origin.Contains("View"))
@@ -385,6 +394,14 @@ namespace Recipes.Forms
                             sortedListString.Add(i.IngrediantId, i.IngrediantName);//.SubstitutedById, i.IngrediantName.IngrediantName1);
                         }
                         //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+                        break;
+                    }
+                case "Edit Alternate Ingrediant Names":
+                    {
+                        foreach (Ingrediantalternatename i in context.Ingrediantalternatenames)
+                        {
+                            sortedListString.Add(i.AlternateNameId, i.AlternateName);
+                        }
                         break;
                     }
                 case "Edit Ingrediant Type":
