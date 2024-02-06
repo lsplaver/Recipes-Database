@@ -47,6 +47,26 @@
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+	<Folder Include="Forms\"/>
+	<Folder Include="Forms\ModifyForms\"/>
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\"/>
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\AlternateNameForms\"/>
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\IngrediantForms\"/>
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\SubstitutionForms\"/>
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\TypeForms\"/>
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\"/>
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\KosherForms\"/>
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\RecipeForms\" />
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\SourceForms\"/>
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\SourceTypeForms\"/>
+	<Folder Include="Forms\ViewForms\"/>
+	<Folder Include="Forms\ViewForms\ViewIngrediants\" />
+	<Folder Include="Forms\ViewForms\ViewRecipes\" />
+	<Folder Include="Objects\" />
+	<Folder Include="Models\DataLayer\" />
+  </ItemGroup>
+
   <!-- <ItemGroup>
     <Compile Update="Forms\ModifyForms\Ingrediants\IngrediantForms\EditIngrediant.cs">
       <SubType>Form</SubType>

@@ -51,10 +51,8 @@ namespace WinFormsApp1
 
         private void btnViewRecipes_Click(object sender, EventArgs e)
         {
-            //frmViewRecipes frmViewRecipes = new frmViewRecipes(serverObject);
-            //frmViewRecipes.ShowDialog();
-
-            MessageBox.Show("Not yet implemented.");
+            frmViewRecipes frmViewRecipes = new frmViewRecipes(serverObject);
+            frmViewRecipes.ShowDialog();
         }
     }
 }
