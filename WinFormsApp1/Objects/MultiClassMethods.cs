@@ -25,6 +25,21 @@ namespace Recipes.Objects
             return ingrediant;
         }
 
+        private Recipesourcetype GetRecipeSourcesList(Recipesourcetype recipesourcetype, RecipesContext context)
+        {
+            foreach (Recipesource r in context.Recipesources)
+            {
+                if (r.SourceTypeId == recipesourcetype.SourceTypeId)
+                {
+                    if (!recipesourcetype.Recipesources.Contains(r))
+                    {
+                        recipesourcetype.Recipesources.Add(r);
+                    }
+                }
+            }
+            return recipesourcetype;
+        }
+
         private Ingrediant GetIngrediantAlternateNamesList(Ingrediant ingrediant, RecipesContext context)
         {
             foreach (Ingrediantalternatename i in context.Ingrediantalternatenames)
@@ -165,5 +180,72 @@ namespace Recipes.Objects
             frmChooseFromList frmChooseFromList = new frmChooseFromList(text, serverObject);
             frmChooseFromList.ShowDialog();
         }
+
+        public Recipesourcetype SetRecipeSourceTypeValues(Recipesourcetype recipesourcetype, RecipesContext context)
+        {
+            //Recipesourcetype recipesourcetype = context.Recipesourcetypes.Find(recipesource.SourceTypeId);
+            //if (recipesource.SourceTypeId == recipesourcetype.SourceTypeId)
+            //{
+            //    recipesource.SourceType = recipesourcetype;
+            //}
+            recipesourcetype = GetRecipeSourcesList(recipesourcetype, context);
+            return recipesourcetype;
+        }
+
+        public Recipesource SetRecipeSourceValues(Recipesource recipesource, RecipesContext context)
+        {
+            Recipesourcetype recipesourcetype = context.Recipesourcetypes.Find(recipesource.SourceTypeId);
+            if (recipesource.SourceTypeId == recipesourcetype.SourceTypeId)
+            {
+                recipesource.SourceType = recipesourcetype;
+            }
+            ICollection<Recipe> recipes = context.Recipes.Where(r => r.SourceId == recipesource.SourceId).ToList();
+            foreach (Recipe r in recipes)
+            {
+                Recipe recipe = r;
+                recipe = SetRecipeValues(recipe, context);
+            }
+            recipesource.Recipes = recipes;
+            //recipesource = SetRecipeValues(recipesource, context);
+            return recipesource;
+        }
+
+        /*private Recipesource SetRecipeValues(Recipesource recipesource, RecipesContext context)
+        {
+            
+            Recipecourse course = context.Recipecourses.Find(recipesource.Recipes.CourseId);
+            if (recipe.CourseId == course.CourseId)
+            {
+                recipe.Course = course;
+            }
+            Ingrediant ingrediant = context.Ingrediants.Find(recipe.IngrediantId);
+            ingrediant = SetIngrediantValues(ingrediant, context);
+            if (recipe.IngrediantId == ingrediant.IngrediantId)
+            {
+                recipe.Ingrediant = ingrediant;
+            }
+            recipe = GetAlternateIngrediantsForRecipe(recipe, context);
+            Ingrediantform ingrediantform = context.Ingrediantforms.Find(recipe.IngrediantFormId);
+            if (recipe.IngrediantFormId == ingrediantform.IngrediantFormId)
+            {
+                recipe.IngrediantForm = ingrediantform;
+            }
+            Koshertype koshertype = context.Koshertypes.Find(recipe.KosherTypeId);
+            if (recipe.KosherTypeId == koshertype.KosherTypeId)
+            {
+                recipe.KosherType = koshertype;
+            }
+            Recipetype recipetype = context.Recipetypes.Find(recipe.RecipeTypeId);
+            if (recipe.RecipeTypeId == recipetype.RecipeTypeId)
+            {
+                recipe.RecipeType = recipetype;
+            }
+            Recipesource recipesource = context.Recipesources.Find(recipe.SourceId);
+            if (recipe.SourceId == recipesource.SourceId)
+            {
+                recipe.Source = recipesource;
+            }
+            return recipe;
+        }*/
     }
 }

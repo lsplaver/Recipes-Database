@@ -319,12 +319,15 @@ namespace Recipes.Forms
                         {
                             Recipesourcetype recipesourcetype = new Recipesourcetype();
                             recipesourcetype = context.Recipesourcetypes.Find(key);
-                            List<Recipe> recipes = new List<Recipe>();
-                            foreach (Recipe r in context.Recipes)
-                            {
-                                Recipe recipe = r;
-                                recipe = multiClassMethods.SetRecipeValues(recipe, context);
-                            }
+                            //List<Recipe> recipes = new List<Recipe>();
+                            //foreach (Recipe r in context.Recipes)
+                            //foreach (Recipesource r in context.Recipesources)
+                            //{
+                            //    //Recipe recipe = r;
+                            //    //recipe = multiClassMethods.SetRecipeValues(recipe, context);
+                                //Recipesource recipesource = r;
+                                recipesourcetype = multiClassMethods.SetRecipeSourceTypeValues(recipesourcetype, context);
+                            //}
                             frmViewRecipeSourceType frmViewRecipeSourceType = new frmViewRecipeSourceType(recipesourcetype, serverObject);
                             frmViewRecipeSourceType.ShowDialog();
                             break;

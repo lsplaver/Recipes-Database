@@ -16,6 +16,7 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
     {
         private Recipesourcetype RecipeSourceType { get; set; }
         private ServerObject ServerObject { get; set; }
+        private MultiClassMethods multiClassMethods = new MultiClassMethods();
         public frmViewRecipeSourceType(Recipesourcetype recipesourcetype, ServerObject serverObject)
         {
             RecipeSourceType = recipesourcetype;
@@ -27,8 +28,9 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
 
         private void btnViewRecipeSource_Click(object sender, EventArgs e)
         {
-            RecipesContext context = new RecipesContext();
-            Recipesource recipesource = (Recipesource)RecipeSourceType.Recipesources.Where(r => r.SourceName == lstRecipeSources.SelectedValue); //.First();
+            RecipesContext context = new RecipesContext(ServerObject);
+            Recipesource recipesource = RecipeSourceType.Recipesources.Where(r => r.SourceName == lstRecipeSources.SelectedValue).First();
+            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context);
             //frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, ServerObject);
             //frmViewRecipeSource.ShowDialog();
             MessageBox.Show("Not yet implemented.");
