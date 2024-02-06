@@ -1,4 +1,5 @@
-﻿using Recipes.Forms.Recipes.KosherForms;
+﻿using Recipes.Forms.ModifyForms.ModifyRecipes.CourseForms;
+using Recipes.Forms.Recipes.KosherForms;
 using Recipes.Forms.Recipes.SourceForms;
 using Recipes.Forms.Recipes.SourceTypeForms;
 using Recipes.Objects;
@@ -50,6 +51,12 @@ namespace Recipes.Forms.Recipes
         {
             frmChooseFromList frmChooseFromList = new frmChooseFromList(text, ServerObject);
             frmChooseFromList.ShowDialog();
+        }
+
+        private void btnAddRecipeCourse_Click(object sender, EventArgs e)
+        {
+            frmAddRecipeCourse frmAddRecipeCourse = new frmAddRecipeCourse(ServerObject);
+            frmAddRecipeCourse.ShowDialog();
         }
     }
 }

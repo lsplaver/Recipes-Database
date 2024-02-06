@@ -48,13 +48,11 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Folder Include="Forms\ModifyForms\" />
 	<Folder Include="Forms\ModifyForms\ModifyIngrediants\" />
 	<Folder Include="Forms\ModifyForms\ModifyIngrediants\AlternateNameForms\" />
 	<Folder Include="Forms\ModifyForms\ModifyIngrediants\IngrediantForms\" />
 	<Folder Include="Forms\ModifyForms\ModifyIngrediants\SubstitutionForms\" />
 	<Folder Include="Forms\ModifyForms\ModifyIngrediants\TypeForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyRecipes\" />
 	<Folder Include="Forms\ModifyForms\ModifyRecipes\KosherForms\" />
 	<Folder Include="Forms\ModifyForms\ModifyRecipes\RecipeForms\" />
 	<Folder Include="Forms\ModifyForms\ModifyRecipes\SourceForms\" />

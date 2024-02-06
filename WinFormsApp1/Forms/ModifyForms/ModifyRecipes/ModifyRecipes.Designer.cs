@@ -37,25 +37,30 @@
             label1 = new Label();
             btnAddSourceType = new Button();
             btnAddKosherType = new Button();
+            btnAddRecipeCourse = new Button();
             SuspendLayout();
             // 
             // btnDeleteSource
             // 
+            btnDeleteSource.Enabled = false;
             btnDeleteSource.Location = new Point(318, 124);
             btnDeleteSource.Name = "btnDeleteSource";
             btnDeleteSource.Size = new Size(94, 51);
             btnDeleteSource.TabIndex = 13;
             btnDeleteSource.Text = "Delete Recipe Source";
             btnDeleteSource.UseVisualStyleBackColor = true;
+            btnDeleteSource.Visible = false;
             // 
             // btnEditSource
             // 
+            btnEditSource.Enabled = false;
             btnEditSource.Location = new Point(169, 124);
             btnEditSource.Name = "btnEditSource";
             btnEditSource.Size = new Size(94, 51);
             btnEditSource.TabIndex = 12;
             btnEditSource.Text = "Edit Recipe Source";
             btnEditSource.UseVisualStyleBackColor = true;
+            btnEditSource.Visible = false;
             btnEditSource.Click += btnEditSource_Click;
             // 
             // btnAddSource
@@ -70,21 +75,25 @@
             // 
             // btnDeleteRecipe
             // 
+            btnDeleteRecipe.Enabled = false;
             btnDeleteRecipe.Location = new Point(318, 68);
             btnDeleteRecipe.Name = "btnDeleteRecipe";
             btnDeleteRecipe.Size = new Size(94, 29);
             btnDeleteRecipe.TabIndex = 10;
             btnDeleteRecipe.Text = "Delete Recipe";
             btnDeleteRecipe.UseVisualStyleBackColor = true;
+            btnDeleteRecipe.Visible = false;
             // 
             // btnEditRecipe
             // 
+            btnEditRecipe.Enabled = false;
             btnEditRecipe.Location = new Point(169, 68);
             btnEditRecipe.Name = "btnEditRecipe";
             btnEditRecipe.Size = new Size(94, 29);
             btnEditRecipe.TabIndex = 9;
             btnEditRecipe.Text = "Edit Recipe";
             btnEditRecipe.UseVisualStyleBackColor = true;
+            btnEditRecipe.Visible = false;
             // 
             // btnAddRecipe
             // 
@@ -124,11 +133,22 @@
             btnAddKosherType.UseVisualStyleBackColor = true;
             btnAddKosherType.Click += btnAddKosherType_Click;
             // 
+            // btnAddRecipeCourse
+            // 
+            btnAddRecipeCourse.Location = new Point(12, 384);
+            btnAddRecipeCourse.Name = "btnAddRecipeCourse";
+            btnAddRecipeCourse.Size = new Size(94, 70);
+            btnAddRecipeCourse.TabIndex = 16;
+            btnAddRecipeCourse.Text = "Add Recipe Course";
+            btnAddRecipeCourse.UseVisualStyleBackColor = true;
+            btnAddRecipeCourse.Click += btnAddRecipeCourse_Click;
+            // 
             // frmModifyRecipes
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(426, 399);
+            ClientSize = new Size(426, 562);
+            Controls.Add(btnAddRecipeCourse);
             Controls.Add(btnAddKosherType);
             Controls.Add(btnAddSourceType);
             Controls.Add(btnDeleteSource);
@@ -155,5 +175,6 @@
         private Label label1;
         private Button btnAddSourceType;
         private Button btnAddKosherType;
+        private Button btnAddRecipeCourse;
     }
 }
