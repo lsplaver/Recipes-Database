@@ -43,6 +43,7 @@
             btnViewRecipeSourceType.TabIndex = 7;
             btnViewRecipeSourceType.Text = "View Recipe Source Type";
             btnViewRecipeSourceType.UseVisualStyleBackColor = true;
+            btnViewRecipeSourceType.Click += btnViewRecipeSourceType_Click;
             // 
             // btnViewRecipeSource
             // 

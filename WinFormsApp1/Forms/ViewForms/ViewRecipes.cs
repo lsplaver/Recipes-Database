@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recipes.Objects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,17 @@ namespace Recipes.Forms.ViewForms
 {
     public partial class frmViewRecipes : Form
     {
-        public frmViewRecipes()
+        private ServerObject ServerObject { get; set; }
+        private MultiClassMethods multiClassMethods = new MultiClassMethods();
+        public frmViewRecipes(ServerObject serverObject)
         {
+            ServerObject = serverObject;
             InitializeComponent();
+        }
+
+        private void btnViewRecipeSourceType_Click(object sender, EventArgs e)
+        {
+            multiClassMethods.ShowChooseFromList(btnViewRecipeSourceType.Text, ServerObject);
         }
     }
 }

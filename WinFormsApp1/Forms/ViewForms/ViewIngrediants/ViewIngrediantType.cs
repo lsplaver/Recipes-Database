@@ -19,11 +19,11 @@ namespace Recipes.Forms.ViewForms.Ingrediants
             InitializeComponent();
         }*/
 
-        public frmViewIngrediantType(Ingredianttype ingrediantType, List<Ingrediant> ingrediants, ServerObject serverObject)
+        public frmViewIngrediantType(Ingredianttype ingrediantType/*, List<Ingrediant> ingrediants*/, ServerObject serverObject)
         {
             IngrediantType = ingrediantType;
             ServerObject = serverObject;
-            Ingrediants = ingrediants;
+            //Ingrediants = ingrediants;
             InitializeComponent();
             /*foreach (Ingrediant i in Ingrediants)
             {
@@ -35,7 +35,7 @@ namespace Recipes.Forms.ViewForms.Ingrediants
 
         private Ingredianttype IngrediantType { get; }
         private ServerObject ServerObject { get; }
-        private List<Ingrediant> Ingrediants { get; }
+        //private List<Ingrediant> Ingrediants { get; }
         //private SortedList<int, string> sortedListString { get; set; } = new SortedList<int, string>();
 
         private void btnViewIngrediant_Click(object sender, EventArgs e)

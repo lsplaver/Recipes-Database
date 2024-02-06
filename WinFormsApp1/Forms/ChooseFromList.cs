@@ -4,6 +4,7 @@ using Recipes.Forms.TypeForms;
 using Recipes.Models.DataLayer;
 using Recipes.Objects;
 using Recipes.Forms.ViewForms.Ingrediants;
+using Recipes.Forms.ViewForms.ViewRecipes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -257,34 +258,34 @@ namespace Recipes.Forms
                         {
                             Ingredianttype ingrediantType = new Ingredianttype();
                             ingrediantType = context.Ingredianttypes.Find(key);
-                            List<Ingrediant> ingrediants = new List<Ingrediant>();
+                            //List<Ingrediant> ingrediants = new List<Ingrediant>();
                             foreach (Ingrediant i in context.Ingrediants)
                             {
-                            //    if (i.IngrediantTypeId/*.IngrediantType.IngrediantTypeId*/ == ingrediantType.IngrediantTypeId)
-                            //    {
-                            //        if (!ingrediants.Contains(i))
-                            //        {
+                            ////    if (i.IngrediantTypeId/*.IngrediantType.IngrediantTypeId*/ == ingrediantType.IngrediantTypeId)
+                            ////    {
+                            ////        if (!ingrediants.Contains(i))
+                            ////        {
                                         Ingrediant ingrediant = i;
-                                /*ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
-                                ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
-                                ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);*/
+                            //    /*ingrediant = multiClassMethods.GetIngrediantSubstitutionList(ingrediant, context);
+                            //    ingrediant = multiClassMethods.GetIngrediantAlternateNamesList(ingrediant, context);
+                            //    ingrediant = multiClassMethods.GetRecipesList(ingrediant, context);*/
                                 ingrediant = multiClassMethods.SetIngrediantValues(ingrediant, context);
-                            //            /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
-                            //            {
-                            //                if (j.IngrediantNameId == i.IngrediantId)
-                            //                {
-                            //                    if (!i.Ingrediantsubstitutes.Contains(j))
-                            //                    {
-                            //                        i.Ingrediantsubstitutes.Add(j);
-                            //                    }
-                            //                }
-                            //            }*/
-                            //            //ingrediants.Add(ingrediant);
-                            //            ingrediantType.Ingrediants.Add(ingrediant);
-                            //        }
-                            //    }
+                            ////            /*foreach (Ingrediantsubstitute j in context.Ingrediantsubstitutes)
+                            ////            {
+                            ////                if (j.IngrediantNameId == i.IngrediantId)
+                            ////                {
+                            ////                    if (!i.Ingrediantsubstitutes.Contains(j))
+                            ////                    {
+                            ////                        i.Ingrediantsubstitutes.Add(j);
+                            ////                    }
+                            ////                }
+                            ////            }*/
+                            ////            //ingrediants.Add(ingrediant);
+                            ////            ingrediantType.Ingrediants.Add(ingrediant);
+                            ////        }
+                            ////    }
                             }
-                            frmViewIngrediantType frmViewIngrediantTypes = new frmViewIngrediantType(ingrediantType, ingrediants, serverObject);
+                            frmViewIngrediantType frmViewIngrediantTypes = new frmViewIngrediantType(ingrediantType/*, ingrediants*/, serverObject);
                             frmViewIngrediantTypes.ShowDialog();
                             break;
                         }
@@ -312,6 +313,20 @@ namespace Recipes.Forms
                             ingrediant = multiClassMethods.SetIngrediantValues(ingrediant, context);
                             frmViewIngrediant frmViewIngrediants = new frmViewIngrediant(ingrediant, serverObject);
                             frmViewIngrediants.ShowDialog();
+                            break;
+                        }
+                    case "View Recipe Source Type":
+                        {
+                            Recipesourcetype recipesourcetype = new Recipesourcetype();
+                            recipesourcetype = context.Recipesourcetypes.Find(key);
+                            List<Recipe> recipes = new List<Recipe>();
+                            foreach (Recipe r in context.Recipes)
+                            {
+                                Recipe recipe = r;
+                                recipe = multiClassMethods.SetRecipeValues(recipe, context);
+                            }
+                            frmViewRecipeSourceType frmViewRecipeSourceType = new frmViewRecipeSourceType(recipesourcetype, serverObject);
+                            frmViewRecipeSourceType.ShowDialog();
                             break;
                         }
                 }
@@ -427,6 +442,7 @@ namespace Recipes.Forms
                     }
                 case "Edit Recipe Source Type":
                 case "Delete Recipe Source Type":
+                case "View Recipe Source Type":
                     {
                         foreach (Recipesourcetype r in context.Recipesourcetypes)
                         {

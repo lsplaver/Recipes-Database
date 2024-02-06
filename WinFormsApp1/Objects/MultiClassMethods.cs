@@ -1,4 +1,5 @@
-﻿using Recipes.Models.DataLayer;
+﻿using Recipes.Forms;
+using Recipes.Models.DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -157,6 +158,12 @@ namespace Recipes.Objects
             ingrediant = SetIngrediantValues(ingrediant, context);
             ingrediantalternatename.IngrediantName = ingrediant;
             return ingrediantalternatename;
+        }
+
+        public void ShowChooseFromList(string text, ServerObject serverObject)
+        {
+            frmChooseFromList frmChooseFromList = new frmChooseFromList(text, serverObject);
+            frmChooseFromList.ShowDialog();
         }
     }
 }
