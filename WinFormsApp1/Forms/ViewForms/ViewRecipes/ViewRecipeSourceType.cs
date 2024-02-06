@@ -31,9 +31,8 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
             RecipesContext context = new RecipesContext(ServerObject);
             Recipesource recipesource = RecipeSourceType.Recipesources.Where(r => r.SourceName == lstRecipeSources.SelectedValue).First();
             recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context);
-            //frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, ServerObject);
-            //frmViewRecipeSource.ShowDialog();
-            MessageBox.Show("Not yet implemented.");
+            frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, ServerObject);
+            frmViewRecipeSource.ShowDialog();
         }
     }
 }

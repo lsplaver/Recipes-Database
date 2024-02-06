@@ -332,6 +332,15 @@ namespace Recipes.Forms
                             frmViewRecipeSourceType.ShowDialog();
                             break;
                         }
+                    case "View Recipe Source":
+                        {
+                            Recipesource recipesource = new Recipesource();
+                            recipesource = context.Recipesources.Find(key);
+                            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context);
+                            frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, serverObject);
+                            frmViewRecipeSource.ShowDialog();
+                            break;
+                        }
                 }
             }
             context = new RecipesContext(serverObject);
@@ -435,6 +444,7 @@ namespace Recipes.Forms
                     }
                 case "Edit Recipe Source":
                 case "Delete Recipe Source":
+                case "View Recipe Source":
                     {
                         foreach (Recipesource r in context.Recipesources)
                         {

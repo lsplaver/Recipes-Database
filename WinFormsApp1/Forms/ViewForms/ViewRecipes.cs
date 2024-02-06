@@ -25,5 +25,10 @@ namespace Recipes.Forms.ViewForms
         {
             multiClassMethods.ShowChooseFromList(btnViewRecipeSourceType.Text, ServerObject);
         }
+
+        private void btnViewRecipeSource_Click(object sender, EventArgs e)
+        {
+            multiClassMethods.ShowChooseFromList(btnViewRecipeSource.Text, ServerObject);
+        }
     }
 }

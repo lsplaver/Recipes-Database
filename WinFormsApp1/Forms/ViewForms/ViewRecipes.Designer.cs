@@ -47,14 +47,13 @@
             // 
             // btnViewRecipeSource
             // 
-            btnViewRecipeSource.Enabled = false;
             btnViewRecipeSource.Location = new Point(12, 149);
             btnViewRecipeSource.Name = "btnViewRecipeSource";
             btnViewRecipeSource.Size = new Size(150, 79);
             btnViewRecipeSource.TabIndex = 6;
             btnViewRecipeSource.Text = "View Recipe Source";
             btnViewRecipeSource.UseVisualStyleBackColor = true;
-            btnViewRecipeSource.Visible = false;
+            btnViewRecipeSource.Click += btnViewRecipeSource_Click;
             // 
             // btnViewRecipeCourse
             // 
