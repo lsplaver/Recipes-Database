@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp1
+﻿namespace Recipes.Forms
 {
     partial class frmHome
     {

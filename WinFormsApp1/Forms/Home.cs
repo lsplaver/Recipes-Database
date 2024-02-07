@@ -1,6 +1,7 @@
 using Recipes.Forms;
 using Recipes.Forms.IngrediantForms;
 using Recipes.Forms.Ingrediants;
+using Recipes.Forms.ModifyForms.ModifyRecipes;
 using Recipes.Forms.Recipes;
 using Recipes.Forms.SubstitutionForms;
 using Recipes.Forms.TypeForms;
@@ -9,7 +10,7 @@ using Recipes.Models.DataLayer;
 using Recipes.Objects;
 using System.Runtime.CompilerServices;
 
-namespace WinFormsApp1
+namespace Recipes.Forms
 {
     public partial class frmHome : Form
     {
