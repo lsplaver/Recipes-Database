@@ -11,19 +11,19 @@ namespace Recipes.Models.DataLayer;
 
 public partial class RecipesContext : DbContext
 {
-    public RecipesContext()
+    /*public RecipesContext()
     {
-    }
+    }*/
 
     public RecipesContext(ServerObject server)
     {
-        serverObject = server;
+        ServerObject = server;
     }
 
-    public RecipesContext(DbContextOptions<RecipesContext> options)
+    /*public RecipesContext(DbContextOptions<RecipesContext> options)
         : base(options)
     {
-    }
+    }*/
 
     public virtual DbSet<Alternateingrediantsforrecipe> Alternateingrediantsforrecipes { get; set; }
 
@@ -51,10 +51,10 @@ public partial class RecipesContext : DbContext
 
     private ConnectionStringSettings conn = new ConnectionStringSettings();
     //private App app;
-    private string server, database, username, password;
+    private string server = "", database = "", username = "", password = "";
     //private frmConnection.ControlCollection controlCollection = new Form.ControlCollection(owner: frmConnection);
 
-    private ServerObject serverObject = new ServerObject();
+    private ServerObject ServerObject { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     /*#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
             => optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB; AttachDBFilename=C:\\MSSQL\\MSSQL16.SQLSERVER\\MSSQL\\DATA\\Recipes.mdf; Integrated security=True");*/
@@ -63,10 +63,10 @@ public partial class RecipesContext : DbContext
         {
             //if ((serverObject.Server != null) && (serverObject.Database != null) && (serverObject.Username != null) && (serverObject.Password != null))
             //{
-                server = $"server={serverObject.Server};";
-                database = $"database={serverObject.Database};";
-                username = $"uid={serverObject.Username};";
-                password = $"password={serverObject.Password};";
+                server = $"server={ServerObject.Server};";
+                database = $"database={ServerObject.Database};";
+                username = $"uid={ServerObject.Username};";
+                password = $"password={ServerObject.Password};";
             //}
             //else
             //{
@@ -110,11 +110,11 @@ public partial class RecipesContext : DbContext
 
             entity.HasOne(d => d.IngrediantName).WithMany(p => p.Alternateingrediantsforrecipes)
                 .HasForeignKey(d => d.IngrediantNameId)
-                .HasConstraintName("alternateingrediantsforrecipe_ibfk_2");
+                .HasConstraintName("FK_AlternateIngrediantsForRecipe_IngrediantNameID");
 
             entity.HasOne(d => d.Recipe).WithMany(p => p.Alternateingrediantsforrecipes)
                 .HasForeignKey(d => d.RecipeId)
-                .HasConstraintName("alternateingrediantsforrecipe_ibfk_1");
+                .HasConstraintName("FK_AlternateIngrediantsForRecipe_RecipeID");
         });
 
         modelBuilder.Entity<Ingrediant>(entity =>
