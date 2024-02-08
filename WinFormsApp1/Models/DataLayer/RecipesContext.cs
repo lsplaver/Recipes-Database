@@ -47,7 +47,7 @@ public partial class RecipesContext : DbContext
 
     public virtual DbSet<Recipesourcetype> Recipesourcetypes { get; set; }
 
-    public virtual DbSet<Recipetypes> Recipetypes { get; set; }
+    public virtual DbSet<Recipetype> Recipetypes { get; set; }
 
     private ConnectionStringSettings conn = new ConnectionStringSettings();
     //private App app;
@@ -295,7 +295,7 @@ public partial class RecipesContext : DbContext
             entity.Property(e => e.SourceTypeName).HasColumnType("text");
         });
 
-        modelBuilder.Entity<Recipetypes>(entity =>
+        modelBuilder.Entity<Recipetype>(entity =>
         {
             entity.HasKey(e => e.RecipeTypeId).HasName("PRIMARY");
 

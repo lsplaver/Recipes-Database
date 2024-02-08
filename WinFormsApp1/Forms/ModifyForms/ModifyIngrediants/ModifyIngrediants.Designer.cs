@@ -1,4 +1,4 @@
-﻿namespace Recipes.Forms.Ingrediants
+﻿namespace Recipes.Forms.ModifyForms.ModifyIngrediants
 {
     partial class frmModifyIngrediants
     {
@@ -39,6 +39,7 @@
             btnAddAlternateNames = new Button();
             btnEditAlternateNames = new Button();
             btnDeleteAlternateNames = new Button();
+            btnAddIngrediantForm = new Button();
             SuspendLayout();
             // 
             // btnAddEditUpdateSubstitutions
@@ -53,12 +54,14 @@
             // 
             // btnDeleteType
             // 
+            btnDeleteType.Enabled = false;
             btnDeleteType.Location = new Point(319, 105);
             btnDeleteType.Name = "btnDeleteType";
             btnDeleteType.Size = new Size(114, 76);
             btnDeleteType.TabIndex = 20;
             btnDeleteType.Text = "Delete Ingrediant Type";
             btnDeleteType.UseVisualStyleBackColor = true;
+            btnDeleteType.Visible = false;
             btnDeleteType.Click += btnDeleteType_Click;
             // 
             // btnEditType
@@ -83,12 +86,14 @@
             // 
             // btnDeleteIngrediant
             // 
+            btnDeleteIngrediant.Enabled = false;
             btnDeleteIngrediant.Location = new Point(319, 12);
             btnDeleteIngrediant.Name = "btnDeleteIngrediant";
             btnDeleteIngrediant.Size = new Size(114, 51);
             btnDeleteIngrediant.TabIndex = 17;
             btnDeleteIngrediant.Text = "Delete Ingrediant";
             btnDeleteIngrediant.UseVisualStyleBackColor = true;
+            btnDeleteIngrediant.Visible = false;
             btnDeleteIngrediant.Click += btnDeleteIngrediant_Click;
             // 
             // btnEditIngrediant
@@ -113,12 +118,14 @@
             // 
             // btnDeleteSubstitution
             // 
+            btnDeleteSubstitution.Enabled = false;
             btnDeleteSubstitution.Location = new Point(319, 212);
             btnDeleteSubstitution.Name = "btnDeleteSubstitution";
             btnDeleteSubstitution.Size = new Size(114, 77);
             btnDeleteSubstitution.TabIndex = 22;
             btnDeleteSubstitution.Text = "Delete Ingrediant Substitutions";
             btnDeleteSubstitution.UseVisualStyleBackColor = true;
+            btnDeleteSubstitution.Visible = false;
             btnDeleteSubstitution.Click += btnDeleteSubstitution_Click;
             // 
             // btnAddAlternateNames
@@ -143,19 +150,32 @@
             // 
             // btnDeleteAlternateNames
             // 
+            btnDeleteAlternateNames.Enabled = false;
             btnDeleteAlternateNames.Location = new Point(319, 318);
             btnDeleteAlternateNames.Name = "btnDeleteAlternateNames";
             btnDeleteAlternateNames.Size = new Size(114, 97);
             btnDeleteAlternateNames.TabIndex = 25;
             btnDeleteAlternateNames.Text = "Delete Alternate Ingrediant Names";
             btnDeleteAlternateNames.UseVisualStyleBackColor = true;
+            btnDeleteAlternateNames.Visible = false;
             btnDeleteAlternateNames.Click += btnDeleteAlternateNames_Click;
+            // 
+            // btnAddIngrediantForm
+            // 
+            btnAddIngrediantForm.Location = new Point(18, 439);
+            btnAddIngrediantForm.Name = "btnAddIngrediantForm";
+            btnAddIngrediantForm.Size = new Size(94, 75);
+            btnAddIngrediantForm.TabIndex = 26;
+            btnAddIngrediantForm.Text = "Add Ingrediant Form";
+            btnAddIngrediantForm.UseVisualStyleBackColor = true;
+            btnAddIngrediantForm.Click += btnAddIngrediantForm_Click;
             // 
             // frmModifyIngrediants
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(537, 427);
+            ClientSize = new Size(537, 526);
+            Controls.Add(btnAddIngrediantForm);
             Controls.Add(btnDeleteAlternateNames);
             Controls.Add(btnEditAlternateNames);
             Controls.Add(btnAddAlternateNames);
@@ -185,5 +205,6 @@
         private Button btnAddAlternateNames;
         private Button btnEditAlternateNames;
         private Button btnDeleteAlternateNames;
+        private Button btnAddIngrediantForm;
     }
 }

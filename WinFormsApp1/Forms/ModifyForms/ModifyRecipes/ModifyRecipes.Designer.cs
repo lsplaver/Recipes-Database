@@ -104,6 +104,7 @@ partial class frmModifyRecipes
         btnAddRecipe.TabIndex = 8;
         btnAddRecipe.Text = "Add Recipe";
         btnAddRecipe.UseVisualStyleBackColor = true;
+        btnAddRecipe.Click += btnAddRecipe_Click;
         // 
         // label1
         // 

@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Recipes.Forms.ViewForms.Ingrediants
+namespace Recipes.Forms.ViewForms.ViewIngrediants
 {
     public partial class frmViewIngrediant : Form
     {

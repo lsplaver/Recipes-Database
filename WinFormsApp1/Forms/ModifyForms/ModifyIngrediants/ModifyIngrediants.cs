@@ -1,5 +1,7 @@
-﻿using Recipes.Forms.SubstitutionForms;
-using Recipes.Forms.TypeForms;
+﻿using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantForm;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantSubstitution;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantType;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediant;
 using Recipes.Models.DataLayer;
 using Recipes.Objects;
 using System;
@@ -13,11 +15,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormsApp1;
 
-namespace Recipes.Forms.Ingrediants
+namespace Recipes.Forms.ModifyForms.ModifyIngrediants
 {
     public partial class frmModifyIngrediants : Form
     {
-        private ServerObject serverObject = new ServerObject();
+        private ServerObject ServerObject { get; set; }
         //private RecipesContext context = new RecipesContext();
         /*public frmModifyIngrediants()
         {
@@ -27,7 +29,7 @@ namespace Recipes.Forms.Ingrediants
         public frmModifyIngrediants(ServerObject server)
         {
             InitializeComponent();
-            serverObject = server;
+            ServerObject = server;
         }
 
         /*public frmIngrediants(RecipesContext recipesContext)
@@ -38,13 +40,13 @@ namespace Recipes.Forms.Ingrediants
 
         private void btnAddIngrediant_Click(object sender, EventArgs e)
         {
-            frmAddIngrediant frmAddIngrediant = new frmAddIngrediant(serverObject);
+            frmAddIngrediant frmAddIngrediant = new frmAddIngrediant(ServerObject);
             frmAddIngrediant.ShowDialog();
             //ShowChooseFromListForm(btnAddIngrediant.Text, serverObject);
         }
         private void btnAddType_Click(object sender, EventArgs e)
         {
-            frmAddIngrediantType frmAddIngrediantType = new frmAddIngrediantType(serverObject);
+            frmAddIngrediantType frmAddIngrediantType = new frmAddIngrediantType(ServerObject);
             frmAddIngrediantType.ShowDialog();
             //ShowChooseFromListForm(btnAddType.Text, serverObject);
         }
@@ -55,7 +57,7 @@ namespace Recipes.Forms.Ingrediants
             //frmEditIngrediantType.ShowDialog();
             /*frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnEditType.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();*/
-            ShowChooseFromListForm(btnEditType.Text, serverObject);
+            ShowChooseFromListForm(btnEditType.Text, ServerObject);
         }
 
         private void btnEditIngrediant_Click(object sender, EventArgs e)
@@ -64,7 +66,7 @@ namespace Recipes.Forms.Ingrediants
             //frmEditIngrediant.ShowDialog();
             /*frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnEditIngrediant.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();*/
-            ShowChooseFromListForm(btnEditIngrediant.Text, serverObject);
+            ShowChooseFromListForm(btnEditIngrediant.Text, ServerObject);
         }
 
         private void btnAddEditUpdateSubstitutions_Click(object sender, EventArgs e)
@@ -73,19 +75,19 @@ namespace Recipes.Forms.Ingrediants
             //frmChoose.ShowDialog();
             /*frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnAddEditUpdateSubstitutions.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();*/
-            ShowChooseFromListForm(btnAddEditUpdateSubstitutions.Text, serverObject);
+            ShowChooseFromListForm(btnAddEditUpdateSubstitutions.Text, ServerObject);
         }
 
         private void btnDeleteIngrediant_Click(object sender, EventArgs e)
         {
             /*frmChooseFromList frmChooseFromList = new frmChooseFromList(btnDeleteIngrediant.Text, serverObject);
             frmChooseFromList.ShowDialog();*/
-            ShowChooseFromListForm(btnDeleteIngrediant.Text, serverObject);
+            ShowChooseFromListForm(btnDeleteIngrediant.Text, ServerObject);
         }
 
         private void btnDeleteType_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnDeleteType.Text, serverObject);
+            ShowChooseFromListForm(btnDeleteType.Text, ServerObject);
         }
 
         private void ShowChooseFromListForm(string text, ServerObject serverObject)
@@ -96,22 +98,28 @@ namespace Recipes.Forms.Ingrediants
 
         private void btnDeleteSubstitution_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnDeleteSubstitution.Text, serverObject);
+            ShowChooseFromListForm(btnDeleteSubstitution.Text, ServerObject);
         }
 
         private void btnAddAlternateNames_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnAddAlternateNames.Text, serverObject);
+            ShowChooseFromListForm(btnAddAlternateNames.Text, ServerObject);
         }
 
         private void btnEditAlternateNames_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnEditAlternateNames.Text, serverObject);
+            ShowChooseFromListForm(btnEditAlternateNames.Text, ServerObject);
         }
 
         private void btnDeleteAlternateNames_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnDeleteAlternateNames.Text, serverObject);
+            ShowChooseFromListForm(btnDeleteAlternateNames.Text, ServerObject);
+        }
+
+        private void btnAddIngrediantForm_Click(object sender, EventArgs e)
+        {
+            frmAddIngrediantForm frmAddIngrediantForm = new frmAddIngrediantForm(ServerObject);
+            frmAddIngrediantForm.ShowDialog();
         }
     }
 }

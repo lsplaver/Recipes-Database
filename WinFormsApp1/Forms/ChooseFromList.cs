@@ -1,9 +1,10 @@
-﻿using Recipes.Forms.IngrediantForms;
-using Recipes.Forms.SubstitutionForms;
-using Recipes.Forms.TypeForms;
+﻿using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantForm;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantSubstitution;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantType;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediant;
 using Recipes.Models.DataLayer;
 using Recipes.Objects;
-using Recipes.Forms.ViewForms.Ingrediants;
+using Recipes.Forms.ViewForms.ViewIngrediants;
 using Recipes.Forms.ViewForms.ViewRecipes;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
-using Recipes.Forms.ModifyForms.ModifyIngrediants.AlternateNameForms;
+using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantAlternateName;
 
 namespace Recipes.Forms
 {

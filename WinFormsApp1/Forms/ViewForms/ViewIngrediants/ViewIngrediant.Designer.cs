@@ -1,4 +1,4 @@
-﻿namespace Recipes.Forms.ViewForms.Ingrediants
+﻿namespace Recipes.Forms.ViewForms.ViewIngrediants
 {
     partial class frmViewIngrediant
     {

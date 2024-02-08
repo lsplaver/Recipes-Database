@@ -48,18 +48,14 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Folder Include="Forms\ModifyForms\ModifyIngrediants\" />
-	<Folder Include="Forms\ModifyForms\ModifyIngrediants\AlternateNameForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyIngrediants\IngrediantForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyIngrediants\SubstitutionForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyIngrediants\TypeForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyRecipes\KosherForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyRecipes\RecipeForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyRecipes\SourceForms\" />
-	<Folder Include="Forms\ModifyForms\ModifyRecipes\SourceTypeForms\" />
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\ModifyIngrediantAlternateName\" />
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\ModifyIngrediant\" />
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\ModifyIngrediantSubstitution\" />
+	<Folder Include="Forms\ModifyForms\ModifyIngrediants\ModifyIngrediantType\" />
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\ModifyRecipeKosher\" />
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\ModifyRecipe%27Source\" />
+	<Folder Include="Forms\ModifyForms\ModifyRecipes\ModifyRecipeSourceType\" />
 	<Folder Include="Forms\ViewForms\ViewIngrediants\" />
-	<Folder Include="Objects\" />
-	<Folder Include="Models\DataLayer\" />
   </ItemGroup>
 
   <!-- <ItemGroup>
