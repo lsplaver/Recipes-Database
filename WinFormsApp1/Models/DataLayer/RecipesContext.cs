@@ -47,7 +47,7 @@ public partial class RecipesContext : DbContext
 
     public virtual DbSet<Recipesourcetype> Recipesourcetypes { get; set; }
 
-    public virtual DbSet<Recipetype> Recipetypes { get; set; }
+    public virtual DbSet<Recipetypes> Recipetypes { get; set; }
 
     private ConnectionStringSettings conn = new ConnectionStringSettings();
     //private App app;
@@ -98,7 +98,7 @@ public partial class RecipesContext : DbContext
         {
             entity.HasKey(e => e.AlternateIngrediantId).HasName("PRIMARY");
 
-            entity.ToTable("alternateingrediantsforrecipe");
+            entity.ToTable("alternateingrediantsforrecipes");
 
             entity.HasIndex(e => e.IngrediantNameId, "FK_AlternateIngrediantsForRecipe_IngrediantNameID");
 
@@ -155,7 +155,7 @@ public partial class RecipesContext : DbContext
         {
             entity.HasKey(e => e.IngrediantFormId).HasName("PRIMARY");
 
-            entity.ToTable("ingrediantform");
+            entity.ToTable("ingrediantforms");
 
             entity.Property(e => e.IngrediantFormId).HasColumnName("IngrediantFormID");
             entity.Property(e => e.IngrediantForm1)
@@ -261,7 +261,7 @@ public partial class RecipesContext : DbContext
         {
             entity.HasKey(e => e.CourseId).HasName("PRIMARY");
 
-            entity.ToTable("recipecourse");
+            entity.ToTable("recipecourses");
 
             entity.Property(e => e.CourseId).HasColumnName("CourseID");
             entity.Property(e => e.CourseName).HasColumnType("text");
@@ -295,11 +295,11 @@ public partial class RecipesContext : DbContext
             entity.Property(e => e.SourceTypeName).HasColumnType("text");
         });
 
-        modelBuilder.Entity<Recipetype>(entity =>
+        modelBuilder.Entity<Recipetypes>(entity =>
         {
             entity.HasKey(e => e.RecipeTypeId).HasName("PRIMARY");
 
-            entity.ToTable("recipetype");
+            entity.ToTable("recipetypes");
 
             entity.Property(e => e.RecipeTypeId).HasColumnName("RecipeTypeID");
             entity.Property(e => e.RecipeTypeName).HasColumnType("text");
