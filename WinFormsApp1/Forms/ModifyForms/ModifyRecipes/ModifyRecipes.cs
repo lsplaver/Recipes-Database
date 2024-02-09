@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe;
+using Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipeCookingMethod;
 
 namespace Recipes.Forms.ModifyForms.ModifyRecipes
 {
@@ -71,6 +72,12 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes
         {
             frmAddRecipe frmAddRecipe = new frmAddRecipe(ServerObject);
             frmAddRecipe.ShowDialog();
+        }
+
+        private void btnAddCookingMethod_Click(object sender, EventArgs e)
+        {
+            frmAddRecipeCookingMethod frmAddRecipeCookingMethod = new frmAddRecipeCookingMethod(ServerObject);
+            frmAddRecipeCookingMethod.ShowDialog();
         }
     }
 

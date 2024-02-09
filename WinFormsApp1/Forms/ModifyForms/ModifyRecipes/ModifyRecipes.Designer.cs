@@ -39,6 +39,7 @@ partial class frmModifyRecipes
         btnAddKosherType = new Button();
         btnAddRecipeCourse = new Button();
         btnAddRecipeType = new Button();
+        btnAddCookingMethod = new Button();
         SuspendLayout();
         // 
         // btnDeleteSource
@@ -155,11 +156,22 @@ partial class frmModifyRecipes
         btnAddRecipeType.UseVisualStyleBackColor = true;
         btnAddRecipeType.Click += btnAddRecipeType_Click;
         // 
+        // btnAddCookingMethod
+        // 
+        btnAddCookingMethod.Location = new Point(12, 578);
+        btnAddCookingMethod.Name = "btnAddCookingMethod";
+        btnAddCookingMethod.Size = new Size(94, 77);
+        btnAddCookingMethod.TabIndex = 18;
+        btnAddCookingMethod.Text = "Add Cooking Method";
+        btnAddCookingMethod.UseVisualStyleBackColor = true;
+        btnAddCookingMethod.Click += btnAddCookingMethod_Click;
+        // 
         // frmModifyRecipes
         // 
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
-        ClientSize = new Size(426, 562);
+        ClientSize = new Size(426, 685);
+        Controls.Add(btnAddCookingMethod);
         Controls.Add(btnAddRecipeType);
         Controls.Add(btnAddRecipeCourse);
         Controls.Add(btnAddKosherType);
@@ -190,4 +202,5 @@ partial class frmModifyRecipes
     private Button btnAddKosherType;
     private Button btnAddRecipeCourse;
     private Button btnAddRecipeType;
+    private Button btnAddCookingMethod;
 }
