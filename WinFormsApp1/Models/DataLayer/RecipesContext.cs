@@ -41,6 +41,8 @@ public partial class RecipesContext : DbContext
 
     public virtual DbSet<Recipe> Recipes { get; set; }
 
+    public virtual DbSet<Recipecookingmethod> Recipecookingmethods { get; set; }
+
     public virtual DbSet<Recipecourse> Recipecourses { get; set; }
 
     public virtual DbSet<Recipesource> Recipesources { get; set; }
@@ -208,6 +210,8 @@ public partial class RecipesContext : DbContext
 
             entity.ToTable("recipes");
 
+            entity.HasIndex(e => e.CookingMethodId, "FK_Recipes_CookingMethodID");
+
             entity.HasIndex(e => e.CourseId, "FK_Recipes_CourseID");
 
             entity.HasIndex(e => e.IngrediantFormId, "FK_Recipes_IngrediantFormID");
@@ -221,6 +225,7 @@ public partial class RecipesContext : DbContext
             entity.HasIndex(e => e.SourceId, "FK_Recipes_SourceID");
 
             entity.Property(e => e.RecipeId).HasColumnName("RecipeID");
+            entity.Property(e => e.CookingMethodId).HasColumnName("CookingMethodID");
             entity.Property(e => e.CourseId).HasColumnName("CourseID");
             entity.Property(e => e.IngrediantFormId).HasColumnName("IngrediantFormID");
             entity.Property(e => e.IngrediantId).HasColumnName("IngrediantID");
@@ -228,6 +233,11 @@ public partial class RecipesContext : DbContext
             entity.Property(e => e.RecipeName).HasColumnType("text");
             entity.Property(e => e.RecipeTypeId).HasColumnName("RecipeTypeID");
             entity.Property(e => e.SourceId).HasColumnName("SourceID");
+
+            entity.HasOne(d => d.CookingMethod).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.CookingMethodId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK_Recipes_CookingMethodID");
 
             entity.HasOne(d => d.Course).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.CourseId)
@@ -255,6 +265,16 @@ public partial class RecipesContext : DbContext
             entity.HasOne(d => d.Source).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.SourceId)
                 .HasConstraintName("FK_Recipes_SourceID");
+        });
+
+        modelBuilder.Entity<Recipecookingmethod>(entity =>
+        {
+            entity.HasKey(e => e.CookingMethodId).HasName("PRIMARY");
+
+            entity.ToTable("recipecookingmethods");
+
+            entity.Property(e => e.CookingMethodId).HasColumnName("CookingMethodID");
+            entity.Property(e => e.CookingMethodName).HasColumnType("text");
         });
 
         modelBuilder.Entity<Recipecourse>(entity =>
