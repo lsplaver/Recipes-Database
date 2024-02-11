@@ -29,6 +29,12 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
             {
                 lstMainIngrediant.Items.Add(i.IngrediantName);
             }
+            foreach (Ingredianttype i in context.Ingredianttypes)
+            {
+                lstMainIngrediantType.Items.Add(i.IngrediantType1);
+            }
+            lstMainIngrediantType.Items.Insert(0, "None Selected");
+            lstMainIngrediantType.SelectedIndex = 0;
             foreach (Ingrediantform i in context.Ingrediantforms)
             {
                 lstMainIngrediantForm.Items.Add(i.IngrediantForm1);
@@ -61,6 +67,13 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
             }
             lstRecipeCookingMethod.Items.Insert(0, "None Selected");
             lstRecipeCookingMethod.SelectedIndex = 0;
+            lstKosherSubstitute.Items.Add(KosherSubstitute.NO.ToString());
+            lstKosherSubstitute.Items.Add(KosherSubstitute.YES.ToString());
+            lstKosherSubstitute.Items.Insert(0, "None Selected");
+            lstVegetarianVeganSubstitute.Items.Add(VegetarianVeganSubstitute.NO.ToString());
+            lstVegetarianVeganSubstitute.Items.Add(VegetarianVeganSubstitute.VEGETARIAN.ToString());
+            lstVegetarianVeganSubstitute.Items.Add(VegetarianVeganSubstitute.VEGAN.ToString());
+            lstVegetarianVeganSubstitute.Items.Insert(0, "None Selected");
         }
 
         private void btnAddRecipe_Click(object sender, EventArgs e)
@@ -87,7 +100,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                     {
                         source = r;
                         break;
-                        //source = (Recipesource)context.Recipesources.Where(r => r.SourceName == lstRecipeSource.SelectedValue.ToString()); // lstRecipeSource.Text);
                     }
                 }
                 source = multiClassMethods.SetRecipeSourceValues(source, context);
@@ -102,10 +114,26 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                         break;
                     }
                 }
-                //ingrediant = (Ingrediant)context.Ingrediants.Where(i => i.IngrediantName == lstMainIngrediant.Text);
                 ingrediant = multiClassMethods.SetIngrediantValues(ingrediant, context);
                 recipe.IngrediantId = ingrediant.IngrediantId;
                 recipe.Ingrediant = ingrediant;
+                // Ingredianttype is optional nullable column
+                if (lstMainIngrediantType.SelectedIndex > 0)
+                {
+                    Ingredianttype ingredianttype = new Ingredianttype();
+                    foreach (Ingredianttype i in context.Ingredianttypes)
+                    {
+                        if (i.IngrediantType1 == lstMainIngrediantType.Text)
+                        {
+                            ingredianttype = i;
+
+                            break;
+                        }
+                    }
+                    ingredianttype = multiClassMethods.SetIngrediantTyepValues(ingredianttype, context);
+                    recipe.IngrediantTypeId = ingredianttype.IngrediantTypeId;
+                    recipe.IngrediantType = ingredianttype;
+                }
                 // Ingrediantform is optional nullable column
                 if (lstMainIngrediantForm.SelectedIndex > 0)
                 {
@@ -118,7 +146,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                             break;
                         }
                     }
-                    //ingrediantform = (Ingrediantform)context.Ingrediantforms.Where(i => i.IngrediantForm1 == lstMainIngrediantForm.Text);
                     recipe.IngrediantFormId = ingrediantform.IngrediantFormId;
                     recipe.IngrediantForm = ingrediantform;
                 }
@@ -131,7 +158,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                         break;
                     }
                 }
-                //koshertype = (Koshertype)context.Koshertypes.Where(k => k.KosherTypeName == lstKosherType.Text);
                 recipe.KosherTypeId = koshertype.KosherTypeId;
                 recipe.KosherType = koshertype;
                 // Recipetype is optional nullable column
@@ -146,7 +172,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                             break;
                         }
                     }
-                    //recipetype = (Recipetype)context.Recipetypes.Where(r => r.RecipeTypeName == lstRecipeType.Text);
                     recipe.RecipeTypeId = recipetype.RecipeTypeId;
                     recipe.RecipeType = recipetype;
                 }
@@ -162,7 +187,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                             break;
                         }
                     }
-                    //recipecourse = (Recipecourse)context.Recipecourses.Where(r => r.CourseName == lstRecipeCourse.Text);
                     recipe.CourseId = recipecourse.CourseId;
                     recipe.Course = recipecourse;
                 }
@@ -178,7 +202,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                             break;
                         }
                     }
-                    //recipecookingmethod = (Recipecookingmethod)context.Recipecookingmethods.Where(r => r.CookingMethodName == lstRecipeCookingMethod.Text);
                     recipe.CookingMethodId = recipecookingmethod.CookingMethodId;
                     recipe.CookingMethod = recipecookingmethod;
                 }
@@ -194,8 +217,14 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                     }
                     else if (context.Recipes.Count() > 0)
                     {
-                        Recipe r = (Recipe)context.Recipes.Where(r => r.RecipeName == txtRecipeName.Text);
-                        nextRecipe = r.RecipeId;
+                        foreach (Recipe r in context.Recipes)
+                        {
+                            if (r.RecipeName == txtRecipeName.Text)
+                            {
+                                nextRecipe = r.RecipeId;
+                                break;
+                            }
+                        }
                     }
                     foreach (CheckedListBox.CheckedItemCollection c in clbAlternateIngrediant.CheckedItems)
                     {
@@ -209,7 +238,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                                 break;
                             }
                         }
-                        //ing = (Ingrediant)context.Ingrediants.Where(i => i.IngrediantName == c.ToString());
                         alternateingrediantsforrecipe.IngrediantNameId = ing.IngrediantId;
                         alternateingrediantsforrecipe.IngrediantName = ing;
                         alternateingrediantsforrecipe.RecipeId = nextRecipe;

@@ -10,4 +10,6 @@ public partial class Ingredianttype
     public string IngrediantType1 { get; set; } = null!;
 
     public virtual ICollection<Ingrediant> Ingrediants { get; set; } = new List<Ingrediant>();
+
+    public virtual ICollection<Recipe> Recipes { get; set; } = new List<Recipe>();
 }

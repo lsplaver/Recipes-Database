@@ -47,6 +47,12 @@
             btnAddRecipe = new Button();
             label9 = new Label();
             lstRecipeCookingMethod = new ListBox();
+            label10 = new Label();
+            lstMainIngrediantType = new ListBox();
+            label11 = new Label();
+            lstKosherSubstitute = new ListBox();
+            label12 = new Label();
+            lstVegetarianVeganSubstitute = new ListBox();
             SuspendLayout();
             // 
             // label1
@@ -102,7 +108,7 @@
             // lstMainIngrediantForm
             // 
             lstMainIngrediantForm.FormattingEnabled = true;
-            lstMainIngrediantForm.Location = new Point(314, 339);
+            lstMainIngrediantForm.Location = new Point(314, 466);
             lstMainIngrediantForm.Name = "lstMainIngrediantForm";
             lstMainIngrediantForm.Size = new Size(238, 104);
             lstMainIngrediantForm.TabIndex = 7;
@@ -110,7 +116,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 339);
+            label4.Location = new Point(12, 466);
             label4.Name = "label4";
             label4.Size = new Size(278, 60);
             label4.TabIndex = 6;
@@ -119,7 +125,7 @@
             // lstKosherType
             // 
             lstKosherType.FormattingEnabled = true;
-            lstKosherType.Location = new Point(314, 475);
+            lstKosherType.Location = new Point(314, 595);
             lstKosherType.Name = "lstKosherType";
             lstKosherType.Size = new Size(238, 104);
             lstKosherType.TabIndex = 9;
@@ -127,7 +133,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(12, 475);
+            label5.Location = new Point(12, 595);
             label5.Name = "label5";
             label5.Size = new Size(89, 20);
             label5.TabIndex = 8;
@@ -136,7 +142,7 @@
             // lstRecipeType
             // 
             lstRecipeType.FormattingEnabled = true;
-            lstRecipeType.Location = new Point(314, 611);
+            lstRecipeType.Location = new Point(897, 274);
             lstRecipeType.Name = "lstRecipeType";
             lstRecipeType.Size = new Size(238, 104);
             lstRecipeType.TabIndex = 11;
@@ -144,7 +150,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(12, 611);
+            label6.Location = new Point(595, 274);
             label6.Name = "label6";
             label6.Size = new Size(278, 60);
             label6.TabIndex = 10;
@@ -153,7 +159,7 @@
             // lstRecipeCourse
             // 
             lstRecipeCourse.FormattingEnabled = true;
-            lstRecipeCourse.Location = new Point(314, 749);
+            lstRecipeCourse.Location = new Point(897, 398);
             lstRecipeCourse.Name = "lstRecipeCourse";
             lstRecipeCourse.Size = new Size(238, 104);
             lstRecipeCourse.TabIndex = 13;
@@ -161,7 +167,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 749);
+            label7.Location = new Point(595, 398);
             label7.Name = "label7";
             label7.Size = new Size(278, 60);
             label7.TabIndex = 12;
@@ -170,7 +176,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(12, 875);
+            label8.Location = new Point(595, 524);
             label8.Name = "label8";
             label8.Size = new Size(214, 40);
             label8.TabIndex = 14;
@@ -179,14 +185,14 @@
             // clbAlternateIngrediant
             // 
             clbAlternateIngrediant.FormattingEnabled = true;
-            clbAlternateIngrediant.Location = new Point(314, 875);
+            clbAlternateIngrediant.Location = new Point(897, 524);
             clbAlternateIngrediant.Name = "clbAlternateIngrediant";
             clbAlternateIngrediant.Size = new Size(238, 114);
             clbAlternateIngrediant.TabIndex = 15;
             // 
             // btnAddRecipe
             // 
-            btnAddRecipe.Location = new Point(12, 1147);
+            btnAddRecipe.Location = new Point(12, 740);
             btnAddRecipe.Name = "btnAddRecipe";
             btnAddRecipe.Size = new Size(540, 29);
             btnAddRecipe.TabIndex = 16;
@@ -197,7 +203,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(12, 1018);
+            label9.Location = new Point(595, 667);
             label9.Name = "label9";
             label9.Size = new Size(270, 60);
             label9.TabIndex = 17;
@@ -206,17 +212,74 @@
             // lstRecipeCookingMethod
             // 
             lstRecipeCookingMethod.FormattingEnabled = true;
-            lstRecipeCookingMethod.Location = new Point(314, 1018);
+            lstRecipeCookingMethod.Location = new Point(897, 667);
             lstRecipeCookingMethod.Name = "lstRecipeCookingMethod";
             lstRecipeCookingMethod.Size = new Size(238, 104);
             lstRecipeCookingMethod.TabIndex = 18;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(12, 345);
+            label10.Name = "label10";
+            label10.Size = new Size(278, 60);
+            label10.TabIndex = 19;
+            label10.Text = "Main Ingrediant Type\r\n* Optional\r\nFor none leave \"None Selected\" selected";
+            // 
+            // lstMainIngrediantType
+            // 
+            lstMainIngrediantType.FormattingEnabled = true;
+            lstMainIngrediantType.Location = new Point(314, 333);
+            lstMainIngrediantType.Name = "lstMainIngrediantType";
+            lstMainIngrediantType.Size = new Size(238, 104);
+            lstMainIngrediantType.TabIndex = 20;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(595, 9);
+            label11.Name = "label11";
+            label11.Size = new Size(278, 60);
+            label11.TabIndex = 21;
+            label11.Text = "Kosher Substitute\r\n* Optional\r\nFor none leave \"None Selected\" selected";
+            // 
+            // lstKosherSubstitute
+            // 
+            lstKosherSubstitute.FormattingEnabled = true;
+            lstKosherSubstitute.Location = new Point(897, 12);
+            lstKosherSubstitute.Name = "lstKosherSubstitute";
+            lstKosherSubstitute.Size = new Size(238, 104);
+            lstKosherSubstitute.TabIndex = 22;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(595, 146);
+            label12.Name = "label12";
+            label12.Size = new Size(278, 60);
+            label12.TabIndex = 23;
+            label12.Text = "Vegetarian / Vegan Substitute\r\n* Optional\r\nFor none leave \"None Selected\" selected";
+            // 
+            // lstVegetarianVeganSubstitute
+            // 
+            lstVegetarianVeganSubstitute.FormattingEnabled = true;
+            lstVegetarianVeganSubstitute.Location = new Point(897, 137);
+            lstVegetarianVeganSubstitute.Name = "lstVegetarianVeganSubstitute";
+            lstVegetarianVeganSubstitute.Size = new Size(238, 104);
+            lstVegetarianVeganSubstitute.TabIndex = 24;
             // 
             // frmAddRecipe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(576, 1189);
+            ClientSize = new Size(1677, 791);
+            Controls.Add(lstVegetarianVeganSubstitute);
+            Controls.Add(label12);
+            Controls.Add(lstKosherSubstitute);
+            Controls.Add(label11);
+            Controls.Add(lstMainIngrediantType);
+            Controls.Add(label10);
             Controls.Add(lstRecipeCookingMethod);
             Controls.Add(label9);
             Controls.Add(btnAddRecipe);
@@ -263,5 +326,11 @@
         private Button btnAddRecipe;
         private Label label9;
         private ListBox lstRecipeCookingMethod;
+        private Label label10;
+        private ListBox lstMainIngrediantType;
+        private Label label11;
+        private ListBox lstKosherSubstitute;
+        private Label label12;
+        private ListBox lstVegetarianVeganSubstitute;
     }
 }

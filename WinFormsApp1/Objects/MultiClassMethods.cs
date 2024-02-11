@@ -132,10 +132,13 @@ namespace Recipes.Objects
 
         public Recipe SetRecipeValues(Recipe recipe, RecipesContext context)
         {
-            Recipecourse course = context.Recipecourses.Find(recipe.CourseId);
-            if (recipe.CourseId == course.CourseId)
+            if (recipe.CourseId.HasValue && (recipe.CourseId >= 1))
             {
-                recipe.Course = course;
+                Recipecourse course = context.Recipecourses.Find(recipe.CourseId);
+                if (recipe.CourseId == course.CourseId)
+                {
+                    recipe.Course = course;
+                }
             }
             Ingrediant ingrediant = context.Ingrediants.Find(recipe.IngrediantId);
             ingrediant = SetIngrediantValues(ingrediant, context);
@@ -143,21 +146,36 @@ namespace Recipes.Objects
             {
                 recipe.Ingrediant = ingrediant;
             }
-            recipe = GetAlternateIngrediantsForRecipe(recipe, context);
-            Ingrediantform ingrediantform = context.Ingrediantforms.Find(recipe.IngrediantFormId);
-            if (recipe.IngrediantFormId == ingrediantform.IngrediantFormId)
+            if (recipe.IngrediantTypeId.HasValue && (recipe.IngrediantTypeId >= 1))
             {
-                recipe.IngrediantForm = ingrediantform;
+                Ingredianttype ingredianttype = context.Ingredianttypes.Find(recipe.IngrediantTypeId);
+                ingredianttype = SetIngrediantTyepValues(ingredianttype, context);
+                if (recipe.IngrediantTypeId == ingredianttype.IngrediantTypeId)
+                {
+                    recipe.IngrediantType = ingredianttype;
+                }
+            }
+            recipe = GetAlternateIngrediantsForRecipe(recipe, context);
+            if (recipe.IngrediantFormId.HasValue && (recipe.IngrediantFormId >= 1))
+            {
+                Ingrediantform ingrediantform = context.Ingrediantforms.Find(recipe.IngrediantFormId);
+                if (recipe.IngrediantFormId == ingrediantform.IngrediantFormId)
+                {
+                    recipe.IngrediantForm = ingrediantform;
+                }
             }
             Koshertype koshertype = context.Koshertypes.Find(recipe.KosherTypeId);
             if (recipe.KosherTypeId == koshertype.KosherTypeId)
             {
                 recipe.KosherType = koshertype;
             }
-            Recipetype recipetype = context.Recipetypes.Find(recipe.RecipeTypeId);
-            if (recipe.RecipeTypeId == recipetype.RecipeTypeId)
+            if (recipe.RecipeTypeId.HasValue && (recipe.RecipeTypeId >= 1))
             {
-                recipe.RecipeType = recipetype;
+                Recipetype recipetype = context.Recipetypes.Find(recipe.RecipeTypeId);
+                if (recipe.RecipeTypeId == recipetype.RecipeTypeId)
+                {
+                    recipe.RecipeType = recipetype;
+                }
             }
             Recipesource recipesource = context.Recipesources.Find(recipe.SourceId);
             if (recipe.SourceId == recipesource.SourceId)
@@ -208,6 +226,40 @@ namespace Recipes.Objects
             recipesource.Recipes = recipes;
             //recipesource = SetRecipeValues(recipesource, context);
             return recipesource;
+        }
+
+        public Ingredianttype SetIngrediantTyepValues(Ingredianttype ingredianttype, RecipesContext context)
+        {
+            ingredianttype = GetIngrediantTypes(ingredianttype, context);
+            return ingredianttype;
+        }
+
+        private Ingredianttype GetIngrediantTypes(Ingredianttype ingredianttype, RecipesContext context)
+        {
+            foreach (Recipe r in context.Recipes)
+            {
+                if (r.IngrediantTypeId.HasValue && (r.IngrediantTypeId >= 1))
+                {
+                    if (r.IngrediantTypeId == ingredianttype.IngrediantTypeId)
+                    {
+                        if (!ingredianttype.Recipes.Contains(r))
+                        {
+                            ingredianttype.Recipes.Add(r);
+                        }
+                    }
+                }
+            }
+            foreach (Ingrediant i in context.Ingrediants)
+            {
+                if (i.IngrediantTypeId == ingredianttype.IngrediantTypeId)
+                {
+                    if(!ingredianttype.Ingrediants.Contains(i))
+                    {
+                        ingredianttype.Ingrediants.Add(i);
+                    }
+                }
+            }
+            return ingredianttype;
         }
 
         /*private Recipesource SetRecipeValues(Recipesource recipesource, RecipesContext context)

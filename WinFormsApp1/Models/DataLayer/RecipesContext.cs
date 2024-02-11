@@ -216,9 +216,11 @@ public partial class RecipesContext : DbContext
 
             entity.HasIndex(e => e.IngrediantFormId, "FK_Recipes_IngrediantFormID");
 
-            entity.HasIndex(e => e.IngrediantId, "FK_Recipes_IngrediantsID");
+            entity.HasIndex(e => e.IngrediantId, "FK_Recipes_IngrediantID");
 
-            entity.HasIndex(e => e.KosherTypeId, "FK_Recipes_KosherTypesID");
+            entity.HasIndex(e => e.IngrediantTypeId, "FK_Recipes_IngrediantTypeID");
+
+            entity.HasIndex(e => e.KosherTypeId, "FK_Recipes_KosherTypeID");
 
             entity.HasIndex(e => e.RecipeTypeId, "FK_Recipes_RecipeTypeID");
 
@@ -229,10 +231,17 @@ public partial class RecipesContext : DbContext
             entity.Property(e => e.CourseId).HasColumnName("CourseID");
             entity.Property(e => e.IngrediantFormId).HasColumnName("IngrediantFormID");
             entity.Property(e => e.IngrediantId).HasColumnName("IngrediantID");
+            entity.Property(e => e.IngrediantTypeId).HasColumnName("IngrediantTypeID");
+            entity.Property(e => e.KosherSubstitute)
+                .HasDefaultValueSql("'NO'")
+                .HasColumnType("enum('NO','YES')");
             entity.Property(e => e.KosherTypeId).HasColumnName("KosherTypeID");
             entity.Property(e => e.RecipeName).HasColumnType("text");
             entity.Property(e => e.RecipeTypeId).HasColumnName("RecipeTypeID");
             entity.Property(e => e.SourceId).HasColumnName("SourceID");
+            entity.Property(e => e.VeganVegetarianSubstitute)
+                .HasDefaultValueSql("'NO'")
+                .HasColumnType("enum('NO','VEGETARIAN','VEGAN')");
 
             entity.HasOne(d => d.CookingMethod).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.CookingMethodId)
@@ -252,6 +261,11 @@ public partial class RecipesContext : DbContext
             entity.HasOne(d => d.Ingrediant).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.IngrediantId)
                 .HasConstraintName("FK_Recipes_IngrediantsID");
+
+            entity.HasOne(d => d.IngrediantType).WithMany(p => p.Recipes)
+                .HasForeignKey(d => d.IngrediantTypeId)
+                .OnDelete(DeleteBehavior.SetNull)
+                .HasConstraintName("FK_Recipes_IngrediantTypeID");
 
             entity.HasOne(d => d.KosherType).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.KosherTypeId)
