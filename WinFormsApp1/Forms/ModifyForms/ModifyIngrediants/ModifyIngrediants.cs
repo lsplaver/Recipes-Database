@@ -20,6 +20,7 @@ namespace Recipes.Forms.ModifyForms.ModifyIngrediants
     public partial class frmModifyIngrediants : Form
     {
         private ServerObject ServerObject { get; set; }
+        private MultiClassMethods multiClassMethods = new MultiClassMethods();
         //private RecipesContext context = new RecipesContext();
         /*public frmModifyIngrediants()
         {
@@ -57,7 +58,7 @@ namespace Recipes.Forms.ModifyForms.ModifyIngrediants
             //frmEditIngrediantType.ShowDialog();
             /*frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnEditType.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();*/
-            ShowChooseFromListForm(btnEditType.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnEditType.Text, ServerObject);
         }
 
         private void btnEditIngrediant_Click(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace Recipes.Forms.ModifyForms.ModifyIngrediants
             //frmEditIngrediant.ShowDialog();
             /*frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnEditIngrediant.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();*/
-            ShowChooseFromListForm(btnEditIngrediant.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnEditIngrediant.Text, ServerObject);
         }
 
         private void btnAddEditUpdateSubstitutions_Click(object sender, EventArgs e)
@@ -75,45 +76,45 @@ namespace Recipes.Forms.ModifyForms.ModifyIngrediants
             //frmChoose.ShowDialog();
             /*frmChooseFromList frmChooseFromListForEdit = new frmChooseFromList(btnAddEditUpdateSubstitutions.Text, serverObject);
             frmChooseFromListForEdit.ShowDialog();*/
-            ShowChooseFromListForm(btnAddEditUpdateSubstitutions.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnAddEditUpdateSubstitutions.Text, ServerObject);
         }
 
         private void btnDeleteIngrediant_Click(object sender, EventArgs e)
         {
             /*frmChooseFromList frmChooseFromList = new frmChooseFromList(btnDeleteIngrediant.Text, serverObject);
             frmChooseFromList.ShowDialog();*/
-            ShowChooseFromListForm(btnDeleteIngrediant.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnDeleteIngrediant.Text, ServerObject);
         }
 
         private void btnDeleteType_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnDeleteType.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnDeleteType.Text, ServerObject);
         }
 
-        private void ShowChooseFromListForm(string text, ServerObject serverObject)
+        /*private void ShowChooseFromListForm(string text, ServerObject serverObject)
         {
             frmChooseFromList frmChooseFromList = new frmChooseFromList(text, serverObject);
             frmChooseFromList.ShowDialog();
-        }
+        }*/
 
         private void btnDeleteSubstitution_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnDeleteSubstitution.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnDeleteSubstitution.Text, ServerObject);
         }
 
         private void btnAddAlternateNames_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnAddAlternateNames.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnAddAlternateNames.Text, ServerObject);
         }
 
         private void btnEditAlternateNames_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnEditAlternateNames.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnEditAlternateNames.Text, ServerObject);
         }
 
         private void btnDeleteAlternateNames_Click(object sender, EventArgs e)
         {
-            ShowChooseFromListForm(btnDeleteAlternateNames.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnDeleteAlternateNames.Text, ServerObject);
         }
 
         private void btnAddIngrediantForm_Click(object sender, EventArgs e)

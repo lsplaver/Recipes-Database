@@ -70,10 +70,12 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
             lstKosherSubstitute.Items.Add(KosherSubstitute.NO.ToString());
             lstKosherSubstitute.Items.Add(KosherSubstitute.YES.ToString());
             lstKosherSubstitute.Items.Insert(0, "None Selected");
+            lstKosherSubstitute.SelectedIndex = 0;
             lstVegetarianVeganSubstitute.Items.Add(VegetarianVeganSubstitute.NO.ToString());
             lstVegetarianVeganSubstitute.Items.Add(VegetarianVeganSubstitute.VEGETARIAN.ToString());
             lstVegetarianVeganSubstitute.Items.Add(VegetarianVeganSubstitute.VEGAN.ToString());
             lstVegetarianVeganSubstitute.Items.Insert(0, "None Selected");
+            lstVegetarianVeganSubstitute.SelectedIndex = 0;
         }
 
         private void btnAddRecipe_Click(object sender, EventArgs e)
@@ -126,7 +128,6 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                         if (i.IngrediantType1 == lstMainIngrediantType.Text)
                         {
                             ingredianttype = i;
-
                             break;
                         }
                     }
@@ -190,7 +191,7 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                     recipe.CourseId = recipecourse.CourseId;
                     recipe.Course = recipecourse;
                 }
-                //Recipecookingmethod is optional nullable column
+                // Recipecookingmethod is optional nullable column
                 if (lstRecipeCookingMethod.SelectedIndex > 0)
                 {
                     Recipecookingmethod recipecookingmethod = new Recipecookingmethod();
@@ -205,7 +206,66 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                     recipe.CookingMethodId = recipecookingmethod.CookingMethodId;
                     recipe.CookingMethod = recipecookingmethod;
                 }
+                // Kosher Substitute is optional nullable column
+                switch (lstKosherSubstitute.SelectedIndex)
+                {
+                    case 0:
+                        {
+                            //recipe.KosherSubstitute = null;
+                            break;
+                        }
+                    case 1:
+                        {
+                            recipe.KosherSubstitute = KosherSubstitute.NO.ToString();
+                            break;
+                        }
+                    case 2:
+                        {
+                            recipe.KosherSubstitute = KosherSubstitute.YES.ToString();
+                            break;
+                        }
+                }
+                /*if (lstKosherSubstitute.SelectedIndex > 0)
+                {
+                    recipe.KosherSubstitute = lstKosherSubstitute.Text;
+                }
+                else
+                {
+                    recipe.KosherSubstitute = null;
+                }*/
+                // Vegeitarian Vegan Substitute is optional nullable column
+                switch (lstVegetarianVeganSubstitute.SelectedIndex)
+                {
+                    case 0:
+                        {
+                            break;
+                        }
+                    case 1:
+                        {
+                            recipe.VeganVegetarianSubstitute = VegetarianVeganSubstitute.NO.ToString();
+                            break;
+                        }
+                    case 2:
+                        {
+                            recipe.VeganVegetarianSubstitute = VegetarianVeganSubstitute.VEGAN.ToString();
+                            break;
+                        }
+                    case 3:
+                        {
+                            recipe.VeganVegetarianSubstitute = VegetarianVeganSubstitute.VEGETARIAN.ToString();
+                            break;
+                        }
+                }
+                /*if (lstVegetarianVeganSubstitute.SelectedIndex > 0)
+                {
+                    recipe.VeganVegetarianSubstitute = lstVegetarianVeganSubstitute.Text;
+                }
+                else
+                {
+                    recipe.VeganVegetarianSubstitute = null;
+                }*/
                 context.Recipes.Add(recipe);
+                context.SaveChanges();
                 // Alternateingrediantsforrecipe is optional nullable column
                 List<Alternateingrediantsforrecipe> alternate = new List<Alternateingrediantsforrecipe>();
                 if ((clbAlternateIngrediant.CheckedItems.Count > 0) && (context.Recipes.Count() > 0))
@@ -226,13 +286,13 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                             }
                         }
                     }
-                    foreach (CheckedListBox.CheckedItemCollection c in clbAlternateIngrediant.CheckedItems)
+                    foreach (string s in clbAlternateIngrediant.CheckedItems)
                     {
                         Alternateingrediantsforrecipe alternateingrediantsforrecipe = new Alternateingrediantsforrecipe();
                         Ingrediant ing = new Ingrediant();
                         foreach (Ingrediant i in context.Ingrediants)
                         {
-                            if (i.IngrediantName == c.ToString())
+                            if (i.IngrediantName == s)//.ToString())
                             {
                                 ing = i;
                                 break;

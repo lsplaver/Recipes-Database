@@ -31,12 +31,12 @@ namespace Recipes.Forms
         private MultiClassMethods multiClassMethods = new MultiClassMethods();
 
 
-        public frmChooseFromList(string strOrigin)
+        /*public frmChooseFromList(string strOrigin)
         {
             Origin = strOrigin;
             InitializeComponent();
             SetlstChooseForEdit();
-        }
+        }*/
 
         public frmChooseFromList(string strOrigin, ServerObject server)
         {

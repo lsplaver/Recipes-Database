@@ -173,6 +173,8 @@ public partial class RecipesContext : DbContext
 
             entity.HasIndex(e => e.IngrediantNameId, "FK_IngrediantSubstitute_IngrediantNameID");
 
+            entity.HasIndex(e => e.IngrediantSubstitutedById, "FK_IngrediantSubstitute_IngrediantSubstitutiecByID");
+
             entity.Property(e => e.SubstitutedById).HasColumnName("SubstitutedByID");
             entity.Property(e => e.IngrediantNameId).HasColumnName("IngrediantNameID");
             entity.Property(e => e.IngrediantSubstitutedById).HasColumnName("IngrediantSubstitutedByID");
@@ -232,16 +234,12 @@ public partial class RecipesContext : DbContext
             entity.Property(e => e.IngrediantFormId).HasColumnName("IngrediantFormID");
             entity.Property(e => e.IngrediantId).HasColumnName("IngrediantID");
             entity.Property(e => e.IngrediantTypeId).HasColumnName("IngrediantTypeID");
-            entity.Property(e => e.KosherSubstitute)
-                .HasDefaultValueSql("'NO'")
-                .HasColumnType("enum('NO','YES')");
+            entity.Property(e => e.KosherSubstitute).HasColumnType("enum('NO','YES')");
             entity.Property(e => e.KosherTypeId).HasColumnName("KosherTypeID");
             entity.Property(e => e.RecipeName).HasColumnType("text");
             entity.Property(e => e.RecipeTypeId).HasColumnName("RecipeTypeID");
             entity.Property(e => e.SourceId).HasColumnName("SourceID");
-            entity.Property(e => e.VeganVegetarianSubstitute)
-                .HasDefaultValueSql("'NO'")
-                .HasColumnType("enum('NO','VEGETARIAN','VEGAN')");
+            entity.Property(e => e.VeganVegetarianSubstitute).HasColumnType("enum('NO','VEGETARIAN','VEGAN')");
 
             entity.HasOne(d => d.CookingMethod).WithMany(p => p.Recipes)
                 .HasForeignKey(d => d.CookingMethodId)
