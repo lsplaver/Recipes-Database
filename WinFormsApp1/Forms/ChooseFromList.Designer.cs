@@ -31,6 +31,10 @@
             lblChoose = new Label();
             lstChoose = new ListBox();
             btnChoose = new Button();
+            dgvRecipes = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvRecipes).BeginInit();
             SuspendLayout();
             // 
             // lblChoose
@@ -45,6 +49,7 @@
             // lstChoose
             // 
             lstChoose.FormattingEnabled = true;
+            lstChoose.HorizontalScrollbar = true;
             lstChoose.Location = new Point(236, 12);
             lstChoose.Name = "lstChoose";
             lstChoose.Size = new Size(189, 304);
@@ -60,18 +65,45 @@
             btnChoose.UseVisualStyleBackColor = true;
             btnChoose.Click += btnChooseForEdit_Click;
             // 
+            // dgvRecipes
+            // 
+            dgvRecipes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRecipes.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2 });
+            dgvRecipes.Enabled = false;
+            dgvRecipes.Location = new Point(500, 12);
+            dgvRecipes.MultiSelect = false;
+            dgvRecipes.Name = "dgvRecipes";
+            dgvRecipes.RowHeadersWidth = 51;
+            dgvRecipes.Size = new Size(304, 304);
+            dgvRecipes.TabIndex = 3;
+            dgvRecipes.Visible = false;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Column1";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Column2";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            Column2.Width = 125;
+            // 
             // frmChooseFromList
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(452, 450);
+            ClientSize = new Size(1177, 450);
+            Controls.Add(dgvRecipes);
             Controls.Add(btnChoose);
             Controls.Add(lstChoose);
             Controls.Add(lblChoose);
             Name = "frmChooseFromList";
             Text = "Choose From List";
-            //Activated += frmChooseFromListForEdit_Load;
-            //Load += frmChooseFromListForEdit_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvRecipes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -81,5 +113,8 @@
         private Label lblChoose;
         private ListBox lstChoose;
         private Button btnChoose;
+        private DataGridView dgvRecipes;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
     }
 }

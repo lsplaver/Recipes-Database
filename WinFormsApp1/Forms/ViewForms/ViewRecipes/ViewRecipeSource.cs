@@ -24,16 +24,19 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
             txtViewRecipeSourceName.Text = RecipeSource.SourceName;
             txtViewRecipeSourceType.Text = RecipeSource.SourceType.SourceTypeName;
             txtViewRecipeSourceLocation.Text = RecipeSource.SourceLocation;
-            lstViewRecipe.DataSource = RecipeSource.Recipes.Order().ToList();
+            lstViewRecipe.DataSource = RecipeSource.Recipes.Select(r => r.RecipeName).Order().ToList();
         }
 
         private void btnViewRecipe_Click(object sender, EventArgs e)
         {
-            //RecipesContext context = new RecipesContext(ServerObject);
-            //Recipe recipe = (Recipe)context.Recipes.Where(r => r.RecipeName == lstViewRecipe.SelectedValue);
-            //frmViewRecipe frmViewRecipe = new frmViewRecipe(recipe, ServerObject);
-            //frmViewRecipe.ShowDialog();
-            MessageBox.Show("Not yet implemented.");
+            RecipesContext context = new RecipesContext(ServerObject);
+            Recipe recipe = new Recipe();
+            recipe.RecipeName = lstViewRecipe.Text;
+            recipe.SourceId = RecipeSource.SourceId;
+            MultiClassMethods multiClassMethods = new MultiClassMethods();
+            recipe = multiClassMethods.SetRecipeValues(recipe, context);
+            frmViewRecipe frmViewRecipe = new frmViewRecipe(recipe, ServerObject);
+            frmViewRecipe.ShowDialog();
         }
     }
 }

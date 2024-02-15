@@ -56,6 +56,7 @@
 	<Folder Include="Forms\ModifyForms\ModifyRecipes\ModifyRecipe%27Source\" />
 	<Folder Include="Forms\ModifyForms\ModifyRecipes\ModifyRecipeSourceType\" />
 	<Folder Include="Forms\ViewForms\ViewIngrediants\" />
+	<Folder Include="Properties\" />
   </ItemGroup>
 
   <!-- <ItemGroup>

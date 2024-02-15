@@ -1,4 +1,5 @@
-﻿using Recipes.Models.DataLayer;
+﻿using Recipes.Forms.ViewForms.ViewRecipes;
+using Recipes.Models.DataLayer;
 using Recipes.Objects;
 using System;
 using System.Collections.Generic;
@@ -33,7 +34,10 @@ namespace Recipes.Forms.ViewForms.ViewIngrediants
             lstIngrediantSubstitutions.DataSource = substitutedBy.Values.Order().ToList();
             foreach (Recipe r in context.Recipes)
             {
-                recipesList.Add(r.RecipeId, r.RecipeName);
+                if (r.IngrediantId == Ingrediant.IngrediantId)
+                {
+                    recipesList.Add(r.RecipeId, r.RecipeName);
+                }
             }
             lstRecipes.DataSource = recipesList.Values.Order().ToList(); //Ingrediant.Recipes.Select(r => r.RecipeName).Order().ToList();
             txtIngrediantName.Text = Ingrediant.IngrediantName;
@@ -114,9 +118,8 @@ namespace Recipes.Forms.ViewForms.ViewIngrediants
             //{
             //    recipe.Source = recipesource;
             //}
-            //frmViewRecipe frmViewRecipe = new frmViewRecipe(recipe, ServerObject);
-            //frmViewRecipe.ShowDialog();
-            MessageBox.Show("Not yet implemented");
+            frmViewRecipe frmViewRecipe = new frmViewRecipe(recipe, ServerObject);
+            frmViewRecipe.ShowDialog();
         }
 
     }

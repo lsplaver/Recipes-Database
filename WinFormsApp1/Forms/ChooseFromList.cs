@@ -145,10 +145,27 @@ namespace Recipes.Forms
         private void btnChooseForEdit_Click(object sender, EventArgs e)
         {
             RecipesContext context = new RecipesContext(serverObject);
-            int tempInt = sortedListString.IndexOfValue(lstChoose.SelectedItem.ToString());
-            int key = /*sortedListString.Keys.ElementAt(lstChooseForEdit.SelectedIndex);*/ sortedListString.GetKeyAtIndex(tempInt);
-            selectedItemIndex = lstChoose.SelectedIndex; //tempInt;
-            selectedItem = lstChoose.SelectedItem.ToString();
+            int tempInt = -1, key = -1;
+            if (Origin.Equals("View Recipe"))
+            {
+                foreach (Recipe r in context.Recipes)
+                {
+                    if (r.RecipeName == dgvRecipes.CurrentRow.Cells[1].Value.ToString())
+                    {
+                        key = r.RecipeId;
+                        break;
+                    }
+                }
+                //Recipe recipe = context.Recipes.Contains(dgvRecipes.CurrentRow.Cells[1].Value.ToString());//.Where(r => r.RecipeName == dgvRecipes.CurrentRow.Cells[1].Value.ToString()); //lstChoose.Text);
+                //key = recipe.RecipeId;
+            }
+            else
+            {
+                tempInt = sortedListString.IndexOfValue(lstChoose.SelectedItem.ToString());
+                key = /*sortedListString.Keys.ElementAt(lstChooseForEdit.SelectedIndex);*/ sortedListString.GetKeyAtIndex(tempInt);
+                selectedItemIndex = lstChoose.SelectedIndex; //tempInt;
+                selectedItem = lstChoose.SelectedItem.ToString();
+            }
             if (Origin.Contains("Add"))
             {
                 switch (Origin)
@@ -342,6 +359,15 @@ namespace Recipes.Forms
                             frmViewRecipeSource.ShowDialog();
                             break;
                         }
+                    case "View Recipe":
+                        {
+                            Recipe recipe = new Recipe();
+                            recipe = context.Recipes.Find(key);
+                            recipe = multiClassMethods.SetRecipeValues(recipe, context);
+                            frmViewRecipe frmViewRecipe = new frmViewRecipe(recipe, serverObject);
+                            frmViewRecipe.ShowDialog();
+                            break;
+                        }
                 }
             }
             context = new RecipesContext(serverObject);
@@ -398,6 +424,10 @@ namespace Recipes.Forms
             lblChoose.Text = Origin;
             btnChoose.Text = Origin;
             sortedListString.Clear();
+            lstChoose.Visible = true;
+            lstChoose.Enabled = true;
+            dgvRecipes.Enabled = false;
+            dgvRecipes.Visible = false;
             RecipesContext context = new RecipesContext(serverObject);
             switch (Origin)
             {
@@ -421,7 +451,7 @@ namespace Recipes.Forms
                         {
                             sortedListString.Add(i.IngrediantId, i.IngrediantName);//.SubstitutedById, i.IngrediantName.IngrediantName1);
                         }
-                        //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+                        lstChoose.DataSource = sortedListString.Values.Order().ToList();
                         break;
                     }
                 case "Edit Alternate Ingrediant Names":
@@ -430,6 +460,7 @@ namespace Recipes.Forms
                         {
                             sortedListString.Add(i.AlternateNameId, i.AlternateName);
                         }
+                        lstChoose.DataSource = sortedListString.Values.Order().ToList();
                         break;
                     }
                 case "Edit Ingrediant Type":
@@ -440,7 +471,7 @@ namespace Recipes.Forms
                         {
                             sortedListString.Add(i.IngrediantTypeId, i.IngrediantType1);
                         }
-                        //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList(); //.Order().ToList();
+                        lstChoose.DataSource = sortedListString.Values.Order().ToList(); //.Order().ToList();
                         break;
                     }
                 case "Edit Recipe Source":
@@ -451,7 +482,7 @@ namespace Recipes.Forms
                         {
                             sortedListString.Add(r.SourceId, r.SourceName);
                         }
-                        //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+                        lstChoose.DataSource = sortedListString.Values.Order().ToList();
                         break;
                     }
                 case "Edit Recipe Source Type":
@@ -462,7 +493,7 @@ namespace Recipes.Forms
                         {
                             sortedListString.Add(r.SourceTypeId, r.SourceTypeName);
                         }
-                        //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+                        lstChoose.DataSource = sortedListString.Values.Order().ToList();
                         break;
                     }
                 case "Edit Kosher Type":
@@ -472,22 +503,46 @@ namespace Recipes.Forms
                         {
                             sortedListString.Add(k.KosherTypeId, k.KosherTypeName);
                         }
-                        //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+                        lstChoose.DataSource = sortedListString.Values.Order().ToList();
                         break;
                     }
-                //case "Edit Recipe":
-                //case "Delete Recipe":
-                default:
+                case "Edit Recipe":
+                case "Delete Recipe":
                     {
                         foreach (Recipe r in context.Recipes)
                         {
                             sortedListString.Add(r.RecipeId, r.RecipeName);
                         }
-                        //lstChooseForEdit.DataSource = sortedListString.Values.Order().ToList();
+                        lstChoose.DataSource = sortedListString.Values.Order().ToList();
+                        break;
+                    }
+                case "View Recipe":
+                //default:
+                    {
+                        lstChoose.Visible = false;
+                        lstChoose.Enabled = false;
+                        dgvRecipes.Enabled = true;
+                        dgvRecipes.Visible = true;
+                        dgvRecipes.Rows.Clear();
+                        foreach (Recipe r in context.Recipes)
+                        {
+                            //sortedListString.Add(r.IngrediantId, r.RecipeName);
+                            //lstChoose.Items.Add(r.Ingrediant.IngrediantName, r.RecipeName);
+                            Recipe recipe = r;
+                            recipe = multiClassMethods.SetRecipeValues(recipe, context);
+                            dgvRecipes.Rows.Add(recipe.Ingrediant.IngrediantName, recipe.RecipeName);
+                        }
+                        //dgvRecipes.DataSource = context.Recipes;
+                        //dgvRecipes.AutoGenerateColumns = true;
+                        //dgvRecipes.Rows.
+                        //lstChoose.DataSource = sortedListString.Keys.Order().ToList();
+                        //lstChoose.DataSource = context.Recipes;
+                        //lstChoose.Items.
+                        dgvRecipes.Sort(dgvRecipes.Columns[0], ListSortDirection.Ascending);
                         break;
                     }
             }
-            lstChoose.DataSource = sortedListString.Values.Order().ToList();
+            //lstChoose.DataSource = sortedListString.Values.Order().ToList();
             //if (selectedItemIndex >= 0)
             //{
             //lstChooseForEdit.SelectedIndex = selectedItemIndex;

@@ -68,14 +68,13 @@
             // 
             // btnViewRecipe
             // 
-            btnViewRecipe.Enabled = false;
             btnViewRecipe.Location = new Point(12, 12);
             btnViewRecipe.Name = "btnViewRecipe";
             btnViewRecipe.Size = new Size(150, 83);
             btnViewRecipe.TabIndex = 4;
             btnViewRecipe.Text = "View Recipe";
             btnViewRecipe.UseVisualStyleBackColor = true;
-            btnViewRecipe.Visible = false;
+            btnViewRecipe.Click += btnViewRecipe_Click;
             // 
             // btnViewRecipeType
             // 
@@ -93,11 +92,11 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnViewRecipe);
             Controls.Add(btnViewRecipeType);
             Controls.Add(btnViewRecipeSourceType);
             Controls.Add(btnViewRecipeSource);
             Controls.Add(btnViewRecipeCourse);
-            Controls.Add(btnViewRecipe);
             Name = "frmViewRecipes";
             Text = "View Recipes";
             ResumeLayout(false);
