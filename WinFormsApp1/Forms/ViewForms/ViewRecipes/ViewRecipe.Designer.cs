@@ -297,6 +297,7 @@
             btnViewMainIngrediantType.TabIndex = 60;
             btnViewMainIngrediantType.Text = "View Main Ingrediant Type";
             btnViewMainIngrediantType.UseVisualStyleBackColor = true;
+            btnViewMainIngrediantType.Click += btnViewMainIngrediantType_Click;
             // 
             // btnViewMainIngrediantForm
             // 

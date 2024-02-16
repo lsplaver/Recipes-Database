@@ -17,6 +17,8 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
     {
         private Recipe Recipe { get; set; }
         private ServerObject ServerObject { get; set; }
+        private MultiClassMethods multiClassMethods = new MultiClassMethods();
+
         public frmViewRecipe(Recipe recipe, ServerObject serverObject)
         {
             Recipe = recipe;
@@ -101,7 +103,7 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
                     break;
                 }
             }
-            MultiClassMethods multiClassMethods = new MultiClassMethods();
+            //MultiClassMethods multiClassMethods = new MultiClassMethods();
             recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context);
             frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, ServerObject);
             frmViewRecipeSource.ShowDialog();
@@ -119,10 +121,27 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
                     break;
                 }
             }
-            MultiClassMethods multiClassMethods = new MultiClassMethods();
+            //MultiClassMethods multiClassMethods = new MultiClassMethods();
             ingrediant = multiClassMethods.SetIngrediantValues(ingrediant, context);
             frmViewIngrediant frmViewIngrediant = new frmViewIngrediant(ingrediant, ServerObject);
             frmViewIngrediant.ShowDialog();
+        }
+
+        private void btnViewMainIngrediantType_Click(object sender, EventArgs e)
+        {
+            Ingredianttype ingredianttype = new Ingredianttype();
+            RecipesContext context = new RecipesContext(ServerObject);
+            foreach (Ingredianttype i in context.Ingredianttypes)
+            {
+                if (i.IngrediantType1 == txtViewMainIngrediantType.Text)
+                {
+                    ingredianttype = i;
+                    break;
+                }
+            }
+            ingredianttype = multiClassMethods.SetIngrediantTyepValues(ingredianttype, context);
+            frmViewIngrediantType frmViewIngrediantType = new frmViewIngrediantType(ingredianttype, ServerObject);
+            frmViewIngrediantType.ShowDialog();
         }
     }
 }

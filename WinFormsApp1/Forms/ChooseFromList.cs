@@ -146,7 +146,7 @@ namespace Recipes.Forms
         {
             RecipesContext context = new RecipesContext(serverObject);
             int tempInt = -1, key = -1;
-            if (Origin.Equals("View Recipe"))
+            if (Origin.Equals("View Recipe") || Origin.Equals("Edit Recipe") || Origin.Equals("Delete Recipe"))
             {
                 foreach (Recipe r in context.Recipes)
                 {
@@ -234,6 +234,7 @@ namespace Recipes.Forms
                         {
                             Recipesource recipeSource = new Recipesource();
                             recipeSource = context.Recipesources.Find(key);
+                            recipeSource = multiClassMethods.SetRecipeSourceValues(recipeSource, context);
                             //frmEditRecipeSource frmEditRecipeSource = new frmEditRecipeSource(recipeSource);
                             //frmEditRecipeSource.ShowDialog();
                             MessageBox.Show("Not Implemented Yet");
@@ -243,6 +244,7 @@ namespace Recipes.Forms
                         {
                             Recipe recipe = new Recipe();
                             recipe = context.Recipes.Find(key);
+                            recipe = multiClassMethods.SetRecipeValues(recipe, context);
                             //frmEditRecipe frmEditRecipe = new frmEditRecipe(recipe);
                             //frmEditRecipe.ShowDialog();
                             MessageBox.Show("Not Implemented Yet");
@@ -508,14 +510,14 @@ namespace Recipes.Forms
                     }
                 case "Edit Recipe":
                 case "Delete Recipe":
-                    {
+                    /*{
                         foreach (Recipe r in context.Recipes)
                         {
                             sortedListString.Add(r.RecipeId, r.RecipeName);
                         }
                         lstChoose.DataSource = sortedListString.Values.Order().ToList();
                         break;
-                    }
+                    }*/
                 case "View Recipe":
                 //default:
                     {
