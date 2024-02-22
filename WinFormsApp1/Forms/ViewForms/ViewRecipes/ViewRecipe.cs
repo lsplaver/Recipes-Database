@@ -104,7 +104,7 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
                 }
             }
             //MultiClassMethods multiClassMethods = new MultiClassMethods();
-            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context);
+            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context, false);
             frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, ServerObject);
             frmViewRecipeSource.ShowDialog();
         }

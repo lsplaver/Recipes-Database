@@ -2,6 +2,7 @@
 using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantSubstitution;
 using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediantType;
 using Recipes.Forms.ModifyForms.ModifyIngrediants.ModifyIngrediant;
+using Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe;
 using Recipes.Models.DataLayer;
 using Recipes.Objects;
 using Recipes.Forms.ViewForms.ViewIngrediants;
@@ -234,7 +235,7 @@ namespace Recipes.Forms
                         {
                             Recipesource recipeSource = new Recipesource();
                             recipeSource = context.Recipesources.Find(key);
-                            recipeSource = multiClassMethods.SetRecipeSourceValues(recipeSource, context);
+                            recipeSource = multiClassMethods.SetRecipeSourceValues(recipeSource, context, false);
                             //frmEditRecipeSource frmEditRecipeSource = new frmEditRecipeSource(recipeSource);
                             //frmEditRecipeSource.ShowDialog();
                             MessageBox.Show("Not Implemented Yet");
@@ -245,9 +246,8 @@ namespace Recipes.Forms
                             Recipe recipe = new Recipe();
                             recipe = context.Recipes.Find(key);
                             recipe = multiClassMethods.SetRecipeValues(recipe, context);
-                            //frmEditRecipe frmEditRecipe = new frmEditRecipe(recipe);
-                            //frmEditRecipe.ShowDialog();
-                            MessageBox.Show("Not Implemented Yet");
+                            frmEditRecipe frmEditRecipe = new frmEditRecipe(recipe, serverObject);
+                            frmEditRecipe.ShowDialog();
                             break;
                         }
                     case "Edit Kosher Type":
@@ -356,7 +356,7 @@ namespace Recipes.Forms
                         {
                             Recipesource recipesource = new Recipesource();
                             recipesource = context.Recipesources.Find(key);
-                            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context);
+                            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context, false);
                             frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, serverObject);
                             frmViewRecipeSource.ShowDialog();
                             break;

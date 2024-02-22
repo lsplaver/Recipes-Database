@@ -21,6 +21,7 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes
     public partial class frmModifyRecipes : Form
     {
         private ServerObject ServerObject { get; set; }
+        private MultiClassMethods multiClassMethods = new MultiClassMethods();
         public frmModifyRecipes(ServerObject server)
         {
             InitializeComponent();
@@ -47,14 +48,14 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes
 
         private void btnEditSource_Click(object sender, EventArgs e)
         {
-            ShowChooseFromList(btnEditSource.Text, ServerObject);
+            multiClassMethods.ShowChooseFromList(btnEditSource.Text, ServerObject);
         }
 
-        private void ShowChooseFromList(string text, ServerObject ServerObject)
+        /*private void ShowChooseFromList(string text, ServerObject ServerObject)
         {
             frmChooseFromList frmChooseFromList = new frmChooseFromList(text, ServerObject);
             frmChooseFromList.ShowDialog();
-        }
+        }*/
 
         private void btnAddRecipeCourse_Click(object sender, EventArgs e)
         {
@@ -78,6 +79,11 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes
         {
             frmAddRecipeCookingMethod frmAddRecipeCookingMethod = new frmAddRecipeCookingMethod(ServerObject);
             frmAddRecipeCookingMethod.ShowDialog();
+        }
+
+        private void btnEditRecipe_Click(object sender, EventArgs e)
+        {
+            multiClassMethods.ShowChooseFromList(btnEditRecipe.Text, ServerObject);
         }
     }
 

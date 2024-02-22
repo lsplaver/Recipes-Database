@@ -88,14 +88,13 @@ partial class frmModifyRecipes
         // 
         // btnEditRecipe
         // 
-        btnEditRecipe.Enabled = false;
         btnEditRecipe.Location = new Point(169, 68);
         btnEditRecipe.Name = "btnEditRecipe";
         btnEditRecipe.Size = new Size(94, 29);
         btnEditRecipe.TabIndex = 9;
         btnEditRecipe.Text = "Edit Recipe";
         btnEditRecipe.UseVisualStyleBackColor = true;
-        btnEditRecipe.Visible = false;
+        btnEditRecipe.Click += btnEditRecipe_Click;
         // 
         // btnAddRecipe
         // 

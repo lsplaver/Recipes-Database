@@ -30,7 +30,7 @@ namespace Recipes.Forms.ViewForms.ViewRecipes
         {
             RecipesContext context = new RecipesContext(ServerObject);
             Recipesource recipesource = RecipeSourceType.Recipesources.Where(r => r.SourceName == lstRecipeSources.SelectedValue).First();
-            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context);
+            recipesource = multiClassMethods.SetRecipeSourceValues(recipesource, context, false);
             frmViewRecipeSource frmViewRecipeSource = new frmViewRecipeSource(recipesource, ServerObject);
             frmViewRecipeSource.ShowDialog();
         }

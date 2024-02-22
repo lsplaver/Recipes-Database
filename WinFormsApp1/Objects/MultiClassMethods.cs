@@ -133,7 +133,7 @@ namespace Recipes.Objects
         public Recipe SetRecipeValues(Recipe recipe, RecipesContext context)
         {
             Recipe tempRecipe = context.Recipes.Where(r => r.RecipeName == recipe.RecipeName).FirstOrDefault();
-            if (recipe.RecipeId == 0)
+            if (recipe.RecipeId <= 0)
             {
                 recipe.RecipeId = tempRecipe.RecipeId;
             }
@@ -142,6 +142,7 @@ namespace Recipes.Objects
                 recipe.SourceId = tempRecipe.SourceId;
             }
             Recipesource recipesource = context.Recipesources.Find(recipe.SourceId);
+            recipesource = SetRecipeSourceValues(recipesource, context, true);
             if (recipe.SourceId == recipesource.SourceId)
             {
                 recipe.Source = recipesource;
@@ -156,10 +157,10 @@ namespace Recipes.Objects
             {
                 recipe.Ingrediant = ingrediant;
             }
-            if ((recipe.IngrediantTypeId == null) || (recipe.IngrediantTypeId <= 0))
+            /*if ((recipe.IngrediantTypeId == null) || (recipe.IngrediantTypeId < 0))
             {
                 recipe.IngrediantTypeId = tempRecipe.IngrediantTypeId;
-            }
+            }*/
             if (recipe.IngrediantTypeId.HasValue && (recipe.IngrediantTypeId >= 1))
             {
                 Ingredianttype ingredianttype = context.Ingredianttypes.Find(recipe.IngrediantTypeId);
@@ -169,10 +170,10 @@ namespace Recipes.Objects
                     recipe.IngrediantType = ingredianttype;
                 }
             }
-            if ((recipe.IngrediantFormId == null) || (recipe.IngrediantFormId <= 1))
+            /*if ((recipe.IngrediantFormId == null) || (recipe.IngrediantFormId < 0))
             {
                 recipe.IngrediantFormId = tempRecipe.IngrediantFormId;
-            }
+            }*/
             if (recipe.IngrediantFormId.HasValue && (recipe.IngrediantFormId >= 1))
             {
                 Ingrediantform ingrediantform = context.Ingrediantforms.Find(recipe.IngrediantFormId);
@@ -181,7 +182,7 @@ namespace Recipes.Objects
                     recipe.IngrediantForm = ingrediantform;
                 }
             }
-            if (recipe.KosherTypeId == 0)
+            if (recipe.KosherTypeId <= 0)
             {
                 recipe.KosherTypeId = tempRecipe.KosherTypeId;
             }
@@ -190,10 +191,10 @@ namespace Recipes.Objects
             {
                 recipe.KosherType = koshertype;
             }
-            if ((recipe.RecipeTypeId == null) || (recipe.RecipeTypeId <= 0))
+            /*if ((recipe.RecipeTypeId == null) || (recipe.RecipeTypeId < 0))
             {
                 recipe.RecipeTypeId = tempRecipe.RecipeTypeId;
-            }
+            }*/
             if (recipe.RecipeTypeId.HasValue && (recipe.RecipeTypeId >= 1))
             {
                 Recipetype recipetype = context.Recipetypes.Find(recipe.RecipeTypeId);
@@ -202,10 +203,10 @@ namespace Recipes.Objects
                     recipe.RecipeType = recipetype;
                 }
             }
-            if ((recipe.CourseId == null) || (recipe.CourseId <= 0))
+            /*if ((recipe.CourseId == null) || (recipe.CourseId < 0))
             {
                 recipe.CourseId = tempRecipe.CourseId;
-            }
+            }*/
             if (recipe.CourseId.HasValue && (recipe.CourseId >= 1))
             {
                 Recipecourse course = context.Recipecourses.Find(recipe.CourseId);
@@ -215,10 +216,10 @@ namespace Recipes.Objects
                 }
             }
             recipe = GetAlternateIngrediantsForRecipe(recipe, context);
-            if ((recipe.CookingMethodId == null) || (recipe.CookingMethodId <= 0))
+            /*if ((recipe.CookingMethodId == null) || (recipe.CookingMethodId < 0))
             {
                 recipe.CookingMethodId = tempRecipe.CookingMethodId;
-            }
+            }*/
             if (recipe.CookingMethodId.HasValue && (recipe.CookingMethodId >= 1))
             {
                 Recipecookingmethod recipecookingmethod = context.Recipecookingmethods.Find(recipe.CookingMethodId);
@@ -255,18 +256,22 @@ namespace Recipes.Objects
             return recipesourcetype;
         }
 
-        public Recipesource SetRecipeSourceValues(Recipesource recipesource, RecipesContext context)
+        public Recipesource SetRecipeSourceValues(Recipesource recipesource, RecipesContext context, bool fromSetRecipeValues)
         {
             Recipesourcetype recipesourcetype = context.Recipesourcetypes.Find(recipesource.SourceTypeId);
+            recipesourcetype = SetRecipeSourceTypeValues(recipesourcetype, context);
             if (recipesource.SourceTypeId == recipesourcetype.SourceTypeId)
             {
                 recipesource.SourceType = recipesourcetype;
             }
             ICollection<Recipe> recipes = context.Recipes.Where(r => r.SourceId == recipesource.SourceId).ToList();
-            foreach (Recipe r in recipes)
+            if (!fromSetRecipeValues)
             {
-                Recipe recipe = r;
-                recipe = SetRecipeValues(recipe, context);
+                foreach (Recipe r in recipes)
+                {
+                    Recipe recipe = r;
+                    recipe = SetRecipeValues(recipe, context);
+                }
             }
             recipesource.Recipes = recipes;
             //recipesource = SetRecipeValues(recipesource, context);

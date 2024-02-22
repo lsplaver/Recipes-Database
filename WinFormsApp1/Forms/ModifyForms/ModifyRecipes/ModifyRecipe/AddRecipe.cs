@@ -104,7 +104,7 @@ namespace Recipes.Forms.ModifyForms.ModifyRecipes.ModifyRecipe
                         break;
                     }
                 }
-                source = multiClassMethods.SetRecipeSourceValues(source, context);
+                source = multiClassMethods.SetRecipeSourceValues(source, context, false);
                 recipe.SourceId = source.SourceId;
                 recipe.Source = source;
                 Ingrediant ingrediant = new Ingrediant();
